@@ -1,0 +1,9 @@
+seller.dat
+client.dat
+order.dat
+product.dat
+./Debug
+.vscode
+*.o
+Business.h
+Business.cpp
