@@ -17,7 +17,7 @@ Order::Order(std::string a_sellerId, std::string a_clientId, int a_day, int a_mo
 std::string Order::get(OrderParams param) const {
 	switch (param)
     {
-    case SELLER_ID:
+    case SELL_ID:
         return id;
         break;
     case SELL_CLIENT:

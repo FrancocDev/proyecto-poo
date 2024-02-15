@@ -141,48 +141,35 @@ std::size_t Store::sizeOf(ArrayTypes arr) {
 	return 0;
 }
 
-template <typename T>
-void Store::add(ArrayTypes arr,const T &elem) {
-		switch (arr) {
-		case CLIENT:
-			clients.push_back(elem);
-			break;
-		case PRODUCT:
-			products.push_back(elem);
-			break;
-		case SELLER:
-			sellers.push_back(elem);
-			break;	
-		case ORDER:
-			orders.push_back(elem);
-			break;
-		default:
-		break;
-	}
+void Store::addClient(Client &&elem) {
+	clients.push_back(elem);
 }
 
-template <typename T>
-T Store::get(ArrayTypes arr,int i) {
-	switch (arr) {
-	case CLIENT:
-		return clients[i];
-	break;
-	case PRODUCT:
-		return products[i];
-	break;
-	case SELLER:
-		return sellers[i];
-	break;	
-	case ORDER:
-		return orders[i];
-	break;
-	default:
-		return T();
-	break;
-	}
-	return T();
+void Store::addSeller(Seller &&elem) {
+	sellers.push_back(elem);
 }
-	
+
+void Store::addOrder(Order &&elem) {
+	orders.push_back(elem);
+}
+
+void Store::addProduct(Product &&elem) {
+	products.push_back(elem);
+}
+
+Client Store::getClient(int i) {
+	return clients[i];
+}
+Seller Store::getSeller(int i) {
+	return sellers[i];
+}
+Order Store::getOrder(int i) {
+	return orders[i];
+}
+Product Store::getProduct(int i) {
+	return products[i];
+}
+
 void Store::remove(ArrayTypes arr, int i) {
 		switch (arr) {
 		case CLIENT:
