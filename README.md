@@ -1,2 +1,2 @@
-[] FIX: Error al cargar los archivos. 
-[] Importar la IU.
+- [ ] FIX: Error al cargar los archivos.
+- [ ] Importar la IU.
