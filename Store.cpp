@@ -107,7 +107,7 @@ bool Store::saveIndividualData(ArrayTypes elem) {
 				file.write(reinterpret_cast<char*>(&reg), sizeof(clientStruct));
 				break;
 			case PRODUCT:
-				clientProduct = products[i];
+				productElement = products[i];
 				Productstruct reg;
 				
 				strcpy(reg.id, productElement.get(PRODUCT_ID).c_str());
