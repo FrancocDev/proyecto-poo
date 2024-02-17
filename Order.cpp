@@ -37,16 +37,12 @@ float Order::getTotal() const {
     for (auto &product : products) {
         total+=product.getPrice();
     }
-	ammount = total;
-    return ammount;
+    return total;
 }
 
 void Order::edit(OrderParams param, std::string value) { 
     switch (param)
     {
-	case SELL_ID:
-		id = value;
-		break;
     case SELL_CLIENT:
         clientId = value;
         break;

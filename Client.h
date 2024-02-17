@@ -19,6 +19,7 @@ public:
     time_t getBirthday() const;
     void edit(ClientParams param, std::string value);
     void editBirthday(int a_day, int a_month, int a_year);
+	void editBirthday(time_t date);
 private:
 	std::string id;
 	std::string name;
