@@ -3,6 +3,16 @@
 #include "Utils.h"
 #include "EnumDefinitions.h"
 
+struct clientStruct{
+	char id[16];
+	char name[64];
+	char phone[32];
+	char address[128];
+	char city[64];
+	char email[64];
+	char birtday[sizeof(time_t)];
+}
+
 class Client {
 public:
 	Client();
