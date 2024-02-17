@@ -28,10 +28,10 @@ Store::Store(std::string param_storeName) {
 			while (file.read(reinterpret_cast<char*>(&clientReg), sizeof(clientStruct))) {
 				clientElement.edit(CLIENT_ID, clientReg.id);
 				clientElement.edit(CLIENT_NAME, clientReg.name);
-				clientElement.edit(CLIENT_ID, clientReg.phone);
-				clientElement.edit(CLIENT_ID, clientReg.address);
-				clientElement.edit(CLIENT_ID, clientReg.city);
-				clientElement.edit(CLIENT_ID, clientReg.email);
+				clientElement.edit(CLIENT_PHONE, clientReg.phone);
+				clientElement.edit(CLIENT_ADDRESS, clientReg.address);
+				clientElement.edit(CLIENT_CITY, clientReg.city);
+				clientElement.edit(CLIENT_EMAIL, clientReg.email);
 				clientElement.editBirthday(clientReg.birthday);
 				clients.push_back(clientElement);
 			}
