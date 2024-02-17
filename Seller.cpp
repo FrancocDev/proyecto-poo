@@ -32,17 +32,8 @@ std::string Seller::get(SellerParams param) const {
         break;
     }; 
 }
-int Seller::getNumberOfOrders() const {
-    return orders.size();
-}
 
-float Seller::getTotalOrders() const {
-    float total=0;
-    for (auto &order : orders) {
-        total+=order.getTotal();
-    }
-    return total;
-};
+
 
 void Seller::edit(SellerParams param, std::string value) { 
     switch (param)
@@ -61,6 +52,4 @@ void Seller::edit(SellerParams param, std::string value) {
     }; 
 }
 
-void Seller::addOrder(Order a_order) {
-    orders.push_back(a_order);
-}
+

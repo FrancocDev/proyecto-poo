@@ -2,7 +2,13 @@
 #define PRODUCT_H
 #include "Utils.h"
 #include "EnumDefinitions.h"
-
+struct Productstruct{
+	char id[16];
+	char name[25];
+	char brand[25];
+	float price;
+	int quantity;
+};
 class Product {
 public:
 	Product();

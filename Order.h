@@ -16,6 +16,7 @@ public:
 	void addProduct(Product a_product);
     time_t getDate() const;
     std::string get(OrderParams param) const;
+
 private:
 	std::string id;
 	std::string sellerId;

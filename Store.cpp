@@ -44,7 +44,12 @@ Store::Store(std::string param_storeName) {
 			break;
 		}
 		case SELLER: {
+			SellerStruct sellerstruct;
 			while (file.read(reinterpret_cast<char*>(&sellerElement), sizeof(Seller))) {
+				sellerElement.edit(SELLER_ID,sellerstruct.id);
+				sellerElement.edit(SELLER_NAME,sellerstruct.name);
+				sellerElement.edit(SELLER_PHONE,sellerstruct.phone);
+				sellerElement.edit(SELLER_EMAIL,sellerstruct.email);
 				sellers.push_back(sellerElement);
 			}
 			break;
