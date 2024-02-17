@@ -2,14 +2,14 @@
 #define CLIENT_H
 #include "Utils.h"
 #include "EnumDefinitions.h"
-struct registro_persona {
-	char name[256];
-	char phone[256];
-	char address[256];
-	char city[256];
-	char email[2560];
-	char id[256];
-	int dia_nac, mes_nac, anio_nac;
+struct clientStruct{
+	char id[16];
+	char name[64];
+	char phone[32];
+	char address[128];
+	char city[64];
+	char email[64];
+	time_t birthday;
 };
 class Client {
 public:
