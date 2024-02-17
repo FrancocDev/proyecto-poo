@@ -50,6 +50,9 @@ time_t Client::getBirthday() const {
 void Client::edit(ClientParams param, std::string value) { 
     switch (param)
     {
+	case CLIENT_ID:
+		id = value;
+		break;
     case CLIENT_NAME:
         name = value;
         break;
@@ -72,4 +75,8 @@ void Client::edit(ClientParams param, std::string value) {
 
 void Client::editBirthday(int a_day, int a_month, int a_year) { 
 	birthday = editDate(a_day, a_month, a_year);
+}
+
+void Client::editBirthday(time_t date) { 
+	birthday = date;
 }

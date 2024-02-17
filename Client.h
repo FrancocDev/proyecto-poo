@@ -10,8 +10,8 @@ struct clientStruct{
 	char address[128];
 	char city[64];
 	char email[64];
-	char birtday[sizeof(time_t)];
-}
+	time_t birthday;
+};
 
 class Client {
 public:
@@ -20,6 +20,7 @@ public:
     std::string get(ClientParams params) const;
     time_t getBirthday() const;
     void edit(ClientParams param, std::string value);
+	void editBirthday(time_t date);
     void editBirthday(int a_day, int a_month, int a_year);
 private:
 	std::string id;

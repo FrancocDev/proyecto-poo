@@ -8,6 +8,7 @@
 #include "Seller.h"
 #include "Order.h"
 #include <algorithm>
+#include <cstring>
 using namespace std;
 
 Store::Store(std::string param_storeName) {
@@ -23,7 +24,16 @@ Store::Store(std::string param_storeName) {
 		
 		switch (elem) {
 		case CLIENT: {
-			while (file.read(reinterpret_cast<char*>(&clientElement), sizeof(Client))) {
+			clientStruct clientReg;
+			while (file.read(reinterpret_cast<char*>(&clientReg), sizeof(clientStruct))) {
+				clientElement.edit(CLIENT_ID, clientReg.id);
+				clientElement.edit(CLIENT_NAME, clientReg.name);
+				clientElement.edit(CLIENT_ID, clientReg.phone);
+				clientElement.edit(CLIENT_ID, clientReg.address);
+				clientElement.edit(CLIENT_ID, clientReg.city);
+				clientElement.edit(CLIENT_ID, clientReg.email);
+				clientElement.editBirthday(clientReg.birthday);
+				
 				clients.push_back(clientElement);
 			}
 			break;
@@ -85,7 +95,17 @@ bool Store::saveIndividualData(ArrayTypes elem) {
 			switch (elem) {
 			case CLIENT:
 				clientElement = clients[i];
-				file.write(reinterpret_cast<char*>(&clientElement), sizeof(Client));
+				clientStruct reg;
+				
+				strcpy(reg.id, clientElement.get(CLIENT_ID).c_str());
+				strcpy(reg.name, clientElement.get(CLIENT_NAME).c_str());
+				strcpy(reg.phone, clientElement.get(CLIENT_PHONE).c_str());
+				strcpy(reg.address, clientElement.get(CLIENT_ADDRESS).c_str());
+				strcpy(reg.city, clientElement.get(CLIENT_CITY).c_str());
+				strcpy(reg.email, clientElement.get(CLIENT_EMAIL).c_str());
+				reg.birthday = clientElement.getBirthday();
+								
+				file.write(reinterpret_cast<char*>(&reg), sizeof(clientStruct));
 				break;
 			case PRODUCT:
 				productElement = products[i];
