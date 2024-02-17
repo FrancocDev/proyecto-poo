@@ -50,7 +50,13 @@ Store::Store(std::string param_storeName) {
 			break;
 		}
 		case PRODUCT: {
-			while (file.read(reinterpret_cast<char*>(&productElement), sizeof(Product))) {
+			Productstruct producstruct;
+			while (file.read(reinterpret_cast<char*>(&producstruct), sizeof(Productstruct))) {
+				productElement.edit(PRODUCT_NAME, producstruct.name);
+				productElement.edit(PRODUCT_ID, producstruct.id);
+				productElement.edit(PRODUCT_BRAND, producstruct.brand);
+				productElement.edit(PRODUCT_PRICE, producstruct.price);
+				productElement.edit(PRODUCT_QUANTITY, producstruct.quantity);
 				products.push_back(productElement);
 			}
 			break;
