@@ -33,6 +33,7 @@ Store::Store(std::string param_storeName) {
 				clientElement.edit(CLIENT_ID, clientReg.city);
 				clientElement.edit(CLIENT_ID, clientReg.email);
 				clientElement.editBirthday(clientReg.birthday);
+				clients.push_back(clientElement);
 			}
 			break;
 		}
