@@ -9,7 +9,6 @@ Seller::Seller(std::string a_name,std::string a_phone, std::string a_email)
 	name=a_name;
     phone=a_phone;
 	email=a_email;
-    orders=std::vector<Order>();
 }
 
 std::string Seller::get(SellerParams param) const {

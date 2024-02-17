@@ -60,8 +60,8 @@ Store::Store(std::string param_storeName) {
 				productElement.edit(PRODUCT_NAME, producstruct.name);
 				productElement.edit(PRODUCT_ID, producstruct.id);
 				productElement.edit(PRODUCT_BRAND, producstruct.brand);
-				productElement.edit(PRODUCT_PRICE, producstruct.price);
-				productElement.edit(PRODUCT_QUANTITY, producstruct.quantity);
+				productElement.edit(PRODUCT_PRICE, to_string(producstruct.price));
+				productElement.edit(PRODUCT_QUANTITY, to_string(producstruct.quantity));
 				products.push_back(productElement);
 			}
 			break;

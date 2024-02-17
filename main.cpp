@@ -44,17 +44,17 @@ int main() {
 	
 	// Imprimir elementos ordenados
 	std::cout << "Clientes ordenados por nombre:\n";
-	for(int i = 0; i < myStore.sizeOf(CLIENT) ; i++){
+	for(size_t i = 0; i < myStore.sizeOf(CLIENT) ; i++){
 		cout<< myStore.getClient(i).get(CLIENT_NAME)<<endl;
 	}
 	
 	std::cout << "Productos ordenados por nombre:\n";
-	for(int i = 0; i < myStore.sizeOf(PRODUCT) ; i++){
+	for(size_t i = 0; i < myStore.sizeOf(PRODUCT) ; i++){
 		cout<< myStore.getProduct(i).get(PRODUCT_NAME)<<endl;
 	}
 	
 	std::cout << "Vendedores ordenados por nombre:\n";
-	for(int i = 0; i < myStore.sizeOf(SELLER) ; i++){
+	for(size_t i = 0; i < myStore.sizeOf(SELLER) ; i++){
 		cout<< myStore.getSeller(i).get(SELLER_NAME)<<endl;
 	}
 	
