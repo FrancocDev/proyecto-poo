@@ -37,6 +37,9 @@ std::string Seller::get(SellerParams param) const {
 void Seller::edit(SellerParams param, std::string value) { 
     switch (param)
     {
+	case SELLER_ID:
+		id = value;
+		break;
     case SELLER_NAME:
         name = value;
         break;
