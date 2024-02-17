@@ -19,8 +19,6 @@ public:
     time_t getBirthday() const;
     void edit(ClientParams param, std::string value);
     void editBirthday(int a_day, int a_month, int a_year);
-	void SaveBinary(std::ofstream &file);
-	void ReadBinary(std::ifstream &file);
 private:
 	std::string id;
 	std::string name;
@@ -28,9 +26,6 @@ private:
 	std::string address;
 	std::string city;
 	std::string email;
-	int dia_nac;
-	int mes_nac;
-	int anio_nac;
 	time_t birthday;
 };
 
