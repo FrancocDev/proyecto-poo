@@ -44,13 +44,24 @@ Store::Store(std::string param_storeName) {
 			break;
 		}
 		case SELLER: {
-			while (file.read(reinterpret_cast<char*>(&sellerElement), sizeof(Seller))) {
+			SellerStruct sellerstruct;
+			while (file.read(reinterpret_cast<char*>(&sellerstruct), sizeof(SellerStruct))) {
+				sellerElement.edit(SELLER_ID,sellerstruct.id);
+				sellerElement.edit(SELLER_NAME,sellerstruct.name);
+				sellerElement.edit(SELLER_PHONE,sellerstruct.phone);
+				sellerElement.edit(SELLER_EMAIL,sellerstruct.email);
 				sellers.push_back(sellerElement);
 			}
 			break;
 		}
 		case PRODUCT: {
-			while (file.read(reinterpret_cast<char*>(&productElement), sizeof(Product))) {
+			Productstruct producstruct;
+			while (file.read(reinterpret_cast<char*>(&producstruct), sizeof(Productstruct))) {
+				productElement.edit(PRODUCT_NAME, producstruct.name);
+				productElement.edit(PRODUCT_ID, producstruct.id);
+				productElement.edit(PRODUCT_BRAND, producstruct.brand);
+				productElement.edit(PRODUCT_PRICE, to_string(producstruct.price));
+				productElement.edit(PRODUCT_QUANTITY, to_string(producstruct.quantity));
 				products.push_back(productElement);
 			}
 			break;
@@ -108,19 +119,27 @@ bool Store::saveIndividualData(ArrayTypes elem) {
 				break;
 			case PRODUCT:
 				productElement = products[i];
-				Productstruct reg;
+				Productstruct productreg;
 				
-				strcpy(reg.id, productElement.get(PRODUCT_ID).c_str());
-				strcpy(reg.name, productElement.get(PRODUCT_NAME).c_str());
-				strcpy(reg.brand, productElement.get(PRODUCT_BRAND).c_str());
-				strcpy(reg.price, productElement.getPrice());
-				strcpy(reg.quantity, productElement.getQuantity());
+				strcpy(productreg.id, productElement.get(PRODUCT_ID).c_str());
+				strcpy(productreg.name, productElement.get(PRODUCT_NAME).c_str());
+				strcpy(productreg.brand, productElement.get(PRODUCT_BRAND).c_str());
+				productreg.price = productElement.getPrice();
+				productreg.quantity = productElement.getQuantity();
 				
-				file.write(reinterpret_cast<char*>(&reg), sizeof(Productstruct));
+				file.write(reinterpret_cast<char*>(&productreg), sizeof(Productstruct));
 				break;
+				
 			case SELLER:
 				sellerElement = sellers[i];
-				file.write(reinterpret_cast<char*>(&sellerElement), sizeof(Seller));
+				SellerStruct sellerstruct;
+				
+				strcpy(sellerstruct.id, sellerElement.get(SELLER_ID).c_str());
+				strcpy(sellerstruct.name, sellerElement.get(SELLER_NAME).c_str());
+				strcpy(sellerstruct.phone, sellerElement.get(SELLER_PHONE).c_str());
+				strcpy(sellerstruct.email, sellerElement.get(SELLER_EMAIL).c_str());
+	
+				file.write(reinterpret_cast<char*>(&sellerstruct), sizeof(SellerStruct));
 				break;	
 			case ORDER:
 				orderElement = orders[i];

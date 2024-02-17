@@ -52,6 +52,8 @@ void Product::edit(ProductParams param, std::string value) {
     case PRODUCT_QUANTITY:
         quantity = std::stoi(value);
         break;
+	case PRODUCT_ID:
+		id = value;
     default:
         break;
     }; 

@@ -6,7 +6,13 @@
 #include "EnumDefinitions.h"
 
 class Order; // Evita deps circulares
-
+struct SellerStruct{
+	char id[25];
+	char name[50];
+	char phone[20];
+	char email[250];
+	
+};
 class Seller {
 public:
 	Seller();
@@ -15,14 +21,13 @@ public:
     int getNumberOfOrders() const;
     float getTotalOrders() const;
     void edit(SellerParams param, std::string value);
-	void addOrder(Order a_order);
+	
 
 private:
     std::string id;
 	std::string name;
 	std::string phone;
 	std::string email;
-	std::vector<Order> orders;
 };
 
 #endif
