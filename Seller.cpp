@@ -5,7 +5,7 @@
 Seller::Seller(){};
 Seller::Seller(std::string a_name,std::string a_phone, std::string a_email) 
 {
-    id=generateRandomID(12); /// No deberia colisionar nunca
+    id=generateRandomID(11); /// No deberia colisionar nunca
 	name=a_name;
     phone=a_phone;
 	email=a_email;

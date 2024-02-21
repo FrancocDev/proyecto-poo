@@ -6,7 +6,7 @@
 Order::Order(){};
 Order::Order(std::string a_sellerId, std::string a_clientId, int a_day, int a_month, int a_year)
 {
-    id=generateRandomID(12); /// No deberia colisionar nunca
+    id=generateRandomID(11); /// No deberia colisionar nunca
 	sellerId= a_sellerId;
     clientId= a_clientId;
     products=std::vector<Product>();
@@ -47,6 +47,9 @@ int Order:: getNumOfProducts(){
 void Order::edit(OrderParams param, std::string value) { 
     switch (param)
     {
+	case SELL_ID:
+		id = value;
+		break;
     case SELL_CLIENT:
         clientId = value;
         break;
@@ -72,3 +75,7 @@ float Order:: getAmmount(){
 time_t Order::editOrderDate(time_t newDate){
 	date = newDate;
 };
+
+void Order::clearProducts(){
+	products.clear();
+}
