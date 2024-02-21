@@ -12,7 +12,7 @@ struct OrderStruct{
 	char clientid[12];
 	float ammount;
 	time_t date;
-	std::vector<Product> products;
+	std::vector<std::string> products;
 	
 };
 class Order {

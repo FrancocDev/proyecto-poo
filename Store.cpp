@@ -100,6 +100,8 @@ bool Store::saveIndividualData(ArrayTypes elem) {
 		Product productElement;
 		Seller sellerElement;
 		Order orderElement;
+		int numberOfProducts;
+		OrderStruct orderstruct;
 		
 		for (int i=0;i<size;i++){
 			switch (elem) {
@@ -141,30 +143,21 @@ bool Store::saveIndividualData(ArrayTypes elem) {
 	
 				file.write(reinterpret_cast<char*>(&sellerstruct), sizeof(SellerStruct));
 				break;	
-			case ORDER: 
+			case ORDER:
 				orderElement = orders[i];
 				///agregue
-				OrderStruct orderstruct;
-				int numberOfProducts = orderElement.getNumberOfProducts();
+				numberOfProducts = orderElement.getNumOfProducts();
 				
 				strcpy(orderstruct.sellerid, sellerElement.get(SELLER_ID).c_str());
-				strcpy(orderstrcut.clientid, orderElement.get(CLIENT_ID).c_str());
-				orderstruct.ammount = getAmmount();
+				strcpy(orderstruct.clientid, orderElement.get(SELL_CLIENT).c_str());
+				orderstruct.ammount = orderElement.getAmmount();
 				orderstruct.date = orderElement.getDate();
 				for (int j = 0; j < numberOfProducts; j++) {
-					ProductStruct productStruct;
-					strcpy(productStruct.id, products[j].id);
-					strcpy(productStruct.name, products[j].name);
-					strcpy(productStruct.brand, products[j].brand);
-					productStruct.price = products[j].price;
-					productStruct.quantity = products[j].quantity;
-					
-					/// Agregar al vect de produ en order
-					orderstruct.products.push_back(productStruct);
+					orderstruct.products.push_back(products[j].get(PRODUCT_ID));
 				}
-				///
 				file.write(reinterpret_cast<char*>(&orderElement), sizeof(Order));
 				break;
+				
 			default:
 				return false;
 				break;
