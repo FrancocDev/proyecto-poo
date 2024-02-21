@@ -20,9 +20,6 @@ std::string generateRandomID(int length) {
 	const std::string characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	std::string randomID;
 	
-	/// random seed
-	std::srand(static_cast<unsigned int>(std::time(0)));
-	
 	for (int i = 0; i < length; ++i) {
 		randomID += characters[std::rand() % characters.length()];
 	}
