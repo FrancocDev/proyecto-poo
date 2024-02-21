@@ -44,6 +44,7 @@ Store::Store(std::string param_storeName) {
 				orderElement.edit(SELL_CLIENT, orderReg.clientid);
 				orderElement.edit(SELL_SELLER, orderReg.sellerid);
 				orderElement.editOrderDate(orderReg.date);
+				orderElement.clearProducts();
 				
 				for (const auto& productId : orderReg.products) {
 					auto it = find_if(products.begin(), products.end(), [productId](const Product& product){
@@ -55,7 +56,6 @@ Store::Store(std::string param_storeName) {
 						cout << "No se encontro la id del producto: " << productId<<endl;
 					}
 				}
-				
 				orders.push_back(orderElement);
 			}
 			break;
@@ -162,8 +162,8 @@ bool Store::saveIndividualData(ArrayTypes elem) {
 				break;	
 			case ORDER:
 				orderElement = orders[i];
-				///agregue
 				numberOfProducts = orderElement.getNumOfProducts();
+				orderstruct.products.clear();
 				
 				strcpy(orderstruct.orderId, orderElement.get(SELL_ID).c_str());
 				strcpy(orderstruct.sellerid, orderElement.get(SELL_SELLER).c_str());
@@ -173,7 +173,16 @@ bool Store::saveIndividualData(ArrayTypes elem) {
 				for (int j = 0; j < numberOfProducts; j++) {
 					orderstruct.products.push_back(products[j].get(PRODUCT_ID));
 				}
-				file.write(reinterpret_cast<char*>(&orderElement), sizeof(Order));
+				file.write(reinterpret_cast<char*>(&orderstruct), sizeof(OrderStruct));
+				
+				cout<< "----------ESCRITURA----------"<<endl;
+				cout<< "ST OrderId: "<< orderstruct.orderId<<endl;
+				cout<< "ST SellerId: "<< orderstruct.sellerid<<endl;
+				cout<< "ST ClientId: "<< orderstruct.clientid<<endl;
+				cout<< "CL OrderId:"<< orderElement.get(SELL_ID)<<endl;
+				cout<< "CL SellerId:"<< orderElement.get(SELL_SELLER)<<endl;
+				cout<< "CL ClientId:"<< orderElement.get(SELL_CLIENT)<<endl;
+				
 				break;
 				
 			default:

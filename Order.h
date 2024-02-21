@@ -14,7 +14,6 @@ struct OrderStruct{
 	float ammount;
 	time_t date;
 	std::vector<std::string> products;
-	
 };
 class Order {
 public:
@@ -31,6 +30,7 @@ public:
 	int getNumOfProducts();
 	///
 	time_t editOrderDate(time_t newDate);
+	void clearProducts();
 private:
 	std::string id;
 	std::string sellerId;
