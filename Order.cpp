@@ -39,7 +39,11 @@ float Order::getTotal() const {
     }
     return total;
 }
-
+///agregue
+int Order:: getNumOfProducts(){
+	return products.size();
+}
+///
 void Order::edit(OrderParams param, std::string value) { 
     switch (param)
     {
@@ -61,3 +65,7 @@ void Order::addProduct(Product a_product) {
 time_t Order::getDate() const {
     return date;
 };
+///agregue
+float Order:: getAmmount(){
+	return ammount;
+}

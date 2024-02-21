@@ -15,7 +15,7 @@ tab_width=4
 tab_use_spaces=0
 explorer_path=.
 inherits_from=
-current_source=main.cpp
+current_source=Store.cpp
 path_char=\
 [source]
 path=Utils.cpp
@@ -31,7 +31,7 @@ cursor=56:11
 open=true
 [source]
 path=Order.cpp
-cursor=0:0
+cursor=42:28
 open=true
 [source]
 path=Product.cpp
@@ -43,7 +43,7 @@ cursor=10:15
 open=true
 [source]
 path=Store.cpp
-cursor=68:3
+cursor=153:48
 open=true
 [header]
 path=Utils.h
@@ -55,11 +55,11 @@ cursor=14:7
 open=true
 [header]
 path=Order.h
-cursor=19:8
+cursor=27:19
 open=true
 [header]
 path=Product.h
-cursor=4:20
+cursor=10:2
 open=true
 [header]
 path=Seller.h
