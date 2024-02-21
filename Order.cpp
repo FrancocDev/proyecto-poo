@@ -69,3 +69,6 @@ time_t Order::getDate() const {
 float Order:: getAmmount(){
 	return ammount;
 }
+time_t Order::editOrderDate(time_t newDate){
+	date = newDate;
+};

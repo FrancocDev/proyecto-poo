@@ -8,6 +8,7 @@
 
 class Product; // Evita deps circulares
 struct OrderStruct{
+	char orderId[12];
 	char sellerid[12];
 	char clientid[12];
 	float ammount;
@@ -29,6 +30,7 @@ public:
 	///agregue
 	int getNumOfProducts();
 	///
+	time_t editOrderDate(time_t newDate);
 private:
 	std::string id;
 	std::string sellerId;
