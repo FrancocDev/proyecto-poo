@@ -173,16 +173,7 @@ bool Store::saveIndividualData(ArrayTypes elem) {
 				for (int j = 0; j < numberOfProducts; j++) {
 					orderstruct.products.push_back(products[j].get(PRODUCT_ID));
 				}
-				file.write(reinterpret_cast<char*>(&orderstruct), sizeof(OrderStruct));
-				
-				cout<< "----------ESCRITURA----------"<<endl;
-				cout<< "ST OrderId: "<< orderstruct.orderId<<endl;
-				cout<< "ST SellerId: "<< orderstruct.sellerid<<endl;
-				cout<< "ST ClientId: "<< orderstruct.clientid<<endl;
-				cout<< "CL OrderId:"<< orderElement.get(SELL_ID)<<endl;
-				cout<< "CL SellerId:"<< orderElement.get(SELL_SELLER)<<endl;
-				cout<< "CL ClientId:"<< orderElement.get(SELL_CLIENT)<<endl;
-				
+				file.write(reinterpret_cast<char*>(&orderstruct), sizeof(OrderStruct));				
 				break;
 				
 			default:
