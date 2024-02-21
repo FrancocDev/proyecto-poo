@@ -44,10 +44,12 @@ Store::Store(std::string param_storeName) {
 				orderElement.edit(SELL_CLIENT, orderReg.clientid);
 				orderElement.edit(SELL_SELLER, orderReg.sellerid);
 				orderElement.editOrderDate(orderReg.date);
-				orderElement.clearProducts();
 				
+				if(orderReg.products.size() != 0){
+					orderElement.clearProducts();
 				for (const auto& productId : orderReg.products) {
-					auto it = find_if(products.begin(), products.end(), [productId](const Product& product){
+					cout<<"Product: " << productId<<endl;
+					auto it = find_if(products.begin(), products.end(), [&productId](const Product& product){
 						return productId == product.get(PRODUCT_ID);
 					});
 					if (it != products.end()){
@@ -55,6 +57,7 @@ Store::Store(std::string param_storeName) {
 					} else {
 						cout << "No se encontro la id del producto: " << productId<<endl;
 					}
+				}
 				}
 				orders.push_back(orderElement);
 			}
@@ -77,7 +80,7 @@ Store::Store(std::string param_storeName) {
 				productElement.edit(PRODUCT_NAME, producstruct.name);
 				productElement.edit(PRODUCT_ID, producstruct.id);
 				productElement.edit(PRODUCT_BRAND, producstruct.brand);
-				productElement.edit(PRODUCT_PRICE, to_string(producstruct.price));
+				productElement.editPrice(producstruct.price);
 				productElement.edit(PRODUCT_QUANTITY, to_string(producstruct.quantity));
 				products.push_back(productElement);
 			}
@@ -168,10 +171,10 @@ bool Store::saveIndividualData(ArrayTypes elem) {
 				strcpy(orderstruct.orderId, orderElement.get(SELL_ID).c_str());
 				strcpy(orderstruct.sellerid, orderElement.get(SELL_SELLER).c_str());
 				strcpy(orderstruct.clientid, orderElement.get(SELL_CLIENT).c_str());
-				orderstruct.ammount = orderElement.getAmmount();
+				orderstruct.ammount = orderElement.getTotal();
 				orderstruct.date = orderElement.getDate();
 				for (int j = 0; j < numberOfProducts; j++) {
-					orderstruct.products.push_back(products[j].get(PRODUCT_ID));
+					orderstruct.products.push_back(orderElement.getProduct(j).get(PRODUCT_ID));
 				}
 				file.write(reinterpret_cast<char*>(&orderstruct), sizeof(OrderStruct));				
 				break;

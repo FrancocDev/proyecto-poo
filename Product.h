@@ -16,6 +16,7 @@ public:
     std::string get(ProductParams param) const;
 
     float getPrice() const;
+	void editPrice(float value);
 
     int getQuantity() const;
 

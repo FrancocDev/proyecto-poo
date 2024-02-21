@@ -58,3 +58,7 @@ void Product::edit(ProductParams param, std::string value) {
         break;
     }; 
 }
+
+void Product::editPrice(float value){
+	price = value;
+}

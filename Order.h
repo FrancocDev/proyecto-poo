@@ -31,6 +31,7 @@ public:
 	///
 	time_t editOrderDate(time_t newDate);
 	void clearProducts();
+	Product getProduct(int i);
 private:
 	std::string id;
 	std::string sellerId;

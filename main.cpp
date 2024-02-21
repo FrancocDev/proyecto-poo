@@ -38,8 +38,14 @@ int main() {
 	myStore.addOrder(Order(myStore.getSeller(0).get(SELLER_ID), myStore.getClient(1).get(CLIENT_ID), 20,2,2020));
 	myStore.addOrder(Order(myStore.getSeller(1).get(SELLER_ID), myStore.getClient(0).get(CLIENT_ID), 20,3,2020));
 	myStore.addOrder(Order(myStore.getSeller(0).get(SELLER_ID), myStore.getClient(4).get(CLIENT_ID), 22,2,2020));
+
+	Order ordencita(myStore.getSeller(0).get(SELLER_ID), myStore.getClient(1).get(CLIENT_ID), 20,2,2020);
+	ordencita.addProduct(myStore.getProduct(1));
+	ordencita.addProduct(myStore.getProduct(0));
+	ordencita.addProduct(myStore.getProduct(0));
+	ordencita.addProduct(myStore.getProduct(2));
 	
-	
+	myStore.addOrder(std::move(ordencita));
 	// Guardar datos en archivos
 	myStore.saveAllData();
 	
@@ -66,7 +72,7 @@ int main() {
 	
 	std::cout << "Órdenes ordenadas por fecha:\n";
 	for(int i = 0; i < myStore.sizeOf(ORDER) ; i++){
-		cout<< "ID: "<< myStore.getOrder(i).get(SELL_ID)<< " - S:" << myStore.getOrder(i).get(SELL_SELLER) << " - C:" << myStore.getOrder(i).get(SELL_CLIENT)<< endl;
+		cout<< "ID: "<< myStore.getOrder(i).get(SELL_ID)<< "- Total Ventas:" << myStore.getOrder(i).getTotal()<< endl;
 	}
 
 	

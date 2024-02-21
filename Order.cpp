@@ -2,6 +2,8 @@
 #include <vector>
 #include "Utils.h"
 #include "Product.h"
+#include <iostream>
+using namespace std;
 
 Order::Order(){};
 Order::Order(std::string a_sellerId, std::string a_clientId, int a_day, int a_month, int a_year)
@@ -37,6 +39,7 @@ float Order::getTotal() const {
     for (auto &product : products) {
         total+=product.getPrice();
     }
+	cout<<"Total"<< total <<endl;
     return total;
 }
 ///agregue
@@ -78,4 +81,8 @@ time_t Order::editOrderDate(time_t newDate){
 
 void Order::clearProducts(){
 	products.clear();
+}
+
+Product Order::getProduct(int i) {
+	return products[i];
 }
