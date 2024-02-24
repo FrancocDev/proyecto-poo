@@ -9,10 +9,10 @@
 
 #include <wx/artprov.h>
 #include <wx/xrc/xmlres.h>
+#include <wx/string.h>
 #include <wx/bitmap.h>
 #include <wx/image.h>
 #include <wx/icon.h>
-#include <wx/string.h>
 #include <wx/menu.h>
 #include <wx/gdicmn.h>
 #include <wx/font.h>
@@ -31,22 +31,16 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class WxfbPrincipal
+/// Class Principal
 ///////////////////////////////////////////////////////////////////////////////
-class WxfbPrincipal : public wxFrame
+class Principal : public wxFrame
 {
 	private:
 
 	protected:
 		wxMenuBar* m_menubar1;
 		wxMenu* m_file;
-		wxMenu* m_selectFile;
-		wxMenu* m_saveFileAs;
-		wxMenu* m_SaveFile;
-		wxMenu* m_optimizeFile;
 		wxMenu* m_aboutUs;
-		wxMenu* m_info;
-		wxMenu* m_githubRepo;
 		wxToolBar* tabSelector;
 		wxButton* clientsButton;
 		wxButton* sellsButton;
@@ -56,26 +50,27 @@ class WxfbPrincipal : public wxFrame
 		wxTextCtrl* m_busqueda;
 		wxButton* m_button2;
 		wxGrid* m_grilla;
-		wxButton* m_button6;
+		wxButton* m_agregarPrincipal;
 		wxButton* m_button3;
 		wxButton* m_button4;
 
 		// Virtual event handlers, override them in your derived class
 		virtual void OnCambiaTamanio( wxSizeEvent& event ) { event.Skip(); }
+		virtual void OnClicksavefile( wxCommandEvent& event ) { event.Skip(); }
 		virtual void EnterBuscar( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnClickBuscar( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnDobleClickGrilla( wxGridEvent& event ) { event.Skip(); }
 		virtual void OnClickGrilla( wxGridEvent& event ) { event.Skip(); }
-		virtual void OnClickAgregar( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnClickAgregarprincipal( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnClickEditar( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnClickEliminar( wxCommandEvent& event ) { event.Skip(); }
 
 
 	public:
 
-		WxfbPrincipal( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Agenda 1.3"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 700,500 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		Principal( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Agenda 1.3"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 700,460 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 
-		~WxfbPrincipal();
+		~Principal();
 
 };
 
@@ -98,12 +93,12 @@ class WxfbPersona : public wxDialog
 		wxTextCtrl* m_mes;
 		wxStaticText* m_staticText17;
 		wxTextCtrl* m_anio;
-		wxButton* m_boton1;
-		wxButton* m_boton2;
+		wxButton* m_agregar;
+		wxButton* m_canelar;
 
 		// Virtual event handlers, override them in your derived class
-		virtual void OnClickBoton1( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnClickBoton2( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnClickAgregarPersona( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnClickCancelarPersona( wxCommandEvent& event ) { event.Skip(); }
 
 
 	public:

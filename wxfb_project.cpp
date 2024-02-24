@@ -9,39 +9,39 @@
 
 ///////////////////////////////////////////////////////////////////////////
 
-WxfbPrincipal::WxfbPrincipal( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
+Principal::Principal( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
 {
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 	this->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_BTNFACE ) );
 
 	m_menubar1 = new wxMenuBar( 0 );
 	m_file = new wxMenu();
-	m_selectFile = new wxMenu();
-	wxMenuItem* m_selectFileItem = new wxMenuItem( m_file, wxID_ANY, wxT("Seleccionar Archivo"), wxEmptyString, wxITEM_NORMAL, m_selectFile );
-	m_file->Append( m_selectFileItem );
+	wxMenuItem* m_selectFile;
+	m_selectFile = new wxMenuItem( m_file, wxID_ANY, wxString( wxT("Seleccionar Archivo") ) , wxEmptyString, wxITEM_RADIO );
+	m_file->Append( m_selectFile );
 
-	m_saveFileAs = new wxMenu();
-	wxMenuItem* m_saveFileAsItem = new wxMenuItem( m_file, wxID_ANY, wxT("Guardar archivo como..."), wxEmptyString, wxITEM_NORMAL, m_saveFileAs );
-	m_file->Append( m_saveFileAsItem );
+	wxMenuItem* m_saveFileAs;
+	m_saveFileAs = new wxMenuItem( m_file, wxID_ANY, wxString( wxT("Guardar archivo como...") ) , wxEmptyString, wxITEM_NORMAL );
+	m_file->Append( m_saveFileAs );
 
-	m_SaveFile = new wxMenu();
-	wxMenuItem* m_SaveFileItem = new wxMenuItem( m_file, wxID_ANY, wxT("Guardar Archivo"), wxEmptyString, wxITEM_NORMAL, m_SaveFile );
-	m_file->Append( m_SaveFileItem );
+	wxMenuItem* m_SaveFile;
+	m_SaveFile = new wxMenuItem( m_file, wxID_ANY, wxString( wxT("Guardar Archivo") ) , wxEmptyString, wxITEM_NORMAL );
+	m_file->Append( m_SaveFile );
 
-	m_optimizeFile = new wxMenu();
-	wxMenuItem* m_optimizeFileItem = new wxMenuItem( m_file, wxID_ANY, wxT("Optimizar Archivo"), wxEmptyString, wxITEM_NORMAL, m_optimizeFile );
-	m_file->Append( m_optimizeFileItem );
+	wxMenuItem* m_optimizeFile;
+	m_optimizeFile = new wxMenuItem( m_file, wxID_ANY, wxString( wxT("Optimizar Archivo") ) , wxEmptyString, wxITEM_NORMAL );
+	m_file->Append( m_optimizeFile );
 
 	m_menubar1->Append( m_file, wxT("Archivo") );
 
 	m_aboutUs = new wxMenu();
-	m_info = new wxMenu();
-	wxMenuItem* m_infoItem = new wxMenuItem( m_aboutUs, wxID_ANY, wxT("Información"), wxEmptyString, wxITEM_NORMAL, m_info );
-	m_aboutUs->Append( m_infoItem );
+	wxMenuItem* m_info;
+	m_info = new wxMenuItem( m_aboutUs, wxID_ANY, wxString( wxT("Información") ) , wxEmptyString, wxITEM_NORMAL );
+	m_aboutUs->Append( m_info );
 
-	m_githubRepo = new wxMenu();
-	wxMenuItem* m_githubRepoItem = new wxMenuItem( m_aboutUs, wxID_ANY, wxT("Ver en Github"), wxEmptyString, wxITEM_NORMAL, m_githubRepo );
-	m_aboutUs->Append( m_githubRepoItem );
+	wxMenuItem* m_githubRepo;
+	m_githubRepo = new wxMenuItem( m_aboutUs, wxID_ANY, wxString( wxT("Ver en Github") ) , wxEmptyString, wxITEM_NORMAL );
+	m_aboutUs->Append( m_githubRepo );
 
 	m_menubar1->Append( m_aboutUs, wxT("Acerca de...") );
 
@@ -70,7 +70,7 @@ WxfbPrincipal::WxfbPrincipal( wxWindow* parent, wxWindowID id, const wxString& t
 
 	bSizer3->Add( currentTabName, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 
-	m_busqueda = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER );
+	m_busqueda = new wxTextCtrl( this, wxID_ANY, wxT("z"), wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER );
 	bSizer3->Add( m_busqueda, 1, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 
 	m_button2 = new wxButton( this, wxID_ANY, wxT("Buscar"), wxDefaultPosition, wxDefaultSize, 0 );
@@ -118,8 +118,8 @@ WxfbPrincipal::WxfbPrincipal( wxWindow* parent, wxWindowID id, const wxString& t
 	wxBoxSizer* bSizer4;
 	bSizer4 = new wxBoxSizer( wxHORIZONTAL );
 
-	m_button6 = new wxButton( this, wxID_ANY, wxT("Agregar"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer4->Add( m_button6, 0, wxALL, 5 );
+	m_agregarPrincipal = new wxButton( this, wxID_ANY, wxT("Agregar"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer4->Add( m_agregarPrincipal, 0, wxALL, 5 );
 
 	m_button3 = new wxButton( this, wxID_ANY, wxT("Ver/Editar"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer4->Add( m_button3, 0, wxALL, 5 );
@@ -135,27 +135,28 @@ WxfbPrincipal::WxfbPrincipal( wxWindow* parent, wxWindowID id, const wxString& t
 	this->Layout();
 
 	// Connect Events
-	this->Connect( wxEVT_SIZE, wxSizeEventHandler( WxfbPrincipal::OnCambiaTamanio ) );
-	m_busqueda->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( WxfbPrincipal::EnterBuscar ), NULL, this );
-	m_button2->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( WxfbPrincipal::OnClickBuscar ), NULL, this );
-	m_grilla->Connect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( WxfbPrincipal::OnDobleClickGrilla ), NULL, this );
-	m_grilla->Connect( wxEVT_GRID_LABEL_LEFT_CLICK, wxGridEventHandler( WxfbPrincipal::OnClickGrilla ), NULL, this );
-	m_button6->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( WxfbPrincipal::OnClickAgregar ), NULL, this );
-	m_button3->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( WxfbPrincipal::OnClickEditar ), NULL, this );
-	m_button4->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( WxfbPrincipal::OnClickEliminar ), NULL, this );
+	this->Connect( wxEVT_SIZE, wxSizeEventHandler( Principal::OnCambiaTamanio ) );
+	m_file->Bind(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( Principal::OnClicksavefile ), this, m_SaveFile->GetId());
+	m_busqueda->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( Principal::EnterBuscar ), NULL, this );
+	m_button2->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnClickBuscar ), NULL, this );
+	m_grilla->Connect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( Principal::OnDobleClickGrilla ), NULL, this );
+	m_grilla->Connect( wxEVT_GRID_LABEL_LEFT_CLICK, wxGridEventHandler( Principal::OnClickGrilla ), NULL, this );
+	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnClickAgregarprincipal ), NULL, this );
+	m_button3->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnClickEditar ), NULL, this );
+	m_button4->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnClickEliminar ), NULL, this );
 }
 
-WxfbPrincipal::~WxfbPrincipal()
+Principal::~Principal()
 {
 	// Disconnect Events
-	this->Disconnect( wxEVT_SIZE, wxSizeEventHandler( WxfbPrincipal::OnCambiaTamanio ) );
-	m_busqueda->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( WxfbPrincipal::EnterBuscar ), NULL, this );
-	m_button2->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( WxfbPrincipal::OnClickBuscar ), NULL, this );
-	m_grilla->Disconnect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( WxfbPrincipal::OnDobleClickGrilla ), NULL, this );
-	m_grilla->Disconnect( wxEVT_GRID_LABEL_LEFT_CLICK, wxGridEventHandler( WxfbPrincipal::OnClickGrilla ), NULL, this );
-	m_button6->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( WxfbPrincipal::OnClickAgregar ), NULL, this );
-	m_button3->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( WxfbPrincipal::OnClickEditar ), NULL, this );
-	m_button4->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( WxfbPrincipal::OnClickEliminar ), NULL, this );
+	this->Disconnect( wxEVT_SIZE, wxSizeEventHandler( Principal::OnCambiaTamanio ) );
+	m_busqueda->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( Principal::EnterBuscar ), NULL, this );
+	m_button2->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnClickBuscar ), NULL, this );
+	m_grilla->Disconnect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( Principal::OnDobleClickGrilla ), NULL, this );
+	m_grilla->Disconnect( wxEVT_GRID_LABEL_LEFT_CLICK, wxGridEventHandler( Principal::OnClickGrilla ), NULL, this );
+	m_agregarPrincipal->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnClickAgregarprincipal ), NULL, this );
+	m_button3->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnClickEditar ), NULL, this );
+	m_button4->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnClickEliminar ), NULL, this );
 
 }
 
@@ -282,11 +283,11 @@ WxfbPersona::WxfbPersona( wxWindow* parent, wxWindowID id, const wxString& title
 	wxBoxSizer* bSizer13;
 	bSizer13 = new wxBoxSizer( wxHORIZONTAL );
 
-	m_boton1 = new wxButton( this, wxID_ANY, wxT("Boton1"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer13->Add( m_boton1, 0, wxALL, 5 );
+	m_agregar = new wxButton( this, wxID_ANY, wxT("Agregar"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer13->Add( m_agregar, 0, wxALL, 5 );
 
-	m_boton2 = new wxButton( this, wxID_ANY, wxT("Boton2"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer13->Add( m_boton2, 0, wxALL, 5 );
+	m_canelar = new wxButton( this, wxID_ANY, wxT("Cancelar"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer13->Add( m_canelar, 0, wxALL, 5 );
 
 
 	bSizer4->Add( bSizer13, 0, wxALIGN_RIGHT, 5 );
@@ -297,14 +298,14 @@ WxfbPersona::WxfbPersona( wxWindow* parent, wxWindowID id, const wxString& title
 	bSizer4->Fit( this );
 
 	// Connect Events
-	m_boton1->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( WxfbPersona::OnClickBoton1 ), NULL, this );
-	m_boton2->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( WxfbPersona::OnClickBoton2 ), NULL, this );
+	m_agregar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( WxfbPersona::OnClickAgregarPersona ), NULL, this );
+	m_canelar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( WxfbPersona::OnClickCancelarPersona ), NULL, this );
 }
 
 WxfbPersona::~WxfbPersona()
 {
 	// Disconnect Events
-	m_boton1->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( WxfbPersona::OnClickBoton1 ), NULL, this );
-	m_boton2->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( WxfbPersona::OnClickBoton2 ), NULL, this );
+	m_agregar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( WxfbPersona::OnClickAgregarPersona ), NULL, this );
+	m_canelar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( WxfbPersona::OnClickCancelarPersona ), NULL, this );
 
 }

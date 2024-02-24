@@ -220,7 +220,9 @@ std::size_t Store::sizeOf(ArrayTypes arr) {
 		}
 	return 0;
 }
-
+int Store::GetNumofclients()const{
+	return clients.size();
+}
 void Store::addClient(Client &&elem) {
 	clients.push_back(elem);
 }
