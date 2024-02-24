@@ -2,6 +2,7 @@
 #include "Store.h"
 #include "Client.h"
 #include "string_conv.h"
+#include "Utils.h"
 PersonWin::PersonWin(wxWindow *parent, Store *store) :
 	WxfbPersona(parent), m_store(store) {
 	
@@ -16,11 +17,16 @@ void PersonWin::OnClickAgregarPersona( wxCommandEvent& event )  {
 	string direccion = wx_to_std(m_direccion->GetValue());
 	string localidad = wx_to_std(m_localidad->GetValue());
 	string email = wx_to_std(m_email->GetValue());
-	string cumple = wx_to_std(m_dia->GetValue())+"/"+ wx_to_std(m_mes->GetValue())+"/"+ wx_to_std(m_anio->GetValue());
-	Client temp = Client();
-	Client& c = temp;
-	temp(nombre, tel, direccion, localidad, email, cumple);
-	m_store-> addClient(temp);
+	
+	long dayLong, monthLong, yearLong;
+	dayLong = m_dia->GetValue().ToLong(&dayLong);
+	monthLong = m_mes->GetValue().ToLong(&monthLong);
+	yearLong = m_anio->GetValue().ToLong(&yearLong);
+	time_t fecha = editDate(static_cast<int>(dayLong), static_cast<int>(monthLong), static_cast<int>(yearLong));
+	
+	Client temp(nombre, tel, direccion, localidad, email, fecha);
+	m_store->addClient(std::move(temp));
+	
 	EndModal(1);///ver q onda aca
 }
 

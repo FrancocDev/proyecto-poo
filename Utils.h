@@ -20,4 +20,5 @@ bool sortBy(const Seller& elem1, const Seller& elem2, SellerParams criteria);
 void tolower(std::string &s);
 std::string generateRandomID(int length);
 time_t editDate(int day, int month, int year);
+time_t parseDateToTimeT(std::string dateStr);
 #endif
