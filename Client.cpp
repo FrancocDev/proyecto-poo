@@ -8,7 +8,7 @@ Client::Client(std::string a_name,std::string a_phone,
 				 std::string a_address, std::string a_city, std::string a_email, 
 				 time_t a_birthday) 
 {
-    id=generateRandomID(12); /// No deberia colisionar nunca
+    id=generateRandomID(11); /// No deberia colisionar nunca
 	name=a_name;
     phone=a_phone;
     address=a_address;

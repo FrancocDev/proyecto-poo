@@ -38,7 +38,12 @@ Store::Store(std::string param_storeName) {
 			break;
 		}
 		case ORDER: {
-			while (file.read(reinterpret_cast<char*>(&orderElement), sizeof(Order))) {
+			OrderStruct orderReg;
+			while (file.read(reinterpret_cast<char*>(&orderReg), sizeof(OrderStruct))) {
+				orderElement.edit(SELL_ID, orderReg.orderId);
+				orderElement.edit(SELL_CLIENT, orderReg.clientid);
+				orderElement.edit(SELL_SELLER, orderReg.sellerid);
+				orderElement.editOrderDate(orderReg.date);
 				orders.push_back(orderElement);
 			}
 			break;
@@ -60,19 +65,32 @@ Store::Store(std::string param_storeName) {
 				productElement.edit(PRODUCT_NAME, producstruct.name);
 				productElement.edit(PRODUCT_ID, producstruct.id);
 				productElement.edit(PRODUCT_BRAND, producstruct.brand);
-				productElement.edit(PRODUCT_PRICE, to_string(producstruct.price));
+				productElement.editPrice(producstruct.price);
 				productElement.edit(PRODUCT_QUANTITY, to_string(producstruct.quantity));
 				products.push_back(productElement);
 			}
 			break;
 		}
 		}
-		
 		file.close();
-	} else {
+			} else {
 		std::ofstream createFile(getFileName(static_cast<ArrayTypes>(elem)), std::ios::binary | std::ios::out);
 		std::cerr << "No se pudo abrir el archivo: " << getFileName(static_cast<ArrayTypes>(elem)) << std::endl;
 	}
+		std::ifstream productBin("product_to_order.bin", std::ios::binary | std::ios::in);
+		productFile productStruct;
+		while (productBin.read(reinterpret_cast<char*>(&productStruct), sizeof (productFile))){
+			
+			for(size_t i; i < orders.size(); i++){
+				if(productStruct.orderId == getOrder(i).get(SELL_ID)){
+					getOrder(i).addProduct(productStruct.productId);
+					continue;
+				}
+			}
+		}
+		productBin.close();
+		
+	
 }
 };
 
@@ -100,6 +118,8 @@ bool Store::saveIndividualData(ArrayTypes elem) {
 		Product productElement;
 		Seller sellerElement;
 		Order orderElement;
+		int numberOfProducts;
+		OrderStruct orderstruct;
 		
 		for (int i=0;i<size;i++){
 			switch (elem) {
@@ -143,8 +163,15 @@ bool Store::saveIndividualData(ArrayTypes elem) {
 				break;	
 			case ORDER:
 				orderElement = orders[i];
-				file.write(reinterpret_cast<char*>(&orderElement), sizeof(Order));
+				numberOfProducts = orderElement.getNumOfProducts();				
+				strcpy(orderstruct.orderId, orderElement.get(SELL_ID).c_str());
+				strcpy(orderstruct.sellerid, orderElement.get(SELL_SELLER).c_str());
+				strcpy(orderstruct.clientid, orderElement.get(SELL_CLIENT).c_str());
+				/*orderstruct.ammount = orderElement.getTotal();*/
+				orderstruct.date = orderElement.getDate();
+				file.write(reinterpret_cast<char*>(&orderstruct), sizeof(OrderStruct));				
 				break;
+				
 			default:
 				return false;
 				break;
@@ -186,7 +213,9 @@ std::size_t Store::sizeOf(ArrayTypes arr) {
 		}
 	return 0;
 }
-
+int Store::GetNumofclients()const{
+	return clients.size();
+}
 void Store::addClient(Client &&elem) {
 	clients.push_back(elem);
 }

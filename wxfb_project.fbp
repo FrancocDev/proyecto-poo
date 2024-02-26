@@ -46,9 +46,9 @@
       <property name="id">wxID_ANY</property>
       <property name="maximum_size"></property>
       <property name="minimum_size"></property>
-      <property name="name">WxfbPrincipal</property>
+      <property name="name">Principal</property>
       <property name="pos"></property>
-      <property name="size">700,500</property>
+      <property name="size">700,460</property>
       <property name="style">wxDEFAULT_FRAME_STYLE</property>
       <property name="subclass"></property>
       <property name="title">Agenda 1.3</property>
@@ -85,70 +85,121 @@
           <property name="label">Archivo</property>
           <property name="name">m_file</property>
           <property name="permission">protected</property>
-<<<<<<< Updated upstream
+
           <object class="submenu" expanded="true">
-=======
+
           <object class="wxMenuItem" expanded="false">
->>>>>>> Stashed changes
+=======
+          <object class="wxMenuItem" expanded="true">
+
             <property name="bitmap"></property>
+            <property name="checked">0</property>
+            <property name="enabled">1</property>
+            <property name="help"></property>
+            <property name="id">wxID_ANY</property>
+            <property name="kind">wxITEM_RADIO</property>
             <property name="label">Seleccionar Archivo</property>
             <property name="name">m_selectFile</property>
-            <property name="permission">protected</property>
+            <property name="permission">none</property>
+            <property name="shortcut"></property>
+            <property name="unchecked_bitmap"></property>
           </object>
-<<<<<<< Updated upstream
+
           <object class="submenu" expanded="true">
-=======
+
           <object class="wxMenuItem" expanded="false">
->>>>>>> Stashed changes
+
+          <object class="wxMenuItem" expanded="true">
             <property name="bitmap"></property>
+            <property name="checked">0</property>
+            <property name="enabled">1</property>
+            <property name="help"></property>
+            <property name="id">wxID_ANY</property>
+            <property name="kind">wxITEM_NORMAL</property>
             <property name="label">Guardar archivo como...</property>
             <property name="name">m_saveFileAs</property>
-            <property name="permission">protected</property>
+            <property name="permission">none</property>
+            <property name="shortcut"></property>
+            <property name="unchecked_bitmap"></property>
           </object>
-<<<<<<< Updated upstream
+
           <object class="submenu" expanded="true">
-=======
+
           <object class="wxMenuItem" expanded="false">
->>>>>>> Stashed changes
+          <object class="wxMenuItem" expanded="true">
             <property name="bitmap"></property>
+            <property name="checked">0</property>
+            <property name="enabled">1</property>
+            <property name="help"></property>
+            <property name="id">wxID_ANY</property>
+            <property name="kind">wxITEM_NORMAL</property>
             <property name="label">Guardar Archivo</property>
             <property name="name">m_SaveFile</property>
-            <property name="permission">protected</property>
+            <property name="permission">none</property>
+            <property name="shortcut"></property>
+            <property name="unchecked_bitmap"></property>
+            <event name="OnMenuSelection">OnClicksavefile</event>
           </object>
-<<<<<<< Updated upstream
+
           <object class="submenu" expanded="true">
-=======
+
           <object class="wxMenuItem" expanded="false">
->>>>>>> Stashed changes
+
+          <object class="wxMenuItem" expanded="true">
+
             <property name="bitmap"></property>
+            <property name="checked">0</property>
+            <property name="enabled">1</property>
+            <property name="help"></property>
+            <property name="id">wxID_ANY</property>
+            <property name="kind">wxITEM_NORMAL</property>
             <property name="label">Optimizar Archivo</property>
             <property name="name">m_optimizeFile</property>
-            <property name="permission">protected</property>
+            <property name="permission">none</property>
+            <property name="shortcut"></property>
+            <property name="unchecked_bitmap"></property>
           </object>
         </object>
-        <object class="wxMenu" expanded="true">
+        <object class="wxMenu" expanded="false">
           <property name="label">Acerca de...</property>
           <property name="name">m_aboutUs</property>
           <property name="permission">protected</property>
-<<<<<<< Updated upstream
+
           <object class="submenu" expanded="true">
-=======
+
           <object class="wxMenuItem" expanded="false">
->>>>>>> Stashed changes
+
+          <object class="wxMenuItem" expanded="true">
+
             <property name="bitmap"></property>
+            <property name="checked">0</property>
+            <property name="enabled">1</property>
+            <property name="help"></property>
+            <property name="id">wxID_ANY</property>
+            <property name="kind">wxITEM_NORMAL</property>
             <property name="label">Información</property>
             <property name="name">m_info</property>
-            <property name="permission">protected</property>
+            <property name="permission">none</property>
+            <property name="shortcut"></property>
+            <property name="unchecked_bitmap"></property>
           </object>
-<<<<<<< Updated upstream
+
           <object class="submenu" expanded="true">
-=======
           <object class="wxMenuItem" expanded="false">
->>>>>>> Stashed changes
+
+          <object class="wxMenuItem" expanded="true">
+
             <property name="bitmap"></property>
+            <property name="checked">0</property>
+            <property name="enabled">1</property>
+            <property name="help"></property>
+            <property name="id">wxID_ANY</property>
+            <property name="kind">wxITEM_NORMAL</property>
             <property name="label">Ver en Github</property>
             <property name="name">m_githubRepo</property>
-            <property name="permission">protected</property>
+            <property name="permission">none</property>
+            <property name="shortcut"></property>
+            <property name="unchecked_bitmap"></property>
           </object>
         </object>
       </object>
@@ -346,7 +397,8 @@
           <property name="window_extra_style"></property>
           <property name="window_name"></property>
           <property name="window_style"></property>
-          <event name="OnButtonClick">CambiarVentana</event>
+
+          <event name="OnButtonClick">onclickventas</event>
         </object>
         <object class="wxButton" expanded="false">
           <property name="BottomDockable">1</property>
@@ -416,6 +468,7 @@
           <property name="window_extra_style"></property>
           <property name="window_name"></property>
           <property name="window_style"></property>
+          <event name="OnButtonClick">OnButtonProductos</event>
         </object>
         <object class="wxButton" expanded="false">
           <property name="BottomDockable">1</property>
@@ -793,7 +846,7 @@
                 <property name="minimize_button">0</property>
                 <property name="minimum_size"></property>
                 <property name="moveable">1</property>
-                <property name="name">m_button6</property>
+                <property name="name">m_agregarPrincipal</property>
                 <property name="pane_border">1</property>
                 <property name="pane_position"></property>
                 <property name="pane_size"></property>
@@ -816,7 +869,7 @@
                 <property name="window_extra_style"></property>
                 <property name="window_name"></property>
                 <property name="window_style"></property>
-                <event name="OnButtonClick">OnClickAgregar</event>
+                <event name="OnButtonClick">OnClickAgregarprincipal</event>
               </object>
             </object>
             <object class="sizeritem" expanded="false">
@@ -973,7 +1026,7 @@
         </object>
       </object>
     </object>
-    <object class="Dialog" expanded="false">
+    <object class="Dialog" expanded="true">
       <property name="aui_managed">0</property>
       <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
       <property name="bg">wxSYS_COLOUR_BTNFACE</property>
@@ -2274,7 +2327,7 @@
                 <property name="gripper">0</property>
                 <property name="hidden">0</property>
                 <property name="id">wxID_ANY</property>
-                <property name="label">Boton1</property>
+                <property name="label">Agregar</property>
                 <property name="margins"></property>
                 <property name="markup">0</property>
                 <property name="max_size"></property>
@@ -2284,7 +2337,7 @@
                 <property name="minimize_button">0</property>
                 <property name="minimum_size"></property>
                 <property name="moveable">1</property>
-                <property name="name">m_boton1</property>
+                <property name="name">m_agregar</property>
                 <property name="pane_border">1</property>
                 <property name="pane_position"></property>
                 <property name="pane_size"></property>
@@ -2307,7 +2360,7 @@
                 <property name="window_extra_style"></property>
                 <property name="window_name"></property>
                 <property name="window_style"></property>
-                <event name="OnButtonClick">OnClickBoton1</event>
+                <event name="OnButtonClick">OnClickAgregarPersona</event>
               </object>
             </object>
             <object class="sizeritem" expanded="false">
@@ -2349,7 +2402,7 @@
                 <property name="gripper">0</property>
                 <property name="hidden">0</property>
                 <property name="id">wxID_ANY</property>
-                <property name="label">Boton2</property>
+                <property name="label">Cancelar</property>
                 <property name="margins"></property>
                 <property name="markup">0</property>
                 <property name="max_size"></property>
@@ -2359,7 +2412,7 @@
                 <property name="minimize_button">0</property>
                 <property name="minimum_size"></property>
                 <property name="moveable">1</property>
-                <property name="name">m_boton2</property>
+                <property name="name">m_canelar</property>
                 <property name="pane_border">1</property>
                 <property name="pane_position"></property>
                 <property name="pane_size"></property>
@@ -2382,7 +2435,7 @@
                 <property name="window_extra_style"></property>
                 <property name="window_name"></property>
                 <property name="window_style"></property>
-                <event name="OnButtonClick">OnClickBoton2</event>
+                <event name="OnButtonClick">OnClickCancelarPersona</event>
               </object>
             </object>
           </object>

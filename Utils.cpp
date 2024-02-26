@@ -1,6 +1,9 @@
 #include "Utils.h"
 #include <string>
 #include <ctime>
+#include <sstream>
+#include <iomanip>
+
 
 void tolower(std::string &s) {
 	int i,c=s.size();
@@ -19,9 +22,6 @@ bool compareString(const std::string &s1, const std::string &s2) {
 std::string generateRandomID(int length) {
 	const std::string characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	std::string randomID;
-	
-	/// random seed
-	std::srand(static_cast<unsigned int>(std::time(0)));
 	
 	for (int i = 0; i < length; ++i) {
 		randomID += characters[std::rand() % characters.length()];
@@ -53,4 +53,14 @@ bool sortBy(const Product& elem1, const Product& elem2, ProductParams criteria) 
 }
 bool sortBy(const Seller& elem1, const Seller& elem2, SellerParams criteria) {
 	return elem1.get(criteria) < elem2.get(criteria);
+}
+
+time_t parseDateToTimeT(const std::string& dateStr) {
+	std::tm tmStruct = {};
+	std::istringstream ss(dateStr);
+	ss >> std::get_time(&tmStruct, "%d/%m/%Y");
+		
+	time_t time = std::mktime(&tmStruct);
+	
+	return time;
 }

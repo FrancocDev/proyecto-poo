@@ -28,7 +28,7 @@ public:
     void remove(ArrayTypes arr, int i);
     template <typename T>
 	void add(ArrayTypes arr,const T &elem);
-	
+	int GetNumofclients()const;
 	void sortClientsBy(ClientParams criteria) {
 		sort(clients.begin(), clients.end(), [criteria](Client& a, Client& b) {
 			return sortBy(a, b, criteria);

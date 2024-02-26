@@ -8,6 +8,7 @@
 using namespace std;
 
 int main() {
+	std::srand(static_cast<unsigned int>(std::time(0)));
 	// Crear una instancia de la tienda
 	Store myStore("Mi Tienda");
 	
@@ -34,6 +35,17 @@ int main() {
 	myStore.addSeller(Seller("Aramis", "123456789", "aramis@tienda.com"));
 	myStore.saveIndividualData(SELLER);
 	
+	myStore.addOrder(Order(myStore.getSeller(0).get(SELLER_ID), myStore.getClient(1).get(CLIENT_ID), 20,2,2020));
+	myStore.addOrder(Order(myStore.getSeller(1).get(SELLER_ID), myStore.getClient(0).get(CLIENT_ID), 20,3,2020));
+	myStore.addOrder(Order(myStore.getSeller(0).get(SELLER_ID), myStore.getClient(4).get(CLIENT_ID), 22,2,2020));
+
+	Order ordencita(myStore.getSeller(0).get(SELLER_ID), myStore.getClient(1).get(CLIENT_ID), 20,2,2020);
+	ordencita.addProduct(myStore.getProduct(1).get(PRODUCT_ID));
+	ordencita.addProduct(myStore.getProduct(0).get(PRODUCT_ID));
+	ordencita.addProduct(myStore.getProduct(0).get(PRODUCT_ID));
+	ordencita.addProduct(myStore.getProduct(2).get(PRODUCT_ID));
+	
+	myStore.addOrder(std::move(ordencita));
 	// Guardar datos en archivos
 	myStore.saveAllData();
 	
@@ -60,7 +72,7 @@ int main() {
 	
 	std::cout << "Órdenes ordenadas por fecha:\n";
 	for(int i = 0; i < myStore.sizeOf(ORDER) ; i++){
-		cout<< myStore.getOrder(i).get(SELL_ID)<<endl;
+		cout<< "ID: "<< myStore.getOrder(i).get(SELL_ID)<< "- Total Ventas:" << myStore.getOrder(i).get(SELL_SELLER)<< endl;
 	}
 
 	

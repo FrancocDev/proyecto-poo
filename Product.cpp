@@ -4,7 +4,7 @@
 Product::Product(){};
 Product::Product(std::string a_name,std::string a_brand, float a_price, int a_quantity) 
 {
-    id=generateRandomID(12); /// No deberia colisionar nunca
+    id=generateRandomID(11); /// No deberia colisionar nunca
 	name=a_name;
     brand=a_brand;
     price=a_price;
@@ -57,4 +57,8 @@ void Product::edit(ProductParams param, std::string value) {
     default:
         break;
     }; 
+}
+
+void Product::editPrice(float value){
+	price = value;
 }

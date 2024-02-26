@@ -1,2 +1,3 @@
-- [ ] FIX: Error al cargar los archivos.
-- [ ] Importar la IU.
+- [ ] Añadir lectura y escritura de orders.
+- [ ] Añadir metodo de busqueda.
+- [ ] Hacer la UI. 
