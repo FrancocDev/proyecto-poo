@@ -39,9 +39,8 @@ std::string Order::get(OrderParams param) const {
 //    for (auto &product : products) {
 //        total+=product.getPrice();
 //    }
-//	cout<<"Total"<< total <<endl;
-//    return total;
-//}
+   /* return total;*/
+/*}*/
 ///agregue
 int Order:: getNumOfProducts(){
 	return products.size();

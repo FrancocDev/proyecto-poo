@@ -49,12 +49,20 @@ Principal::Principal( wxWindow* parent, wxWindowID id, const wxString& title, co
 
 	tabSelector = this->CreateToolBar( wxTB_HORIZONTAL, wxID_ANY );
 	clientsButton = new wxButton( tabSelector, wxID_ANY, wxT("Clientes"), wxDefaultPosition, wxDefaultSize, wxBORDER_NONE );
+
+	clientsButton->SetDefault();
 	tabSelector->AddControl( clientsButton );
 	sellsButton = new wxButton( tabSelector, wxID_ANY, wxT("Ventas"), wxDefaultPosition, wxDefaultSize, 0 );
+
+	sellsButton->SetDefault();
 	tabSelector->AddControl( sellsButton );
 	productsButton = new wxButton( tabSelector, wxID_ANY, wxT("Productos"), wxDefaultPosition, wxDefaultSize, 0 );
+
+	productsButton->SetDefault();
 	tabSelector->AddControl( productsButton );
 	sellersButton = new wxButton( tabSelector, wxID_ANY, wxT("Vendedores"), wxDefaultPosition, wxDefaultSize, 0 );
+
+	sellersButton->SetDefault();
 	tabSelector->AddControl( sellersButton );
 	tabSelector->Realize();
 
@@ -64,18 +72,10 @@ Principal::Principal( wxWindow* parent, wxWindowID id, const wxString& title, co
 	wxBoxSizer* bSizer3;
 	bSizer3 = new wxBoxSizer( wxHORIZONTAL );
 
-	currentTabName = new wxStaticText( this, wxID_ANY, wxT("Clientes"), wxDefaultPosition, wxDefaultSize, 0 );
-	currentTabName->Wrap( -1 );
-	currentTabName->SetMinSize( wxSize( 200,-1 ) );
-
-	bSizer3->Add( currentTabName, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
-
-	m_busqueda = new wxTextCtrl( this, wxID_ANY, wxT("z"), wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER );
+	m_busqueda = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER );
 	bSizer3->Add( m_busqueda, 1, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 
 	m_button2 = new wxButton( this, wxID_ANY, wxT("Buscar"), wxDefaultPosition, wxDefaultSize, 0 );
-
-	m_button2->SetDefault();
 	bSizer3->Add( m_button2, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 
 
@@ -137,6 +137,8 @@ Principal::Principal( wxWindow* parent, wxWindowID id, const wxString& title, co
 	// Connect Events
 	this->Connect( wxEVT_SIZE, wxSizeEventHandler( Principal::OnCambiaTamanio ) );
 	m_file->Bind(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( Principal::OnClicksavefile ), this, m_SaveFile->GetId());
+	sellsButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::onclickventas ), NULL, this );
+	productsButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnButtonProductos ), NULL, this );
 	m_busqueda->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( Principal::EnterBuscar ), NULL, this );
 	m_button2->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnClickBuscar ), NULL, this );
 	m_grilla->Connect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( Principal::OnDobleClickGrilla ), NULL, this );
@@ -150,6 +152,8 @@ Principal::~Principal()
 {
 	// Disconnect Events
 	this->Disconnect( wxEVT_SIZE, wxSizeEventHandler( Principal::OnCambiaTamanio ) );
+	sellsButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::onclickventas ), NULL, this );
+	productsButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnButtonProductos ), NULL, this );
 	m_busqueda->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( Principal::EnterBuscar ), NULL, this );
 	m_button2->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnClickBuscar ), NULL, this );
 	m_grilla->Disconnect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( Principal::OnDobleClickGrilla ), NULL, this );
