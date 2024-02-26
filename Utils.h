@@ -11,6 +11,7 @@
 // Forward declarations
 class Seller;
 class Order;
+class Product;
 
 struct productFile {
 	char productId[12];

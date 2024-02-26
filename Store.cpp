@@ -264,3 +264,56 @@ void Store::remove(ArrayTypes arr, int i) {
 	}
 }
 
+Client Store::getClientById(string id) {
+	auto clientComparator = [id](const Client& a) -> bool {
+		return a.get(CLIENT_ID) == id;
+	};
+	
+	auto it = std::find_if(clients.begin(), clients.end(), clientComparator);
+	
+	if (it != clients.end()) {
+		return *it;
+	} else {
+		return Client(); 
+	}
+}
+
+Seller Store::getSellerById(string id) {
+	auto sellerComparator = [id](const Seller& s) -> bool {
+		return s.get(SELLER_ID) == id;
+	};
+	
+	auto it = std::find_if(sellers.begin(), sellers.end(), sellerComparator);
+	
+	if (it != sellers.end()) {
+		return *it;
+	} else {
+		return Seller(); 
+	}
+}
+Order Store::getOrderById(string id) {
+	auto orderComparator = [id](const Order& o) -> bool {
+		return o.get(SELL_ID) == id;
+	};
+	
+	auto it = std::find_if(orders.begin(), orders.end(), orderComparator);
+	
+	if (it != orders.end()) {
+		return *it;
+	} else {
+		return Order(); 
+	}
+}
+Product Store::getProductById(string id) {
+	auto productComparator = [id](const Product& p) -> bool {
+		return p.get(PRODUCT_ID) == id;
+	};
+	
+	auto it = std::find_if(products.begin(), products.end(), productComparator);
+	
+	if (it != products.end()) {
+		return *it;
+	} else {
+		return Product(); 
+	}
+}
