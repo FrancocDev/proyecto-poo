@@ -8,6 +8,7 @@ struct Productstruct{
 	char brand[25];
 	float price;
 	int quantity;
+	char orderId[12];
 };
 class Product {
 public:

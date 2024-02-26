@@ -11,7 +11,7 @@ Order::Order(std::string a_sellerId, std::string a_clientId, int a_day, int a_mo
     id=generateRandomID(11); /// No deberia colisionar nunca
 	sellerId= a_sellerId;
     clientId= a_clientId;
-    products=std::vector<Product>();
+	products=std::vector<Product>();
     ammount=0;
     date=editDate(a_day, a_month, a_year);
 }

@@ -44,7 +44,7 @@ Store::Store(std::string param_storeName) {
 				orderElement.edit(SELL_CLIENT, orderReg.clientid);
 				orderElement.edit(SELL_SELLER, orderReg.sellerid);
 				orderElement.editOrderDate(orderReg.date);
-				
+				///cambiar
 				if(orderReg.products.size() != 0){
 					orderElement.clearProducts();
 				for (const auto& productId : orderReg.products) {
@@ -173,9 +173,9 @@ bool Store::saveIndividualData(ArrayTypes elem) {
 				strcpy(orderstruct.clientid, orderElement.get(SELL_CLIENT).c_str());
 				orderstruct.ammount = orderElement.getTotal();
 				orderstruct.date = orderElement.getDate();
-				for (int j = 0; j < numberOfProducts; j++) {
-					orderstruct.products.push_back(orderElement.getProduct(j).get(PRODUCT_ID));
-				}
+//				for (int j = 0; j < numberOfProducts; j++) {
+//					orderstruct.products.push_back(orderElement.getProduct(j).get(PRODUCT_ID));
+//				}
 				file.write(reinterpret_cast<char*>(&orderstruct), sizeof(OrderStruct));				
 				break;
 				
