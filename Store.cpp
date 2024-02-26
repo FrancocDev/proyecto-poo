@@ -44,21 +44,6 @@ Store::Store(std::string param_storeName) {
 				orderElement.edit(SELL_CLIENT, orderReg.clientid);
 				orderElement.edit(SELL_SELLER, orderReg.sellerid);
 				orderElement.editOrderDate(orderReg.date);
-				///cambiar
-				if(orderReg.products.size() != 0){
-					orderElement.clearProducts();
-				for (const auto& productId : orderReg.products) {
-					cout<<"Product: " << productId<<endl;
-					auto it = find_if(products.begin(), products.end(), [&productId](const Product& product){
-						return productId == product.get(PRODUCT_ID);
-					});
-					if (it != products.end()){
-						orderElement.addProduct(*it);
-					} else {
-						cout << "No se encontro la id del producto: " << productId<<endl;
-					}
-				}
-				}
 				orders.push_back(orderElement);
 			}
 			break;
@@ -87,12 +72,25 @@ Store::Store(std::string param_storeName) {
 			break;
 		}
 		}
-		
 		file.close();
-	} else {
+			} else {
 		std::ofstream createFile(getFileName(static_cast<ArrayTypes>(elem)), std::ios::binary | std::ios::out);
 		std::cerr << "No se pudo abrir el archivo: " << getFileName(static_cast<ArrayTypes>(elem)) << std::endl;
 	}
+		std::ifstream productBin("product_to_order.bin", std::ios::binary | std::ios::in);
+		productFile productStruct;
+		while (productBin.read(reinterpret_cast<char*>(&productStruct), sizeof (productFile))){
+			
+			for(size_t i; i < orders.size(); i++){
+				if(productStruct.orderId == getOrder(i).get(SELL_ID)){
+					getOrder(i).addProduct(productStruct.productId);
+					continue;
+				}
+			}
+		}
+		productBin.close();
+		
+	
 }
 };
 
@@ -165,17 +163,12 @@ bool Store::saveIndividualData(ArrayTypes elem) {
 				break;	
 			case ORDER:
 				orderElement = orders[i];
-				numberOfProducts = orderElement.getNumOfProducts();
-				orderstruct.products.clear();
-				
+				numberOfProducts = orderElement.getNumOfProducts();				
 				strcpy(orderstruct.orderId, orderElement.get(SELL_ID).c_str());
 				strcpy(orderstruct.sellerid, orderElement.get(SELL_SELLER).c_str());
 				strcpy(orderstruct.clientid, orderElement.get(SELL_CLIENT).c_str());
-				orderstruct.ammount = orderElement.getTotal();
+				/*orderstruct.ammount = orderElement.getTotal();*/
 				orderstruct.date = orderElement.getDate();
-//				for (int j = 0; j < numberOfProducts; j++) {
-//					orderstruct.products.push_back(orderElement.getProduct(j).get(PRODUCT_ID));
-//				}
 				file.write(reinterpret_cast<char*>(&orderstruct), sizeof(OrderStruct));				
 				break;
 				

@@ -11,7 +11,7 @@ Order::Order(std::string a_sellerId, std::string a_clientId, int a_day, int a_mo
     id=generateRandomID(11); /// No deberia colisionar nunca
 	sellerId= a_sellerId;
     clientId= a_clientId;
-	products=std::vector<Product>();
+	products=std::vector<string>();
     ammount=0;
     date=editDate(a_day, a_month, a_year);
 }
@@ -34,14 +34,14 @@ std::string Order::get(OrderParams param) const {
     };
 };
 
-float Order::getTotal() const {
-    float total=0;
-    for (auto &product : products) {
-        total+=product.getPrice();
-    }
-	cout<<"Total"<< total <<endl;
-    return total;
-}
+//float Order::getTotal() const {
+//    float total=0;
+//    for (auto &product : products) {
+//        total+=product.getPrice();
+//    }
+//	cout<<"Total"<< total <<endl;
+//    return total;
+//}
 ///agregue
 int Order:: getNumOfProducts(){
 	return products.size();
@@ -64,7 +64,7 @@ void Order::edit(OrderParams param, std::string value) {
     }; 
 };
 
-void Order::addProduct(Product a_product) {
+void Order::addProduct(string a_product) {
     products.push_back(a_product);
 };
 
@@ -83,6 +83,6 @@ void Order::clearProducts(){
 	products.clear();
 }
 
-Product Order::getProduct(int i) {
+string Order::getProductId(int i) {
 	return products[i];
 }

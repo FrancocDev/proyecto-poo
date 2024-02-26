@@ -4,6 +4,8 @@
 #include "Product.h"
 #include <vector>
 #include "EnumDefinitions.h"
+#include <string>
+using namespace std;
 ///agregue
 
 class Product; // Evita deps circulares
@@ -13,7 +15,6 @@ struct OrderStruct{
 	char clientid[12];
 	float ammount;
 	time_t date;
-	/*std::vector<std::string> products;*/
 };
 class Order {
 public:
@@ -21,23 +22,20 @@ public:
     Order(std::string a_sellerId, std::string a_clientId, int a_day, int a_month, int a_year);
     float getTotal() const;
     void edit(OrderParams param, std::string value);
-	void addProduct(Product a_product);
+	void addProduct(string a_product);
     time_t getDate() const;
     std::string get(OrderParams param) const;
-	///agregue
 	float getAmmount();
-	///agregue
 	int getNumOfProducts();
-	///
 	time_t editOrderDate(time_t newDate);
 	void clearProducts();
-	Product getProduct(int i);
+	string getProductId(int i);
 private:
 	std::string id;
 	std::string sellerId;
 	std::string clientId;
 	time_t date;
-	std::vector<Product> products;
+	std::vector<string> products;
 	float ammount;
 };
 
