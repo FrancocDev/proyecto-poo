@@ -89,11 +89,14 @@ void PrincipalWin::RefrescarGrillaVentas(){
 	}
 	for(int i=0; i<m_store->sizeOf(ORDER);i++){
 		temp = m_store->getOrder(i);
+		ostringstream ss;
+		ss<<fixed<<setprecision(2)<<o.getAmmount(*m_store);
+		
 		m_grilla->AppendRows();
 		m_grilla->SetCellValue(i,0,m_store->getSellerById(o.get(SELL_SELLER)).get(SELLER_NAME));
-		m_grilla->SetCellValue(i,1,"FECGA");
+		m_grilla->SetCellValue(i,1,printDate(o.getDate()));
 		m_grilla->SetCellValue(i,2,to_string(o.getNumOfProducts()));
-		m_grilla->SetCellValue(i,3,"total");
+		m_grilla->SetCellValue(i,3,ss.str());
 	}
 }
 
