@@ -131,4 +131,31 @@ void PrincipalWin::OnButtonProductos( wxCommandEvent& event )  {
 	RefrescarGrillaProductos();
 }
 
+void PrincipalWin::RefrescarGrillaVendedores(){
+	Seller temp = Seller();
+	Seller& s = temp;
+	if(m_grilla->GetNumberRows()!=0){
+		m_grilla->DeleteRows(0,m_grilla->GetNumberRows());
+	}
+	for(int i=0; i<m_store->sizeOf(SELLER);i++){
+		temp = m_store->getSeller(i);
+		m_grilla->AppendRows();
+		m_grilla->SetCellValue(i,0,s.get(SELLER_NAME));
+		m_grilla->SetCellValue(i,1,s.get(SELLER_PHONE));
+		m_grilla->SetCellValue(i,2,s.get(SELLER_EMAIL));
+		m_grilla->SetCellValue(i,3,s.get(SELLER_ID));
+	}
+}
+void PrincipalWin::OnButtonVendedores( wxCommandEvent& event )  {
+	m_grilla->SetColLabelValue(0,"Nombre");
+	m_grilla->SetColLabelValue(1,"Telefono");
+	m_grilla->SetColLabelValue(2,"Email");
+	m_grilla->SetColLabelValue(3,"id");
+	RefrescarGrillaVendedores();
+	
+}
+
+void PrincipalWin::OnButtonClientes( wxCommandEvent& event )  {
+	RefrescarGrillaClientes();
+}
 
