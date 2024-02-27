@@ -23,7 +23,7 @@ path=Application.cpp
 cursor=14:0
 [source]
 path=PrincipalWin.cpp
-cursor=94:2
+cursor=126:28
 open=true
 [source]
 path=wxfb_project.cpp
@@ -43,14 +43,14 @@ cursor=42:5
 open=true
 [source]
 path=Product.cpp
-cursor=0:0
+cursor=66:0
 open=true
 [source]
 path=Seller.cpp
 cursor=0:0
 [source]
 path=Store.cpp
-cursor=179:13
+cursor=329:1
 open=true
 [source]
 path=Utils.cpp
@@ -60,7 +60,7 @@ path=Application.h
 cursor=4:0
 [header]
 path=PrincipalWin.h
-cursor=23:27
+cursor=25:30
 open=true
 [header]
 path=wxfb_project.h
@@ -83,7 +83,7 @@ cursor=14:9
 open=true
 [header]
 path=Product.h
-cursor=17:6
+cursor=25:0
 open=true
 [header]
 path=Seller.h
