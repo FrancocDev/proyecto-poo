@@ -56,8 +56,10 @@ class Principal : public wxFrame
 		// Virtual event handlers, override them in your derived class
 		virtual void OnCambiaTamanio( wxSizeEvent& event ) { event.Skip(); }
 		virtual void OnClicksavefile( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnButtonClientes( wxCommandEvent& event ) { event.Skip(); }
 		virtual void onclickventas( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnButtonProductos( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnButtonVendedores( wxCommandEvent& event ) { event.Skip(); }
 		virtual void EnterBuscar( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnClickBuscar( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnDobleClickGrilla( wxGridEvent& event ) { event.Skip(); }

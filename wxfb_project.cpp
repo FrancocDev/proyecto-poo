@@ -61,8 +61,6 @@ Principal::Principal( wxWindow* parent, wxWindowID id, const wxString& title, co
 	productsButton->SetDefault();
 	tabSelector->AddControl( productsButton );
 	sellersButton = new wxButton( tabSelector, wxID_ANY, wxT("Vendedores"), wxDefaultPosition, wxDefaultSize, 0 );
-
-	sellersButton->SetDefault();
 	tabSelector->AddControl( sellersButton );
 	tabSelector->Realize();
 
@@ -137,8 +135,10 @@ Principal::Principal( wxWindow* parent, wxWindowID id, const wxString& title, co
 	// Connect Events
 	this->Connect( wxEVT_SIZE, wxSizeEventHandler( Principal::OnCambiaTamanio ) );
 	m_file->Bind(wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( Principal::OnClicksavefile ), this, m_SaveFile->GetId());
+	clientsButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnButtonClientes ), NULL, this );
 	sellsButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::onclickventas ), NULL, this );
 	productsButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnButtonProductos ), NULL, this );
+	sellersButton->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnButtonVendedores ), NULL, this );
 	m_busqueda->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( Principal::EnterBuscar ), NULL, this );
 	m_button2->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnClickBuscar ), NULL, this );
 	m_grilla->Connect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( Principal::OnDobleClickGrilla ), NULL, this );
@@ -152,8 +152,10 @@ Principal::~Principal()
 {
 	// Disconnect Events
 	this->Disconnect( wxEVT_SIZE, wxSizeEventHandler( Principal::OnCambiaTamanio ) );
+	clientsButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnButtonClientes ), NULL, this );
 	sellsButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::onclickventas ), NULL, this );
 	productsButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnButtonProductos ), NULL, this );
+	sellersButton->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnButtonVendedores ), NULL, this );
 	m_busqueda->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( Principal::EnterBuscar ), NULL, this );
 	m_button2->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnClickBuscar ), NULL, this );
 	m_grilla->Disconnect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( Principal::OnDobleClickGrilla ), NULL, this );

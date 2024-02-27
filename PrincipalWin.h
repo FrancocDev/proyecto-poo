@@ -7,6 +7,8 @@ class PrincipalWin : public Principal {
 private:
 	
 protected:
+	void OnButtonClientes( wxCommandEvent& event )  override;
+	void OnButtonVendedores( wxCommandEvent& event )  override;
 	void OnButtonProductos( wxCommandEvent& event )  override;
 	void onclickventas( wxCommandEvent& event )  override;
 	void OnClickAgregarprincipal( wxCommandEvent& event )  override;
@@ -24,6 +26,7 @@ protected:
 	void RefrescarGrillaClientes();
 	void RefrescarGrillaVentas();
 	void RefrescarGrillaProductos();
+	void RefrescarGrillaVendedores();
 public:
 	PrincipalWin(Store *store);
 
