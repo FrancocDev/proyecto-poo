@@ -137,7 +137,7 @@ void PrincipalWin::RefrescarGrillaProductos(){
 		m_grilla->SetCellValue(i,3,to_string(p.getQuantity()));
 	}
 	m_agregarPrincipal->Disconnect(wxID_ANY);
-	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarProduct ), NULL, this );
+	//m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarProduct ), NULL, this );
 	
 	
 }
@@ -178,4 +178,3 @@ void PrincipalWin::OnButtonVendedores( wxCommandEvent& event )  {
 void PrincipalWin::OnButtonClientes( wxCommandEvent& event )  {
 	RefrescarGrillaClientes();
 }
-

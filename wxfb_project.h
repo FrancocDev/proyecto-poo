@@ -123,14 +123,7 @@ class WxfbVendedor : public wxDialog
 		wxTextCtrl* m_nombre;
 		wxTextCtrl* m_apellido;
 		wxTextCtrl* m_telefono;
-		wxTextCtrl* m_direccion;
-		wxTextCtrl* m_localidad;
 		wxTextCtrl* m_email;
-		wxTextCtrl* m_dia;
-		wxStaticText* m_staticText16;
-		wxTextCtrl* m_mes;
-		wxStaticText* m_staticText17;
-		wxTextCtrl* m_anio;
 		wxButton* m_agregar;
 		wxButton* m_canelar;
 
@@ -144,6 +137,70 @@ class WxfbVendedor : public wxDialog
 		WxfbVendedor( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Vendedor"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
 
 		~WxfbVendedor();
+
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class WxfbProducto
+///////////////////////////////////////////////////////////////////////////////
+class WxfbProducto : public wxDialog
+{
+	private:
+
+	protected:
+		wxTextCtrl* m_nombre;
+		wxTextCtrl* m_marca;
+		wxTextCtrl* m_precio;
+		wxTextCtrl* m_cantidad;
+		wxButton* m_agregar;
+		wxButton* m_canelar;
+
+		// Virtual event handlers, override them in your derived class
+		virtual void OnClickAgregarProducto( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnClickCancelarProducto( wxCommandEvent& event ) { event.Skip(); }
+
+
+	public:
+
+		WxfbProducto( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Producto"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
+
+		~WxfbProducto();
+
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class WxfbVenta
+///////////////////////////////////////////////////////////////////////////////
+class WxfbVenta : public wxDialog
+{
+	private:
+
+	protected:
+		wxTextCtrl* m_textCtrl56;
+		wxTextCtrl* m_textCtrl57;
+		wxTextCtrl* m_dia;
+		wxTextCtrl* m_mes;
+		wxTextCtrl* m_anio;
+		wxTextCtrl* m_cantidad;
+		wxButton* m_agregarproducto;
+		wxGrid* m_orderGrid1;
+		wxStaticText* m_total;
+		wxButton* m_agregar;
+		wxButton* m_canelar;
+
+		// Virtual event handlers, override them in your derived class
+		virtual void addProductToOrder( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnDobleClickGrilla( wxGridEvent& event ) { event.Skip(); }
+		virtual void OnClickGrilla( wxGridEvent& event ) { event.Skip(); }
+		virtual void OnClickAgregarVenta( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnClickCancelarVenta( wxCommandEvent& event ) { event.Skip(); }
+
+
+	public:
+
+		WxfbVenta( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Venta"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
+
+		~WxfbVenta();
 
 };
 
