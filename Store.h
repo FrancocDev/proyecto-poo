@@ -23,7 +23,7 @@ public:
     void addProduct(Product &&elem);
     Client getClient(int i);
     Seller getSeller(int i);
-    Order getOrder(int i);
+	Order& getOrder(int i);
     Product getProduct(int i);
     void remove(ArrayTypes arr, int i);
     template <typename T>

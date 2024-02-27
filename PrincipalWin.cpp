@@ -88,7 +88,7 @@ void PrincipalWin::RefrescarGrillaVentas(){
 	for(int i=0; i<m_store->sizeOf(ORDER);i++){
 		temp = m_store->getOrder(i);
 		m_grilla->AppendRows();
-		m_grilla->SetCellValue(i,0,o.get(SELL_SELLER));
+		m_grilla->SetCellValue(i,0,m_store->getSellerById(o.get(SELL_SELLER)).get(SELLER_NAME));
 		m_grilla->SetCellValue(i,1,"FECGA");
 		m_grilla->SetCellValue(i,2,to_string(o.getNumOfProducts()));
 		m_grilla->SetCellValue(i,3,"total");

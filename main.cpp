@@ -72,7 +72,7 @@ int main() {
 	
 	std::cout << "Órdenes ordenadas por fecha:\n";
 	for(int i = 0; i < myStore.sizeOf(ORDER) ; i++){
-		cout<< "ID: "<< myStore.getOrder(i).get(SELL_ID)<< "- Total Ventas:" << myStore.getOrder(i).get(SELL_SELLER)<< endl;
+		cout<< "ID: "<< myStore.getOrder(i).get(SELL_ID)<< "- Total Ventas:" << myStore.getOrder(i).getNumOfProducts()<< endl;
 	}
 
 	

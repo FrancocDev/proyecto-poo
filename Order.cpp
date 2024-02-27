@@ -42,7 +42,7 @@ std::string Order::get(OrderParams param) const {
    /* return total;*/
 /*}*/
 ///agregue
-int Order:: getNumOfProducts(){
+int Order::getNumOfProducts(){
 	return products.size();
 }
 ///
@@ -63,9 +63,9 @@ void Order::edit(OrderParams param, std::string value) {
     }; 
 };
 
-void Order::addProduct(string a_product) {
-    products.push_back(a_product);
-};
+void Order::addProduct(const std::string& a_product) {
+	products.push_back(a_product);
+}
 
 time_t Order::getDate() const {
     return date;

@@ -9,6 +9,7 @@
 #include "Order.h"
 #include <algorithm>
 #include <cstring>
+#include <sstream>
 using namespace std;
 
 Store::Store(std::string param_storeName) {
@@ -77,21 +78,28 @@ Store::Store(std::string param_storeName) {
 		std::ofstream createFile(getFileName(static_cast<ArrayTypes>(elem)), std::ios::binary | std::ios::out);
 		std::cerr << "No se pudo abrir el archivo: " << getFileName(static_cast<ArrayTypes>(elem)) << std::endl;
 	}
-		std::ifstream productBin("product_to_order.bin", std::ios::binary | std::ios::in);
-		productFile productStruct;
-		while (productBin.read(reinterpret_cast<char*>(&productStruct), sizeof (productFile))){
-			
-			for(size_t i; i < orders.size(); i++){
-				if(productStruct.orderId == getOrder(i).get(SELL_ID)){
-					getOrder(i).addProduct(productStruct.productId);
-					continue;
-				}
+}
+	
+	std::ifstream productBin("product_to_order.dat", std::ios::binary | std::ios::in);
+	if(productBin.is_open()){
+	productFile productBinAux;
+	while (productBin.read(reinterpret_cast<char*>(&productBinAux), sizeof (productFile))){
+		cout<<"orderId: "<< productBinAux.orderId << endl ;
+		cout<<"productId: "<< productBinAux.productId << endl ; 
+		
+		for(size_t i = 0; i < orders.size(); i++){
+			if(productBinAux.orderId == getOrder(i).get(SELL_ID)){
+				std::string productIdString(productBinAux.productId);
+				getOrder(i).addProduct(productIdString);
+				continue;
 			}
 		}
-		productBin.close();
-		
-	
-}
+	}
+	productBin.close();
+	} else {
+		std::ofstream createFile("product_to_order.dat", std::ios::binary | std::ios::out);
+		std::cerr << "No se pudo abrir el archivo: " << "product_to_order.dat" << std::endl;
+	}
 };
 
 std::string Store::getFileName(ArrayTypes category) {
@@ -110,7 +118,13 @@ std::string Store::getFileName(ArrayTypes category) {
 }
 
 bool Store::saveIndividualData(ArrayTypes elem) {
-	std::ofstream file(getFileName(elem), std::ios::binary | std::ios::out);
+	std::ofstream file(getFileName(elem), std::ios::binary | std::ios::out | std::ios::in);
+	std::ofstream productBin("product_to_order.dat", std::ios::binary | std::ios::out | std::ios::in);
+	if (!productBin.is_open()) {
+		std::cerr << "No se pudo abrir el archivo 'product_to_order.dat'" << std::endl;
+		file.close();
+		return false;
+	}
 	if (file.is_open()) {
 		int size = sizeOf(elem);
 		
@@ -167,9 +181,18 @@ bool Store::saveIndividualData(ArrayTypes elem) {
 				strcpy(orderstruct.orderId, orderElement.get(SELL_ID).c_str());
 				strcpy(orderstruct.sellerid, orderElement.get(SELL_SELLER).c_str());
 				strcpy(orderstruct.clientid, orderElement.get(SELL_CLIENT).c_str());
-				/*orderstruct.ammount = orderElement.getTotal();*/
+				/// orderstruct.ammount = orderElement.getTotal();
 				orderstruct.date = orderElement.getDate();
-				file.write(reinterpret_cast<char*>(&orderstruct), sizeof(OrderStruct));				
+				file.write(reinterpret_cast<char*>(&orderstruct), sizeof(OrderStruct));	
+				
+				productFile productTemp;
+				for(size_t j = 0; j < numberOfProducts; j++){
+				strcpy(productTemp.orderId, orderElement.get(SELL_ID).c_str());
+				strcpy(productTemp.productId, orderElement.getProductId(j).c_str());
+					
+				productBin.write(reinterpret_cast<char*>(&productTemp), sizeof(productFile));
+				}
+											
 				break;
 				
 			default:
@@ -178,6 +201,7 @@ bool Store::saveIndividualData(ArrayTypes elem) {
 			}
 		}
 		file.close();
+		productBin.close();
 		return true;
 	} else {
 		std::cerr << "No se pudo abrir el archivo: " << getFileName(elem) << std::endl;
@@ -238,7 +262,7 @@ Client Store::getClient(int i) {
 Seller Store::getSeller(int i) {
 	return sellers[i];
 }
-Order Store::getOrder(int i) {
+Order& Store::getOrder(int i) {
 	return orders[i];
 }
 Product Store::getProduct(int i) {
