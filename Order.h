@@ -5,8 +5,18 @@
 #include <vector>
 #include "EnumDefinitions.h"
 
+<<<<<<< Updated upstream
 class Product; // Evita deps circulares
 
+=======
+struct OrderStruct{
+	char orderId[12];
+	char sellerid[12];
+	char clientid[12];
+	float ammount;
+	time_t date;
+};
+>>>>>>> Stashed changes
 class Order {
 public:
 	Order();

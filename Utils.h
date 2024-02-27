@@ -11,6 +11,7 @@
 // Forward declarations
 class Seller;
 class Order;
+class Product;
 
 bool sortBy(const Client& elem1, const Client& elem2, ClientParams criteria);
 bool sortBy(const Order& elem1, const Order& elem2, OrderParams criteria);

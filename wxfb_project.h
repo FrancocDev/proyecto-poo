@@ -20,11 +20,11 @@
 #include <wx/settings.h>
 #include <wx/button.h>
 #include <wx/toolbar.h>
-#include <wx/stattext.h>
 #include <wx/textctrl.h>
 #include <wx/sizer.h>
 #include <wx/grid.h>
 #include <wx/frame.h>
+#include <wx/stattext.h>
 #include <wx/dialog.h>
 
 ///////////////////////////////////////////////////////////////////////////
@@ -52,7 +52,6 @@ class WxfbPrincipal : public wxFrame
 		wxButton* sellsButton;
 		wxButton* productsButton;
 		wxButton* sellersButton;
-		wxStaticText* currentTabName;
 		wxTextCtrl* m_busqueda;
 		wxButton* m_button2;
 		wxGrid* m_grilla;
@@ -62,6 +61,11 @@ class WxfbPrincipal : public wxFrame
 
 		// Virtual event handlers, override them in your derived class
 		virtual void OnCambiaTamanio( wxSizeEvent& event ) { event.Skip(); }
+<<<<<<< Updated upstream
+=======
+		virtual void OnClicksavefile( wxCommandEvent& event ) { event.Skip(); }
+		virtual void CambiarVentana( wxCommandEvent& event ) { event.Skip(); }
+>>>>>>> Stashed changes
 		virtual void EnterBuscar( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnClickBuscar( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnDobleClickGrilla( wxGridEvent& event ) { event.Skip(); }

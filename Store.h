@@ -53,7 +53,12 @@ public:
 		});
 	};
 	
-	template <typename T>
+	Client getClientById(string id);
+	Seller getSellerById(string id);
+	Order getOrderById(string id);
+	Product getProductById(string id); 
+	
+		template <typename T>
 	T get(ArrayTypes arr,int i);
 	
 private:
