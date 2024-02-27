@@ -64,3 +64,19 @@ time_t parseDateToTimeT(const std::string& dateStr) {
 	
 	return time;
 }
+
+std::string printDate(time_t date) {
+	std::tm* timeInfo = std::localtime(&date); // Fecha a tm
+	
+	if (!timeInfo) {
+		return "Fecha invalida";
+	}
+	
+	std::ostringstream oss;
+	
+	oss << std::setfill('0') << std::setw(2) << timeInfo->tm_mday << "/"
+		<< std::setfill('0') << std::setw(2) << timeInfo->tm_mon + 1 << "/"
+		<< (timeInfo->tm_year + 1900); //FORMATO
+	
+	return oss.str();
+}
