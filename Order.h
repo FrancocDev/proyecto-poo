@@ -8,6 +8,7 @@
 using namespace std;
 ///agregue
 
+class Store;
 class Product; // Evita deps circulares
 struct OrderStruct{
 	char orderId[12];
@@ -25,7 +26,7 @@ public:
 	void addProduct(const std::string& a_product);
     time_t getDate() const;
     std::string get(OrderParams param) const;
-	float getAmmount();
+	float getAmmount(Store& store);
 	int getNumOfProducts();
 	time_t editOrderDate(time_t newDate);
 	void clearProducts();

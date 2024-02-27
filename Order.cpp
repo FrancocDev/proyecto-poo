@@ -3,6 +3,8 @@
 #include "Utils.h"
 #include "Product.h"
 #include <iostream>
+#include "Store.h"
+
 using namespace std;
 
 Order::Order(){};
@@ -71,8 +73,12 @@ time_t Order::getDate() const {
     return date;
 };
 ///agregue
-float Order:: getAmmount(){
-	return ammount;
+float Order:: getAmmount(Store& store){
+	int total = 0;
+	for(int i = 0; i < products.size(); i++){
+		total += store.getProductById(getProductId(i)).getPrice();
+	}
+	return total;
 }
 time_t Order::editOrderDate(time_t newDate){
 	date = newDate;
@@ -85,3 +91,4 @@ void Order::clearProducts(){
 string Order::getProductId(int i) {
 	return products[i];
 }
+
