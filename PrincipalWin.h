@@ -23,6 +23,7 @@ protected:
 	Store *m_store;
 	void RefrescarGrillaClientes();
 	void RefrescarGrillaVentas();
+	void RefrescarGrillaProductos();
 public:
 	PrincipalWin(Store *store);
 
