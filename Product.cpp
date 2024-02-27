@@ -1,5 +1,7 @@
 #include "Product.h"
 #include "Utils.h"
+#include <string>
+using namespace std;
 
 Product::Product(){};
 Product::Product(std::string a_name,std::string a_brand, float a_price, int a_quantity) 
@@ -62,3 +64,9 @@ void Product::edit(ProductParams param, std::string value) {
 void Product::editPrice(float value){
 	price = value;
 }
+//string Product::getname(){
+//	return name;
+//}
+//string Product::getbrand(){
+//	return brand;
+//}

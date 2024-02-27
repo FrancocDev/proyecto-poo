@@ -2,6 +2,8 @@
 #define PRODUCT_H
 #include "Utils.h"
 #include "EnumDefinitions.h"
+#include <string>
+using namespace std;
 struct Productstruct{
 	char id[16];
 	char name[25];
@@ -21,7 +23,8 @@ public:
     int getQuantity() const;
 
     void edit(ProductParams param, std::string value);
-
+//	string getbrand()const;
+//	string getname()const;
 private:
     std::string id;
 	std::string name;
