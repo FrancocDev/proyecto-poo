@@ -7,6 +7,8 @@
 #include "Utils.h"
 #include <string>
 #include <sstream>
+#include <iomanip>
+using namespace std;
 PrincipalWin::PrincipalWin(Store *store) : 
 	Principal(nullptr) , m_store(store)
 {
@@ -111,11 +113,13 @@ void PrincipalWin::RefrescarGrillaProductos(){
 		m_grilla->DeleteRows(0,m_grilla->GetNumberRows());
 	}
 	for(int i=0; i<m_store->sizeOf(PRODUCT);i++){
+		ostringstream ss;
+		ss<<fixed<<setprecision(2)<<p.getPrice();
 		temp = m_store->getProduct(i);
 		m_grilla->AppendRows();
-		m_grilla->SetCellValue(i,0,"nombre");
-		m_grilla->SetCellValue(i,1,"marca");
-		m_grilla->SetCellValue(i,2,to_string(p.getPrice()));
+		m_grilla->SetCellValue(i,0,p.get(PRODUCT_NAME));
+		m_grilla->SetCellValue(i,1,p.get(PRODUCT_BRAND));
+		m_grilla->SetCellValue(i,2,ss.str());
 		m_grilla->SetCellValue(i,3,to_string(p.getQuantity()));
 	}
 }
@@ -126,4 +130,5 @@ void PrincipalWin::OnButtonProductos( wxCommandEvent& event )  {
 	m_grilla->SetColLabelValue(3,"Cantidad");
 	RefrescarGrillaProductos();
 }
+
 

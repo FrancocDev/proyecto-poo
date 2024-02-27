@@ -23,7 +23,7 @@ path=Application.cpp
 cursor=14:0
 [source]
 path=PrincipalWin.cpp
-cursor=126:28
+cursor=120:49
 open=true
 [source]
 path=wxfb_project.cpp
@@ -83,7 +83,7 @@ cursor=14:9
 open=true
 [header]
 path=Product.h
-cursor=25:0
+cursor=25:24
 open=true
 [header]
 path=Seller.h
