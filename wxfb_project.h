@@ -112,3 +112,38 @@ class WxfbPersona : public wxDialog
 
 };
 
+///////////////////////////////////////////////////////////////////////////////
+/// Class WxfbVendedor
+///////////////////////////////////////////////////////////////////////////////
+class WxfbVendedor : public wxDialog
+{
+	private:
+
+	protected:
+		wxTextCtrl* m_nombre;
+		wxTextCtrl* m_apellido;
+		wxTextCtrl* m_telefono;
+		wxTextCtrl* m_direccion;
+		wxTextCtrl* m_localidad;
+		wxTextCtrl* m_email;
+		wxTextCtrl* m_dia;
+		wxStaticText* m_staticText16;
+		wxTextCtrl* m_mes;
+		wxStaticText* m_staticText17;
+		wxTextCtrl* m_anio;
+		wxButton* m_agregar;
+		wxButton* m_canelar;
+
+		// Virtual event handlers, override them in your derived class
+		virtual void OnClickAgregarSeller( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnClickCancelarSeller( wxCommandEvent& event ) { event.Skip(); }
+
+
+	public:
+
+		WxfbVendedor( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Vendedor"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
+
+		~WxfbVendedor();
+
+};
+

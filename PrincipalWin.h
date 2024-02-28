@@ -27,6 +27,7 @@ protected:
 	void RefrescarGrillaVentas();
 	void RefrescarGrillaProductos();
 	void RefrescarGrillaVendedores();
+	void OnClickAgregarSeller( wxCommandEvent& event ); 
 public:
 	PrincipalWin(Store *store);
 

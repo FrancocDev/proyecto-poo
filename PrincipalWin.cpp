@@ -8,6 +8,8 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include "SellerWin.h"
+#include "wxfb_project.h"
 using namespace std;
 PrincipalWin::PrincipalWin(Store *store) : 
 	Principal(nullptr) , m_store(store)
@@ -81,6 +83,14 @@ void PrincipalWin::OnClickAgregarprincipal( wxCommandEvent& event )  {
 		RefrescarGrillaClientes();
 }
 
+void PrincipalWin::OnClickAgregarSeller( wxCommandEvent& event )  {
+	SellerWin *win = new SellerWin(this, m_store);
+	///showmodal logra que hasta q no se termine no desaparece
+	if(win->ShowModal()==1)///si es 1 refresca
+		RefrescarGrillaVendedores();
+}
+
+
 void PrincipalWin::RefrescarGrillaVentas(){
 	Order temp = Order();
 	Order& o = temp;
@@ -98,6 +108,7 @@ void PrincipalWin::RefrescarGrillaVentas(){
 		m_grilla->SetCellValue(i,2,to_string(o.getNumOfProducts()));
 		m_grilla->SetCellValue(i,3,ss.str());
 	}
+	
 }
 
 ///terminar cambuia de grilla
@@ -125,6 +136,10 @@ void PrincipalWin::RefrescarGrillaProductos(){
 		m_grilla->SetCellValue(i,2,ss.str());
 		m_grilla->SetCellValue(i,3,to_string(p.getQuantity()));
 	}
+	m_agregarPrincipal->Disconnect(wxID_ANY);
+	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarProduct ), NULL, this );
+	
+	
 }
 void PrincipalWin::OnButtonProductos( wxCommandEvent& event )  {
 	m_grilla->SetColLabelValue(0,"Marca");
@@ -148,6 +163,8 @@ void PrincipalWin::RefrescarGrillaVendedores(){
 		m_grilla->SetCellValue(i,2,s.get(SELLER_EMAIL));
 		m_grilla->SetCellValue(i,3,s.get(SELLER_ID));
 	}
+	m_agregarPrincipal->Disconnect(wxID_ANY);
+	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarSeller ), NULL, this );
 }
 void PrincipalWin::OnButtonVendedores( wxCommandEvent& event )  {
 	m_grilla->SetColLabelValue(0,"Nombre");
