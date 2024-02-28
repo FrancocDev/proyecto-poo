@@ -11,6 +11,7 @@
 #include "SellerWin.h"
 #include "wxfb_project.h"
 #include "VentaWin.h"
+#include "ProductoWin.h"
 using namespace std;
 PrincipalWin::PrincipalWin(Store *store) : 
 	Principal(nullptr) , m_store(store)
@@ -97,6 +98,12 @@ void PrincipalWin::OnClickAgregarVenta( wxCommandEvent& event )  {
 	if(win->ShowModal()==1)///si es 1 refresca
 		RefrescarGrillaVentas();
 }
+void PrincipalWin::OnClickAgregarProducto( wxCommandEvent& event )  {
+	ProductoWin *win = new ProductoWin(this, m_store);
+	///showmodal logra que hasta q no se termine no desaparece
+	if(win->ShowModal()==1)///si es 1 refresca
+		RefrescarGrillaProductos();
+}
 
 
 void PrincipalWin::RefrescarGrillaVentas(){
@@ -116,6 +123,8 @@ void PrincipalWin::RefrescarGrillaVentas(){
 		m_grilla->SetCellValue(i,2,to_string(o.getNumOfProducts()));
 		m_grilla->SetCellValue(i,3,ss.str());
 	}
+	m_agregarPrincipal->Disconnect(wxID_ANY);
+	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarVenta), NULL, this );	
 	
 }
 
@@ -145,7 +154,7 @@ void PrincipalWin::RefrescarGrillaProductos(){
 		m_grilla->SetCellValue(i,3,to_string(p.getQuantity()));
 	}
 	m_agregarPrincipal->Disconnect(wxID_ANY);
-	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarVenta ), NULL, this );	
+	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarProducto), NULL, this );	
 }
 void PrincipalWin::OnButtonProductos( wxCommandEvent& event )  {
 	m_grilla->SetColLabelValue(0,"Marca");

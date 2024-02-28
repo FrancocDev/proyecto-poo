@@ -3,6 +3,7 @@
 #include "ProductoWin.h"
 #include "Product.h"
 #include "Utils.h"
+#include "string_conv.h"
 
 ProductoWin::ProductoWin(wxWindow *parent, Store *store) :
 	WxfbProducto(parent), m_store(store) {
@@ -18,15 +19,12 @@ void ProductoWin::OnClickAgregarProducto( wxCommandEvent& event )  {
 	int cantidad = stoi(auxcantidad);
 	
 	Product temp(nombre,marca,precio,cantidad);
-	m_store->
-	
+	m_store->addProduct(std::move(temp));
+	EndModal(1);
 }
 
 void ProductoWin::OnClickCancelarProducto( wxCommandEvent& event )  {
-	event.Skip();
+	EndModal(2);
 }
 
-ProductoWin::~ProductoWin() {
-	
-}
 
