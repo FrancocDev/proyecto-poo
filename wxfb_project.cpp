@@ -603,6 +603,7 @@ WxfbVenta::WxfbVenta( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_orderGrid1->SetColLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
 
 	// Rows
+	m_orderGrid1->SetRowSize( 0, 3 );
 	m_orderGrid1->AutoSizeRows();
 	m_orderGrid1->EnableDragRowSize( true );
 	m_orderGrid1->SetRowLabelSize( 1 );
@@ -612,7 +613,7 @@ WxfbVenta::WxfbVenta( wxWindow* parent, wxWindowID id, const wxString& title, co
 
 	// Cell Defaults
 	m_orderGrid1->SetDefaultCellAlignment( wxALIGN_LEFT, wxALIGN_TOP );
-	bSizer51111->Add( m_orderGrid1, 1, wxALL, 5 );
+	bSizer51111->Add( m_orderGrid1, 1, wxALL|wxEXPAND, 5 );
 
 
 	bSizer4->Add( bSizer51111, 1, wxRESERVE_SPACE_EVEN_IF_HIDDEN, 5 );

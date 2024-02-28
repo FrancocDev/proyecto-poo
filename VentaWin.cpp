@@ -14,9 +14,9 @@ void VentaWin::addProductToOrder( wxCommandEvent& event )  {
 	if(product.get(PRODUCT_NAME) == productNameInput){
 		products.push_back(product);
 		cout<<"Encontro el producto";
-//	if(m_orderGrid1->GetNumberRows()!=0){
-//		m_orderGrid1->DeleteRows(0,m_orderGrid1->GetNumberRows());
-//	}
+	if(m_orderGrid1->GetNumberRows()!=0){
+		m_orderGrid1->DeleteRows(0,m_orderGrid1->GetNumberRows());
+	}
 	for(int i=0; i< products.size() ;i++){
 		Product temp = products[i];
 		m_orderGrid1->AppendRows();

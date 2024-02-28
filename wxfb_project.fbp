@@ -4708,7 +4708,7 @@
             <property name="permission">none</property>
             <object class="sizeritem" expanded="false">
               <property name="border">5</property>
-              <property name="flag">wxALL</property>
+              <property name="flag">wxALL|wxEXPAND</property>
               <property name="proportion">1</property>
               <object class="wxGrid" expanded="false">
                 <property name="BottomDockable">1</property>
@@ -4783,7 +4783,7 @@
                 <property name="row_label_size">1</property>
                 <property name="row_label_values"></property>
                 <property name="row_label_vert_alignment">wxALIGN_CENTER</property>
-                <property name="row_sizes"></property>
+                <property name="row_sizes">3</property>
                 <property name="rows">0</property>
                 <property name="show">1</property>
                 <property name="size"></property>
