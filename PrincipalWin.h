@@ -30,6 +30,7 @@ protected:
 	void OnClickAgregarSeller( wxCommandEvent& event ); 
 	void OnClickAgregarVenta( wxCommandEvent& event );
 	void OnClickAgregarProducto( wxCommandEvent& event );
+	void OnClickAgregarPersona( wxCommandEvent& event );
 public:
 	PrincipalWin(Store *store);
 

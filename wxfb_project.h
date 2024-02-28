@@ -50,7 +50,7 @@ class Principal : public wxFrame
 		wxButton* m_button2;
 		wxGrid* m_grilla;
 		wxButton* m_agregarPrincipal;
-		wxButton* m_button3;
+		wxButton* m_VerEditar;
 		wxButton* m_button4;
 
 		// Virtual event handlers, override them in your derived class

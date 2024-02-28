@@ -890,7 +890,7 @@
                 <property name="minimize_button">0</property>
                 <property name="minimum_size"></property>
                 <property name="moveable">1</property>
-                <property name="name">m_button3</property>
+                <property name="name">m_VerEditar</property>
                 <property name="pane_border">1</property>
                 <property name="pane_position"></property>
                 <property name="pane_size"></property>
@@ -3907,7 +3907,7 @@
         </object>
       </object>
     </object>
-    <object class="Dialog" expanded="true">
+    <object class="Dialog" expanded="false">
       <property name="aui_managed">0</property>
       <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
       <property name="bg">wxSYS_COLOUR_BTNFACE</property>
@@ -3935,7 +3935,7 @@
       <property name="window_extra_style"></property>
       <property name="window_name"></property>
       <property name="window_style"></property>
-      <object class="wxBoxSizer" expanded="true">
+      <object class="wxBoxSizer" expanded="false">
         <property name="minimum_size"></property>
         <property name="name">bSizer4</property>
         <property name="orient">wxVERTICAL</property>
@@ -4697,11 +4697,11 @@
             </object>
           </object>
         </object>
-        <object class="sizeritem" expanded="true">
+        <object class="sizeritem" expanded="false">
           <property name="border">5</property>
           <property name="flag">wxRESERVE_SPACE_EVEN_IF_HIDDEN</property>
           <property name="proportion">1</property>
-          <object class="wxBoxSizer" expanded="true">
+          <object class="wxBoxSizer" expanded="false">
             <property name="minimum_size">-1,-1</property>
             <property name="name">bSizer51111</property>
             <property name="orient">wxHORIZONTAL</property>

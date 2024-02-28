@@ -119,8 +119,8 @@ Principal::Principal( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_agregarPrincipal = new wxButton( this, wxID_ANY, wxT("Agregar"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer4->Add( m_agregarPrincipal, 0, wxALL, 5 );
 
-	m_button3 = new wxButton( this, wxID_ANY, wxT("Ver/Editar"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer4->Add( m_button3, 0, wxALL, 5 );
+	m_VerEditar = new wxButton( this, wxID_ANY, wxT("Ver/Editar"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer4->Add( m_VerEditar, 0, wxALL, 5 );
 
 	m_button4 = new wxButton( this, wxID_ANY, wxT("Eliminar"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer4->Add( m_button4, 0, wxALL, 5 );
@@ -144,7 +144,7 @@ Principal::Principal( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_grilla->Connect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( Principal::OnDobleClickGrilla ), NULL, this );
 	m_grilla->Connect( wxEVT_GRID_LABEL_LEFT_CLICK, wxGridEventHandler( Principal::OnClickGrilla ), NULL, this );
 	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnClickAgregarprincipal ), NULL, this );
-	m_button3->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnClickEditar ), NULL, this );
+	m_VerEditar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnClickEditar ), NULL, this );
 	m_button4->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnClickEliminar ), NULL, this );
 }
 
@@ -161,7 +161,7 @@ Principal::~Principal()
 	m_grilla->Disconnect( wxEVT_GRID_CELL_LEFT_DCLICK, wxGridEventHandler( Principal::OnDobleClickGrilla ), NULL, this );
 	m_grilla->Disconnect( wxEVT_GRID_LABEL_LEFT_CLICK, wxGridEventHandler( Principal::OnClickGrilla ), NULL, this );
 	m_agregarPrincipal->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnClickAgregarprincipal ), NULL, this );
-	m_button3->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnClickEditar ), NULL, this );
+	m_VerEditar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnClickEditar ), NULL, this );
 	m_button4->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( Principal::OnClickEliminar ), NULL, this );
 
 }

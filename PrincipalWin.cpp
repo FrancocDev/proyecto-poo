@@ -33,6 +33,8 @@ void PrincipalWin::RefrescarGrillaClientes(){
 			m_grilla->SetCellValue(i,2,c.get(CLIENT_PHONE));
 			m_grilla->SetCellValue(i,3,c.get(CLIENT_ADDRESS));
 		}
+		m_agregarPrincipal->Disconnect(wxID_ANY);
+		m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarprincipal), NULL, this );
 	}
 
 
@@ -61,7 +63,7 @@ void PrincipalWin::OnClickGrilla( wxGridEvent& event )  {
 
 
 void PrincipalWin::OnClickEditar( wxCommandEvent& event )  {
-	event.Skip();
+	
 }
 
 void PrincipalWin::OnClickEliminar( wxCommandEvent& event )  {
@@ -124,7 +126,8 @@ void PrincipalWin::RefrescarGrillaVentas(){
 		m_grilla->SetCellValue(i,3,ss.str());
 	}
 	m_agregarPrincipal->Disconnect(wxID_ANY);
-	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarVenta), NULL, this );	
+	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarVenta), NULL, this );
+	
 	
 }
 
@@ -180,6 +183,7 @@ void PrincipalWin::RefrescarGrillaVendedores(){
 	}
 	m_agregarPrincipal->Disconnect(wxID_ANY);
 	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarSeller ), NULL, this );
+	
 }
 void PrincipalWin::OnButtonVendedores( wxCommandEvent& event )  {
 	m_grilla->SetColLabelValue(0,"Nombre");
@@ -191,5 +195,13 @@ void PrincipalWin::OnButtonVendedores( wxCommandEvent& event )  {
 }
 
 void PrincipalWin::OnButtonClientes( wxCommandEvent& event )  {
+	
+		m_grilla->SetColLabelValue(0,"Nombre y nombre");
+		m_grilla->SetColLabelValue(1,"Direccion");
+		m_grilla->SetColLabelValue(2,"Telefono");
+		m_grilla->SetColLabelValue(3,"Email");
+		RefrescarGrillaVendedores();
+		
+	
 	RefrescarGrillaClientes();
 }
