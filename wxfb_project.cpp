@@ -506,7 +506,7 @@ WxfbProducto::~WxfbProducto()
 
 WxfbVenta::WxfbVenta( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
 {
-	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+	this->SetSizeHints( wxSize( -1,-1 ), wxDefaultSize );
 	this->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_BTNFACE ) );
 
 	wxBoxSizer* bSizer4;
@@ -532,13 +532,13 @@ WxfbVenta::WxfbVenta( wxWindow* parent, wxWindowID id, const wxString& title, co
 	wxStaticText* m_staticText21;
 	m_staticText21 = new wxStaticText( this, wxID_ANY, wxT("Cliente"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText21->Wrap( -1 );
-	bSizer51->Add( m_staticText21, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	bSizer51->Add( m_staticText21, 0, wxALL, 5 );
 
 	m_textCtrl57 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer51->Add( m_textCtrl57, 1, wxALL, 5 );
 
 
-	bSizer4->Add( bSizer51, 1, wxEXPAND, 5 );
+	bSizer4->Add( bSizer51, 0, wxEXPAND, 5 );
 
 	wxBoxSizer* bSizer511;
 	bSizer511 = new wxBoxSizer( wxHORIZONTAL );
@@ -546,7 +546,7 @@ WxfbVenta::WxfbVenta( wxWindow* parent, wxWindowID id, const wxString& title, co
 	wxStaticText* m_staticText211;
 	m_staticText211 = new wxStaticText( this, wxID_ANY, wxT("Fecha "), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText211->Wrap( -1 );
-	bSizer511->Add( m_staticText211, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	bSizer511->Add( m_staticText211, 0, wxALL, 5 );
 
 	m_dia = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer511->Add( m_dia, 0, wxALL, 5 );
@@ -558,7 +558,7 @@ WxfbVenta::WxfbVenta( wxWindow* parent, wxWindowID id, const wxString& title, co
 	bSizer511->Add( m_anio, 0, wxALL, 5 );
 
 
-	bSizer4->Add( bSizer511, 1, wxEXPAND, 5 );
+	bSizer4->Add( bSizer511, 0, 0, 5 );
 
 	wxBoxSizer* bSizer5111;
 	bSizer5111 = new wxBoxSizer( wxHORIZONTAL );
@@ -575,7 +575,7 @@ WxfbVenta::WxfbVenta( wxWindow* parent, wxWindowID id, const wxString& title, co
 	bSizer5111->Add( m_agregarproducto, 0, wxALL, 5 );
 
 
-	bSizer4->Add( bSizer5111, 1, wxEXPAND, 5 );
+	bSizer4->Add( bSizer5111, 0, wxEXPAND, 5 );
 
 	wxBoxSizer* bSizer51111;
 	bSizer51111 = new wxBoxSizer( wxHORIZONTAL );
@@ -583,7 +583,7 @@ WxfbVenta::WxfbVenta( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_orderGrid1 = new wxGrid( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
 
 	// Grid
-	m_orderGrid1->CreateGrid( 0, 4 );
+	m_orderGrid1->CreateGrid( 0, 3 );
 	m_orderGrid1->EnableEditing( false );
 	m_orderGrid1->EnableGridLines( true );
 	m_orderGrid1->EnableDragGridSize( false );
@@ -599,11 +599,11 @@ WxfbVenta::WxfbVenta( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_orderGrid1->SetColLabelValue( 0, wxT("Nombre") );
 	m_orderGrid1->SetColLabelValue( 1, wxT("Marca") );
 	m_orderGrid1->SetColLabelValue( 2, wxT("Precio") );
-	m_orderGrid1->SetColLabelValue( 3, wxT("Cantidad") );
 	m_orderGrid1->SetColLabelSize( 30 );
 	m_orderGrid1->SetColLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
 
 	// Rows
+	m_orderGrid1->AutoSizeRows();
 	m_orderGrid1->EnableDragRowSize( true );
 	m_orderGrid1->SetRowLabelSize( 1 );
 	m_orderGrid1->SetRowLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
@@ -612,20 +612,20 @@ WxfbVenta::WxfbVenta( wxWindow* parent, wxWindowID id, const wxString& title, co
 
 	// Cell Defaults
 	m_orderGrid1->SetDefaultCellAlignment( wxALIGN_LEFT, wxALIGN_TOP );
-	bSizer51111->Add( m_orderGrid1, 0, wxALL, 5 );
+	bSizer51111->Add( m_orderGrid1, 1, wxALL, 5 );
 
 
-	bSizer4->Add( bSizer51111, 1, wxEXPAND, 5 );
+	bSizer4->Add( bSizer51111, 1, wxRESERVE_SPACE_EVEN_IF_HIDDEN, 5 );
 
 	wxBoxSizer* bSizer511111;
 	bSizer511111 = new wxBoxSizer( wxHORIZONTAL );
 
 	m_total = new wxStaticText( this, wxID_ANY, wxT("Total:"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_total->Wrap( -1 );
-	bSizer511111->Add( m_total, 0, wxALL, 5 );
+	bSizer511111->Add( m_total, 0, wxALIGN_BOTTOM|wxBOTTOM|wxRIGHT, 5 );
 
 
-	bSizer4->Add( bSizer511111, 1, wxEXPAND, 5 );
+	bSizer4->Add( bSizer511111, 0, 0, 5 );
 
 	wxBoxSizer* bSizer13;
 	bSizer13 = new wxBoxSizer( wxHORIZONTAL );
@@ -642,7 +642,6 @@ WxfbVenta::WxfbVenta( wxWindow* parent, wxWindowID id, const wxString& title, co
 
 	this->SetSizer( bSizer4 );
 	this->Layout();
-	bSizer4->Fit( this );
 
 	// Connect Events
 	m_agregarproducto->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( WxfbVenta::addProductToOrder ), NULL, this );

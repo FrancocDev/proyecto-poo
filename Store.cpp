@@ -341,3 +341,17 @@ Product Store::getProductById(string id) {
 		return Product(); 
 	}
 }
+
+Product Store::getProductByName(string name) {
+	auto productComparator = [name](const Product& p) -> bool {
+		return p.get(PRODUCT_NAME) == name;
+	};
+	
+	auto it = std::find_if(products.begin(), products.end(), productComparator);
+	
+	if (it != products.end()) {
+		return *it;
+	} else {
+		return Product(); 
+	}
+}

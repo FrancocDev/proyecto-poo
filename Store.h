@@ -55,7 +55,8 @@ public:
 	Client getClientById(string id);
 	Seller getSellerById(string id);
 	Order getOrderById(string id);
-	Product getProductById(string id); 
+	Product getProductById(string id);
+	Product getProductByName(string name);
 	template <typename T>
 	T get(ArrayTypes arr,int i);
 	

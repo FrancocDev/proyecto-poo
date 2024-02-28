@@ -198,7 +198,7 @@ class WxfbVenta : public wxDialog
 
 	public:
 
-		WxfbVenta( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Venta"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
+		WxfbVenta( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Venta"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 515,446 ), long style = wxDEFAULT_DIALOG_STYLE );
 
 		~WxfbVenta();
 
