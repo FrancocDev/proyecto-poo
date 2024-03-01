@@ -19,11 +19,12 @@ protected:
 	void OnClickBuscar( wxCommandEvent& event )  override;
 	void OnDobleClickGrilla( wxGridEvent& event )  override;
 	void OnClickGrilla( wxGridEvent& event )  override;
+	void OnClickEliminar( wxCommandEvent& event ) ;
 	
-	void OnClickEditar( wxCommandEvent& event )  override;
-	void OnClickEditarSeller( wxCommandEvent& event )  override;
-	void OnClickEditarProduct( wxCommandEvent& event )  override;
-	void OnClickEditarOrder( wxCommandEvent& event )  override;
+	void OnClickEditar( wxCommandEvent& event );
+	void OnClickEditarSeller( wxCommandEvent& event );
+	void OnClickEditarProduct( wxCommandEvent& event );
+	void OnClickEditarOrder( wxCommandEvent& event ) ;
 	
 	
 	

@@ -13,6 +13,7 @@
 #include "VentaWin.h"
 #include "ProductoWin.h"
 #include "string_conv.h"
+#include "VentaEditar.h"
 using namespace std;
 PrincipalWin::PrincipalWin(Store *store) : 
 	Principal(nullptr) , m_store(store)
@@ -165,6 +166,9 @@ void PrincipalWin::RefrescarGrillaVentas(){
 	}
 	m_agregarPrincipal->Disconnect(wxID_ANY);
 	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarVenta), NULL, this );	
+	m_VerEditar->Disconnect(wxID_ANY);
+	m_VerEditar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickEditarOrder), NULL, this );	
+	
 }
 
 ///terminar cambuia de grilla
@@ -243,3 +247,40 @@ void PrincipalWin::OnButtonClientes( wxCommandEvent& event )  {
 	
 	RefrescarGrillaClientes();
 }
+
+void PrincipalWin::OnClickEditarOrder( wxCommandEvent& event )  {
+	int f = m_grilla->GetGridCursorRow();
+	VentaEditar *win = new VentaEditar(this, m_store, f);
+	///showmodal logra que hasta q no se termine no desaparece
+	if(win->ShowModal()==1)///si es 1 refresca
+		RefrescarGrillaVentas();
+	
+}
+
+void PrincipalWin::OnClickEditar( wxCommandEvent& event )  {
+	int f = m_grilla->GetGridCursorRow();
+	PersonaEditar *win = new PersonaEditar(this, m_store, f);
+	///showmodal logra que hasta q no se termine no desaparece
+	if(win->ShowModal()==1)///si es 1 refresca
+		RefrescarGrillaClientes();
+	
+}
+
+void PrincipalWin::OnClickEditarProduct( wxCommandEvent& event )  {
+	int f = m_grilla->GetGridCursorRow();
+	ProductoEditar *win = new ProductoEditar(this, m_store, f);
+	///showmodal logra que hasta q no se termine no desaparece
+	if(win->ShowModal()==1)///si es 1 refresca
+		RefrescarGrillaProductos();
+	
+}
+
+void PrincipalWin::OnClickEditarSeller( wxCommandEvent& event )  {
+	int f = m_grilla->GetGridCursorRow();
+	VendedorEditar *win = new VendedorEditar(this, m_store, f);
+	///showmodal logra que hasta q no se termine no desaparece
+	if(win->ShowModal()==1)///si es 1 refresca
+		RefrescarGrillaVendedores();
+	
+}
+
