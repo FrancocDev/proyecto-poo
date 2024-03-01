@@ -7,6 +7,7 @@ class ProductoEditar : public WxfbProductoEditar {
 private:
 	Store *m_store;
 	int index;
+	string originalId;
 protected:
 void OnClickAgregarProducto( wxCommandEvent& event )  override;
 void OnClickCancelarProducto( wxCommandEvent& event )  override;

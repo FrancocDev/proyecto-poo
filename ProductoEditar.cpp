@@ -8,7 +8,7 @@ using namespace std;
 ProductoEditar::ProductoEditar(wxWindow *parent, Store *store,int i)  :
 	WxfbProductoEditar(parent), m_store(store),index(i) {
 	Product &temp = m_store->getProduct(i);
-	
+	originalId = temp.get(PRODUCT_ID);
 	m_marca ->SetValue(temp.get(PRODUCT_BRAND));
 	m_nombre ->SetValue(temp.get(PRODUCT_NAME));
 	string auxcant = to_string(temp.getQuantity());
@@ -18,9 +18,6 @@ ProductoEditar::ProductoEditar(wxWindow *parent, Store *store,int i)  :
 	
 	m_precio ->SetValue(ss.str());
 	m_cantidad ->SetValue(auxcant);
-	
-	
-	
 }
 
 void ProductoEditar::OnClickAgregarProducto( wxCommandEvent& event )  {
@@ -52,7 +49,7 @@ void ProductoEditar::OnClickAgregarProducto( wxCommandEvent& event )  {
 	int cantidad = stoi(auxcantidad);
 	
 	Product temp(nombre,marca,precio,cantidad);
-	
+	temp.edit(PRODUCT_ID, originalId);
 	m_store->remove(PRODUCT,index);
 	m_store->addProduct(std::move(temp));
 	m_store->saveIndividualData(PRODUCT);

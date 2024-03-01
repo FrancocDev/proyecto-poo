@@ -9,6 +9,7 @@ VendedorEditar::VendedorEditar(wxWindow *parent, Store *store,int i) :
 	/*nombre tel id email*/
 	
 	Seller &temp = m_store->getSeller(i);
+	originalId = temp.get(SELLER_ID);
 	/*m_nombre ->SetValue( temp.get(SELLER_NAME));*/
 	pair<string,string>nombres = splitFullName(temp.get(SELLER_NAME));
 	m_nombre ->SetValue(nombres.first);
@@ -44,6 +45,7 @@ void VendedorEditar::OnClickAgregarSeller( wxCommandEvent& event )  {
 	}
 	
 	Seller temp(nombre, tel, email);
+	temp.edit(SELLER_ID, originalId);
 	
 	m_store->remove(SELLER,index);
 	m_store->addSeller(std::move(temp));
