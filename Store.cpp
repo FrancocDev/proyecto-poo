@@ -84,9 +84,6 @@ Store::Store(std::string param_storeName) {
 	if(productBin.is_open()){
 	productFile productBinAux;
 	while (productBin.read(reinterpret_cast<char*>(&productBinAux), sizeof (productFile))){
-		cout<<"orderId: "<< productBinAux.orderId << endl ;
-		cout<<"productId: "<< productBinAux.productId << endl ; 
-		
 		for(size_t i = 0; i < orders.size(); i++){
 			if(productBinAux.orderId == getOrder(i).get(SELL_ID)){
 				std::string productIdString(productBinAux.productId);
@@ -297,6 +294,9 @@ Client &Store::getClientById(string id) {
 	
 	if (it != clients.end()) {
 		return *it;
+	} else {
+		Client* emptyClient = new Client();
+		return *emptyClient;
 	}
 }
 
@@ -309,6 +309,9 @@ Seller& Store::getSellerById(string id) {
 	
 	if (it != sellers.end()) {
 		return *it;
+	} else {
+		Seller* emptySeller = new Seller();
+		return *emptySeller;
 	}
 }
 Order& Store::getOrderById(string id) {
@@ -320,6 +323,9 @@ Order& Store::getOrderById(string id) {
 	
 	if (it != orders.end()) {
 		return *it;
+	} else {
+		Order* emptyOrder = new Order();
+		return *emptyOrder;
 	}
 }
 Product &Store::getProductById(string id) {
@@ -331,6 +337,9 @@ Product &Store::getProductById(string id) {
 	
 	if (it != products.end()) {
 		return *it;
+	} else {
+		Product* emptyProduct = new Product();
+		return *emptyProduct;
 	}
 }
 
@@ -343,6 +352,9 @@ Product& Store::getProductByName(string name) {
 	
 	if (it != products.end()) {
 		return *it;
+	} else {
+		Product* emptyProduct = new Product();
+		return *emptyProduct;
 	}
 }
 
@@ -355,6 +367,9 @@ Seller& Store::getSellerByName(string name) {
 	
 	if (it != sellers.end()) {
 		return *it;
+	} else {
+		Seller* emptySeller = new Seller();
+		return *emptySeller;
 	}
 }
 
@@ -367,6 +382,9 @@ Client& Store::getClientByName(string name) {
 	
 	if (it != clients.end()) {
 		return *it;
+	} else {
+		Client* emptyClient = new Client();
+		return *emptyClient;
 	}
 }
 

@@ -18,7 +18,7 @@ protected:
 	void OnClickGrilla( wxGridEvent& event )  override;
 	void OnClickAgregarVenta( wxCommandEvent& event )  override;
 	void OnClickCancelarVenta( wxCommandEvent& event )  override;
-	
+	void addProductToOrderId( string productId );
 public:
 	VentaEditar(wxWindow *parent=NULL, Store *store=NULL, int i=NULL);
 	~VentaEditar();

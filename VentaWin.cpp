@@ -126,6 +126,10 @@ void VentaWin::OnClickAgregarVenta( wxCommandEvent& event )  {
 		}
 	}
 	
+	for(int k = 0; k < tempOrder.getNumOfProducts(); k++){
+		cout<<tempOrder.getProductId(k)<<endl;
+	}
+	
 	m_store->addOrder(std::move(tempOrder));
 	m_store->saveIndividualData(ORDER);
 	EndModal(1);

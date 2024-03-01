@@ -18,6 +18,11 @@ VentaEditar::VentaEditar(wxWindow *parent, Store *store, int i) : WxfbVentaEdita
 	m_dia->SetValue(getDateDay(date));
 	m_mes->SetValue(getDateMonth(date));
 	m_anio->SetValue(getDateYear(date));
+	
+	for(int j=0; j < tempOrder.getNumOfProducts(); j++){
+		string productId = tempOrder.getProductId(j);
+		addProductToOrderId(productId);
+	}
 }
 
 void VentaEditar::OnDobleClickGrilla( wxGridEvent& event )  {
@@ -79,6 +84,50 @@ void VentaEditar::addProductToOrder( wxCommandEvent& event )  {
 	
 }
 
+void VentaEditar::addProductToOrderId(string productId)  {
+	Product &product = m_store->getProductById(productId);
+	
+	cout<<product.get(PRODUCT_NAME)<<endl;
+	if(product.get(PRODUCT_ID) == productId){
+		auto it = products.find(product);
+		if(it != products.end()){
+			it -> second++;
+		} else {
+			products[product] = 1;
+		}
+		
+		float total = 0.00;
+		if(m_orderGrid1->GetNumberRows()!=0){
+			m_orderGrid1->DeleteRows(0,m_orderGrid1->GetNumberRows());
+		}
+		
+		int i = 0;
+		for (const auto& data : products) {
+			const Product& temp = data.first;
+			int quantity = data.second;
+			
+			ostringstream ss;
+			ss << fixed << setprecision(2) << product.getPrice();
+			
+			m_orderGrid1->AppendRows();
+			m_orderGrid1->SetCellValue(i, 0, wx_to_std(temp.get(PRODUCT_NAME)));
+			m_orderGrid1->SetCellValue(i, 1, wx_to_std(temp.get(PRODUCT_BRAND)));
+			m_orderGrid1->SetCellValue(i, 2, to_string(quantity));
+			m_orderGrid1->SetCellValue(i, 3, wx_to_std(ss.str()));
+			
+			total += temp.getPrice() * quantity;
+			i++;
+		}
+		
+		ostringstream totalstring;
+		totalstring << fixed << setprecision(2) << total;
+		string printTotal = "Total: $" + totalstring.str();
+		m_total->SetLabel(wx_to_std(printTotal));
+	}
+	else {
+		wxMessageBox("Ese producto no existe","VENTAS");
+	}
+}
 
 void VentaEditar::OnClickAgregarVenta( wxCommandEvent& event )  {
 	string sellerName = wx_to_std(m_vendedor->GetValue());
@@ -139,6 +188,7 @@ void VentaEditar::OnClickAgregarVenta( wxCommandEvent& event )  {
 		}
 	}
 	
+	m_store->remove(ORDER, index);
 	m_store->addOrder(std::move(tempOrder));
 	m_store->saveIndividualData(ORDER);
 	EndModal(1);
