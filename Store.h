@@ -52,13 +52,13 @@ public:
 			return sortBy(a, b, criteria);
 		});
 	};
-	Client getClientById(string id);
-	Seller getSellerById(string id);
-	Order getOrderById(string id);
+	Client &getClientById(string id);
+	Seller &getSellerById(string id);
+	Order &getOrderById(string id);
 	Product &getProductById(string id);
-	Product getProductByName(string name);
-	Seller getSellerByName(string name);
-	Client getClientByName(string name);
+	Product &getProductByName(string name);
+	Seller &getSellerByName(string name);
+	Client &getClientByName(string name);
 	template <typename T>
 	T get(ArrayTypes arr,int i);
 	void sellProduct(string productId);

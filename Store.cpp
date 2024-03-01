@@ -288,7 +288,7 @@ void Store::remove(ArrayTypes arr, int i) {
 	}
 }
 
-Client Store::getClientById(string id) {
+Client &Store::getClientById(string id) {
 	auto clientComparator = [id](const Client& a) -> bool {
 		return a.get(CLIENT_ID) == id;
 	};
@@ -297,12 +297,10 @@ Client Store::getClientById(string id) {
 	
 	if (it != clients.end()) {
 		return *it;
-	} else {
-		return Client(); 
 	}
 }
 
-Seller Store::getSellerById(string id) {
+Seller& Store::getSellerById(string id) {
 	auto sellerComparator = [id](const Seller& s) -> bool {
 		return s.get(SELLER_ID) == id;
 	};
@@ -311,11 +309,9 @@ Seller Store::getSellerById(string id) {
 	
 	if (it != sellers.end()) {
 		return *it;
-	} else {
-		return Seller(); 
 	}
 }
-Order Store::getOrderById(string id) {
+Order& Store::getOrderById(string id) {
 	auto orderComparator = [id](const Order& o) -> bool {
 		return o.get(SELL_ID) == id;
 	};
@@ -324,8 +320,6 @@ Order Store::getOrderById(string id) {
 	
 	if (it != orders.end()) {
 		return *it;
-	} else {
-		return Order(); 
 	}
 }
 Product &Store::getProductById(string id) {
@@ -340,7 +334,7 @@ Product &Store::getProductById(string id) {
 	}
 }
 
-Product Store::getProductByName(string name) {
+Product& Store::getProductByName(string name) {
 	auto productComparator = [name](const Product& p) -> bool {
 		return p.get(PRODUCT_NAME) == name;
 	};
@@ -349,12 +343,10 @@ Product Store::getProductByName(string name) {
 	
 	if (it != products.end()) {
 		return *it;
-	} else {
-		return Product(); 
 	}
 }
 
-Seller Store::getSellerByName(string name) {
+Seller& Store::getSellerByName(string name) {
 	auto sellerComparator = [name](const Seller& s) -> bool {
 		return s.get(SELLER_NAME) == name;
 	};
@@ -363,12 +355,10 @@ Seller Store::getSellerByName(string name) {
 	
 	if (it != sellers.end()) {
 		return *it;
-	} else {
-		return Seller(); 
 	}
 }
 
-Client Store::getClientByName(string name) {
+Client& Store::getClientByName(string name) {
 	auto clientComparator = [name](const Client& c) -> bool {
 		return c.get(CLIENT_NAME) == name;
 	};
@@ -377,8 +367,6 @@ Client Store::getClientByName(string name) {
 	
 	if (it != clients.end()) {
 		return *it;
-	} else {
-		return Client(); 
 	}
 }
 
