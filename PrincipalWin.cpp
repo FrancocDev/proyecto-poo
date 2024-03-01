@@ -15,14 +15,10 @@
 #include "string_conv.h"
 #include "VentaEditar.h"
 #include "PersonaEditar.h"
-<<<<<<< Updated upstream
-#include "VendedorEditar.h"
-#include "ProductoEditar.h"
 #include <wx/msgdlg.h>
-=======
 #include "ProductoEditar.h"
 #include "VendedorEditar.h"
->>>>>>> Stashed changes
+
 using namespace std;
 PrincipalWin::PrincipalWin(Store *store) : 
 	Principal(nullptr) , m_store(store)
@@ -72,11 +68,6 @@ void PrincipalWin::OnClickGrilla( wxGridEvent& event )  {
 }
 
 
-<<<<<<< Updated upstream
-=======
-
-
->>>>>>> Stashed changes
 void PrincipalWin::EliminarDeTabla(ArrayTypes element,int f) {
 	m_store->remove(element,f);
 	m_grilla->DeleteRows(f);
