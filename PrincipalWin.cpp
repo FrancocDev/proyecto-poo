@@ -42,7 +42,9 @@ void PrincipalWin::RefrescarGrillaClientes(){
 		}
 		m_agregarPrincipal->Disconnect(wxID_ANY);
 		m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarprincipal), NULL, this );
-	}
+		m_VerEditar->Disconnect(wxID_ANY);
+		m_VerEditar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickEditar), NULL, this );
+}
 
 
 
