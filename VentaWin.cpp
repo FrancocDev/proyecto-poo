@@ -119,6 +119,7 @@ void VentaWin::OnClickAgregarVenta( wxCommandEvent& event )  {
 		const Product& temp = data.first;
 		int quantity = data.second;
 		string productId = temp.get(PRODUCT_ID);
+		
 		for(int j = 0; j < quantity; j++){
 			tempOrder.addProduct(productId);
 			m_store->sellProduct(productId);

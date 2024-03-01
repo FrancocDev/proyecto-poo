@@ -328,7 +328,7 @@ Order Store::getOrderById(string id) {
 		return Order(); 
 	}
 }
-Product Store::getProductById(string id) {
+Product &Store::getProductById(string id) {
 	auto productComparator = [id](const Product& p) -> bool {
 		return p.get(PRODUCT_ID) == id;
 	};
@@ -337,8 +337,6 @@ Product Store::getProductById(string id) {
 	
 	if (it != products.end()) {
 		return *it;
-	} else {
-		return Product(); 
 	}
 }
 
@@ -386,6 +384,6 @@ Client Store::getClientByName(string name) {
 
 
 void Store::sellProduct(string productId){
-	Product product = getProductById(productId);
+	Product& product = getProductById(productId);
 	product.sellProduct();
 }

@@ -55,7 +55,7 @@ public:
 	Client getClientById(string id);
 	Seller getSellerById(string id);
 	Order getOrderById(string id);
-	Product getProductById(string id);
+	Product &getProductById(string id);
 	Product getProductByName(string name);
 	Seller getSellerByName(string name);
 	Client getClientByName(string name);

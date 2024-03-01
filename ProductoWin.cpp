@@ -20,7 +20,7 @@ void ProductoWin::OnClickAgregarProducto( wxCommandEvent& event )  {
 	
 	Product temp(nombre,marca,precio,cantidad);
 	m_store->addProduct(std::move(temp));
-	m_store->saveIndividualData(SELLER);
+	m_store->saveIndividualData(PRODUCT);
 	EndModal(1);
 }
 
