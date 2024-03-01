@@ -2,13 +2,16 @@
 #include "Store.h"
 #include "PrincipalWin.h"
 #include "string_conv.h"
+#include "Utils.h"
 VendedorEditar::VendedorEditar(wxWindow *parent, Store *store,int i) :
 	WxfbVendedorEditar(parent), m_store(store),index(i) {
 	/*nombre tel id email*/
 	
 	Seller &temp = m_store->getSeller(i);
-	m_nombre ->SetValue( temp.get(SELLER_NAME));
-	
+	/*m_nombre ->SetValue( temp.get(SELLER_NAME));*/
+	pair<string,string>nombres = splitFullName(temp.get(SELLER_NAME));
+	m_nombre ->SetValue(nombres.first);
+	m_apellido ->SetValue(nombres.second);
 	m_telefono ->SetValue(temp.get(SELLER_PHONE));
 	
 	m_email -> SetValue(temp.get(SELLER_EMAIL));
