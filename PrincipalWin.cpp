@@ -110,6 +110,7 @@ void PrincipalWin::OnClickAgregarprincipal( wxCommandEvent& event )  {
 	///showmodal logra que hasta q no se termine no desaparece
 	if(win->ShowModal()==1)///si es 1 refresca
 		RefrescarGrillaClientes();
+
 }
 
 void PrincipalWin::OnClickAgregarSeller( wxCommandEvent& event )  {
@@ -170,9 +171,9 @@ void PrincipalWin::RefrescarGrillaProductos(){
 		m_grilla->DeleteRows(0,m_grilla->GetNumberRows());
 	}
 	for(int i=0; i<m_store->sizeOf(PRODUCT);i++){
-		ostringstream ss;
-		ss<<fixed<<setprecision(2)<<p.getPrice();
 		temp = m_store->getProduct(i);
+		ostringstream ss;
+		ss<<fixed<<setprecision(2)<<temp.getPrice();
 		m_grilla->AppendRows();
 		m_grilla->SetCellValue(i,0,p.get(PRODUCT_NAME));
 		m_grilla->SetCellValue(i,1,p.get(PRODUCT_BRAND));
