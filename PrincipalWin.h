@@ -21,7 +21,10 @@ protected:
 	void OnClickGrilla( wxGridEvent& event )  override;
 	
 	void OnClickEditar( wxCommandEvent& event )  override;
-	void OnClickEliminar( wxCommandEvent& event )  override;
+	void OnClickEditarSeller( wxCommandEvent& event )  override;
+	void OnClickEditarProduct( wxCommandEvent& event )  override;
+	void OnClickEditarOrder( wxCommandEvent& event )  override;
+	
 	
 	
 	Store *m_store;
