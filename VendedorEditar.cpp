@@ -3,6 +3,7 @@
 #include "PrincipalWin.h"
 #include "string_conv.h"
 #include "Utils.h"
+#include <wx/msgdlg.h>
 VendedorEditar::VendedorEditar(wxWindow *parent, Store *store,int i) :
 	WxfbVendedorEditar(parent), m_store(store),index(i) {
 	/*nombre tel id email*/
@@ -19,9 +20,28 @@ VendedorEditar::VendedorEditar(wxWindow *parent, Store *store,int i) :
 }
 
 void VendedorEditar::OnClickAgregarSeller( wxCommandEvent& event )  {
-	string nombre = wx_to_std(m_nombre->GetValue())+" "+wx_to_std(m_apellido->GetValue());
 	string tel = wx_to_std(m_telefono->GetValue());
 	string email = wx_to_std(m_email->GetValue());
+	
+	if(m_nombre->IsEmpty()){
+		wxMessageBox("Debes ingresar un nombre", "VENDEDOR");
+		return;
+	}
+	if(m_apellido->IsEmpty()){
+		wxMessageBox("Debes ingresar un apellido", "VENDEDOR");
+		return;
+	}
+	string nombre = wx_to_std(m_nombre->GetValue())+" "+wx_to_std(m_apellido->GetValue());
+		
+	if(m_telefono->IsEmpty()){
+		wxMessageBox("Debes ingresar un telefono", "VENDEDOR");
+		return;
+	}
+	
+	if(m_email->IsEmpty()){
+		wxMessageBox("Debes ingresar un correo electronico", "VENDEDOR");
+		return;
+	}
 	
 	Seller temp(nombre, tel, email);
 	
@@ -29,7 +49,7 @@ void VendedorEditar::OnClickAgregarSeller( wxCommandEvent& event )  {
 	m_store->addSeller(std::move(temp));
 	m_store->saveIndividualData(SELLER);
 	
-	EndModal(1);///ver q onda aca
+	EndModal(1);
 }
 
 void VendedorEditar::OnClickCancelarSeller( wxCommandEvent& event )  {

@@ -12,6 +12,7 @@ private:
 	Store *m_store;
 	map <Product, int> products;
 	int index;
+	string originalId;
 protected:
 	void addProductToOrder( wxCommandEvent& event )  override;
 	void OnDobleClickGrilla( wxGridEvent& event )  override;

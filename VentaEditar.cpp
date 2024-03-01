@@ -7,9 +7,10 @@ using namespace std;
 
 VentaEditar::VentaEditar(wxWindow *parent, Store *store, int i) : WxfbVentaEditar(parent), m_store(store), index(i) {
 	Order &tempOrder = m_store->getOrder(i);
-	
+	originalId = tempOrder.get(SELL_ID);
 	Seller &tempSeller = m_store->getSellerById(tempOrder.get(SELL_SELLER));
 	Client &tempClient = m_store->getClientById(tempOrder.get(SELL_CLIENT));
+	
 	
 	time_t date = tempOrder.getDate();
 	
@@ -187,6 +188,7 @@ void VentaEditar::OnClickAgregarVenta( wxCommandEvent& event )  {
 			m_store->sellProduct(productId);
 		}
 	}
+	tempOrder.edit(SELL_ID, originalId);
 	
 	m_store->remove(ORDER, index);
 	m_store->addOrder(std::move(tempOrder));
