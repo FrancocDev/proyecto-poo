@@ -118,8 +118,8 @@ std::string Store::getFileName(ArrayTypes category) {
 }
 
 bool Store::saveIndividualData(ArrayTypes elem) {
-	std::ofstream file(getFileName(elem), std::ios::binary | std::ios::out | std::ios::in);
-	std::ofstream productBin("product_to_order.dat", std::ios::binary | std::ios::out | std::ios::in);
+	std::ofstream file(getFileName(elem), std::ios::binary | std::ios::out | std::ios::trunc);
+	std::ofstream productBin("product_to_order.dat", std::ios::binary | std::ios::trunc | std::ios::out);
 	if (!productBin.is_open()) {
 		std::cerr << "No se pudo abrir el archivo 'product_to_order.dat'" << std::endl;
 		file.close();
@@ -272,7 +272,7 @@ Product Store::getProduct(int i) {
 void Store::remove(ArrayTypes arr, int i) {
 		switch (arr) {
 		case CLIENT:
-			clients.erase(clients.begin()+i);
+			clients.erase(clients.begin() + i);
 			break;
 		case PRODUCT:
 			products.erase(products.begin()+i);

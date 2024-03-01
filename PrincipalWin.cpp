@@ -69,10 +69,22 @@ void PrincipalWin::OnClickEditar( wxCommandEvent& event )  {
 void PrincipalWin::EliminarDeTabla(ArrayTypes element,int f) {
 	m_store->remove(element,f);
 	m_grilla->DeleteRows(f);
-	if(element == SELLER){RefrescarGrillaVendedores();}
-	if(element == CLIENT){RefrescarGrillaClientes();}
-	if(element == ORDER){RefrescarGrillaVentas();}
-	if(element == PRODUCT){RefrescarGrillaProductos();}
+	if(element == SELLER){
+		RefrescarGrillaVendedores();
+		m_store->saveIndividualData(SELLER);
+	}
+	if(element == CLIENT){
+		RefrescarGrillaClientes();
+		m_store->saveIndividualData(CLIENT);
+	}
+	if(element == ORDER){
+		RefrescarGrillaVentas();
+		m_store->saveIndividualData(ORDER);
+	}
+	if(element == PRODUCT){
+		RefrescarGrillaProductos();
+		m_store->saveIndividualData(PRODUCT);
+	}
 }
 
 void PrincipalWin::OnClickEliminar( wxCommandEvent& event )  {
