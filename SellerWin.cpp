@@ -14,6 +14,7 @@ void SellerWin::OnClickAgregarSeller( wxCommandEvent& event )  {
 	string email = wx_to_std(m_email->GetValue());
 	Seller temp(nombre,tel,email);
 	m_store->addSeller(std::move(temp));
+	m_store->saveIndividualData(SELLER);
 	EndModal(1);
 }
 

@@ -26,6 +26,7 @@ void PersonWin::OnClickAgregarPersona( wxCommandEvent& event )  {
 	
 	Client temp(nombre, tel, direccion, localidad, email, fecha);
 	m_store->addClient(std::move(temp));
+	m_store->saveIndividualData(CLIENT);
 	
 	EndModal(1);///ver q onda aca
 }
