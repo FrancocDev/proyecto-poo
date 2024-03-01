@@ -13,7 +13,7 @@ protected:
 	void onclickventas( wxCommandEvent& event )  override;
 	void OnClickAgregarprincipal( wxCommandEvent& event )  override;
 	void OnClicksavefile( wxCommandEvent& event )  override;
-	
+	void EliminarDeTabla(ArrayTypes element,int f) ;
 	void OnCambiaTamanio( wxSizeEvent& event )  override;
 	void EnterBuscar( wxCommandEvent& event )  override;
 	void OnClickBuscar( wxCommandEvent& event )  override;
@@ -22,6 +22,8 @@ protected:
 	
 	void OnClickEditar( wxCommandEvent& event )  override;
 	void OnClickEliminar( wxCommandEvent& event )  override;
+	
+	
 	Store *m_store;
 	void RefrescarGrillaClientes();
 	void RefrescarGrillaVentas();
@@ -31,6 +33,7 @@ protected:
 	void OnClickAgregarVenta( wxCommandEvent& event );
 	void OnClickAgregarProducto( wxCommandEvent& event );
 	void OnClickAgregarPersona( wxCommandEvent& event );
+	void EliminarSeller();
 public:
 	PrincipalWin(Store *store);
 

@@ -12,6 +12,7 @@
 #include "wxfb_project.h"
 #include "VentaWin.h"
 #include "ProductoWin.h"
+#include "string_conv.h"
 using namespace std;
 PrincipalWin::PrincipalWin(Store *store) : 
 	Principal(nullptr) , m_store(store)
@@ -65,21 +66,45 @@ void PrincipalWin::OnClickGrilla( wxGridEvent& event )  {
 void PrincipalWin::OnClickEditar( wxCommandEvent& event )  {
 	
 }
-
-void PrincipalWin::OnClickEliminar( wxCommandEvent& event )  {
-	int f = m_grilla->GetGridCursorRow();
-		m_store->remove(CLIENT,f);
-		
-		m_grilla->DeleteRows(f);
-		RefrescarGrillaClientes();
+void PrincipalWin::EliminarDeTabla(ArrayTypes element,int f) {
+	m_store->remove(element,f);
+	m_grilla->DeleteRows(f);
+	if(element == SELLER){RefrescarGrillaVendedores();}
+	if(element == CLIENT){RefrescarGrillaClientes();}
+	if(element == ORDER){RefrescarGrillaVentas();}
+	if(element == PRODUCT){RefrescarGrillaProductos();}
 }
 
+void PrincipalWin::OnClickEliminar( wxCommandEvent& event )  {
+	string label = wx_to_std(m_grilla->GetColLabelValue(3));
+	int f = m_grilla->GetGridCursorRow();
+	if (label == "E-mail") {
+		EliminarDeTabla(CLIENT, f);
+	} else if (label == "Total") {
+		EliminarDeTabla(ORDER, f);
+	} else if (label == "Cantidad") {
+		EliminarDeTabla(PRODUCT, f);
+	} else if (label == "id") {
+		EliminarDeTabla(SELLER, f);
+	}
+}	
+
+void PrincipalWin::EliminarSeller( )  {
+	int f = m_grilla->GetGridCursorRow();
+	m_store->remove(SELLER,f);
+	
+	m_grilla->DeleteRows(f);
+	RefrescarGrillaVendedores();
+}
 
 
 void PrincipalWin::OnClicksavefile( wxCommandEvent& event ){
 	m_store->saveAllData();
 }
-///se crea con new para que quede viva
+///								BOTON EDITAR
+
+///								FIN EDIAT
+///                            BOTON AGREGAR
 void PrincipalWin::OnClickAgregarprincipal( wxCommandEvent& event )  {
 	PersonWin *win = new PersonWin(this, m_store);
 	///showmodal logra que hasta q no se termine no desaparece
@@ -89,25 +114,25 @@ void PrincipalWin::OnClickAgregarprincipal( wxCommandEvent& event )  {
 
 void PrincipalWin::OnClickAgregarSeller( wxCommandEvent& event )  {
 	SellerWin *win = new SellerWin(this, m_store);
-	///showmodal logra que hasta q no se termine no desaparece
-	if(win->ShowModal()==1)///si es 1 refresca
-		RefrescarGrillaVendedores();
+	
+	if(win->ShowModal()==1)
+	RefrescarGrillaVendedores();
 }
 
 void PrincipalWin::OnClickAgregarVenta( wxCommandEvent& event )  {
 	VentaWin *win = new VentaWin(this, m_store);
-	///showmodal logra que hasta q no se termine no desaparece
-	if(win->ShowModal()==1)///si es 1 refresca
-		RefrescarGrillaVentas();
+	
+	if(win->ShowModal()==1)
+	RefrescarGrillaVentas();
 }
 void PrincipalWin::OnClickAgregarProducto( wxCommandEvent& event )  {
 	ProductoWin *win = new ProductoWin(this, m_store);
-	///showmodal logra que hasta q no se termine no desaparece
-	if(win->ShowModal()==1)///si es 1 refresca
-		RefrescarGrillaProductos();
+	
+	if(win->ShowModal()==1)
+	RefrescarGrillaProductos();
 }
 
-
+///                     TERMINA BOTON AGREGAR
 void PrincipalWin::RefrescarGrillaVentas(){
 	Order temp = Order();
 	Order& o = temp;
@@ -134,8 +159,8 @@ void PrincipalWin::RefrescarGrillaVentas(){
 ///terminar cambuia de grilla
 void PrincipalWin::onclickventas( wxCommandEvent& event )  {
 	
-	m_grilla->SetColLabelValue(0,"N.Vendedor");
-	m_grilla->SetColLabelValue(1,"fecha");
+	m_grilla->SetColLabelValue(0,"Nombre ");
+	m_grilla->SetColLabelValue(1,"Fecha");
 	m_grilla->SetColLabelValue(2,"Cant. productos");
 	m_grilla->SetColLabelValue(3,"Total");
 	RefrescarGrillaVentas();
@@ -183,7 +208,9 @@ void PrincipalWin::RefrescarGrillaVendedores(){
 	}
 	m_agregarPrincipal->Disconnect(wxID_ANY);
 	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarSeller ), NULL, this );
-	
+
+//	m_eliminar->Disconnect(wxID_ANY);
+//	m_eliminar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::EliminarSeller ), NULL, this );
 }
 void PrincipalWin::OnButtonVendedores( wxCommandEvent& event )  {
 	m_grilla->SetColLabelValue(0,"Nombre");
@@ -196,10 +223,10 @@ void PrincipalWin::OnButtonVendedores( wxCommandEvent& event )  {
 
 void PrincipalWin::OnButtonClientes( wxCommandEvent& event )  {
 	
-		m_grilla->SetColLabelValue(0,"Nombre y nombre");
+		m_grilla->SetColLabelValue(0,"Apellido y nombre");
 		m_grilla->SetColLabelValue(1,"Direccion");
 		m_grilla->SetColLabelValue(2,"Telefono");
-		m_grilla->SetColLabelValue(3,"Email");
+		m_grilla->SetColLabelValue(3,"E-mail");
 		RefrescarGrillaVendedores();
 		
 	

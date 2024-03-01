@@ -1,6 +1,7 @@
 #include "VentaWin.h"
 #include "Store.h"
 #include "string_conv.h"
+#include <wx/msgdlg.h>
 
 VentaWin::VentaWin(wxWindow *parent, Store *store) : WxfbVenta(parent), m_store(store) {
 	
@@ -13,7 +14,7 @@ void VentaWin::addProductToOrder( wxCommandEvent& event )  {
 	
 	if(product.get(PRODUCT_NAME) == productNameInput){
 		products.push_back(product);
-		cout<<"Encontro el producto";
+		wxMessageBox("Producto agregado","VENTAS");
 	if(m_orderGrid1->GetNumberRows()!=0){
 		m_orderGrid1->DeleteRows(0,m_orderGrid1->GetNumberRows());
 	}
@@ -26,7 +27,7 @@ void VentaWin::addProductToOrder( wxCommandEvent& event )  {
 	}
 		}
 	else {
-		cout<<"NOO Encontro el producto";
+		wxMessageBox("Ese producto no existe","VENTAS");
 	}
 //	event.Skip();
 }

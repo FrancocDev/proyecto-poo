@@ -51,7 +51,7 @@ class Principal : public wxFrame
 		wxGrid* m_grilla;
 		wxButton* m_agregarPrincipal;
 		wxButton* m_VerEditar;
-		wxButton* m_button4;
+		wxButton* m_eliminar;
 
 		// Virtual event handlers, override them in your derived class
 		virtual void OnCambiaTamanio( wxSizeEvent& event ) { event.Skip(); }
