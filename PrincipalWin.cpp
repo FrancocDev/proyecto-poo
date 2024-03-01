@@ -14,6 +14,10 @@
 #include "ProductoWin.h"
 #include "string_conv.h"
 #include "VentaEditar.h"
+#include "PersonaEditar.h"
+#include "VendedorEditar.h"
+#include "ProductoEditar.h"
+#include <wx/msgdlg.h>
 using namespace std;
 PrincipalWin::PrincipalWin(Store *store) : 
 	Principal(nullptr) , m_store(store)
@@ -63,10 +67,6 @@ void PrincipalWin::OnClickGrilla( wxGridEvent& event )  {
 }
 
 
-
-void PrincipalWin::OnClickEditar( wxCommandEvent& event )  {
-	
-}
 void PrincipalWin::EliminarDeTabla(ArrayTypes element,int f) {
 	m_store->remove(element,f);
 	m_grilla->DeleteRows(f);
@@ -75,8 +75,8 @@ void PrincipalWin::EliminarDeTabla(ArrayTypes element,int f) {
 		m_store->saveIndividualData(SELLER);
 	}
 	if(element == CLIENT){
+		wxMessageBox("No se pueden eliminar clientes.", "ERROR");
 		RefrescarGrillaClientes();
-		m_store->saveIndividualData(CLIENT);
 	}
 	if(element == ORDER){
 		RefrescarGrillaVentas();

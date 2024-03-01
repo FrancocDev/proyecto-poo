@@ -6,8 +6,18 @@
 using namespace std;
 
 VentaEditar::VentaEditar(wxWindow *parent, Store *store, int i) : WxfbVentaEditar(parent), m_store(store), index(i) {
-	Order &temp = m_store->getOrder(i);
-	cout<<"Venta id: " << temp.get(SELL_CLIENT)<<endl;
+	Order &tempOrder = m_store->getOrder(i);
+	
+	Seller &tempSeller = m_store->getSellerById(tempOrder.get(SELL_SELLER));
+	Client &tempClient = m_store->getClientById(tempOrder.get(SELL_CLIENT));
+	
+	time_t date = tempOrder.getDate();
+	
+	m_vendedor->SetValue(tempSeller.get(SELLER_NAME));
+	m_cliente->SetValue(tempClient.get(CLIENT_NAME));
+	m_dia->SetValue(getDateDay(date));
+	m_mes->SetValue(getDateMonth(date));
+	m_anio->SetValue(getDateYear(date));
 }
 
 void VentaEditar::OnDobleClickGrilla( wxGridEvent& event )  {
