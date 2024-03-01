@@ -2,6 +2,7 @@
 #define VENDEDOREDITAR_H
 #include "wxfb_project.h"
 #include "Store.h"
+#include "Utils.h"
 class VendedorEditar : public WxfbVendedorEditar {
 	
 private:

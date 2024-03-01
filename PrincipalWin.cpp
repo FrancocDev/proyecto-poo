@@ -15,9 +15,14 @@
 #include "string_conv.h"
 #include "VentaEditar.h"
 #include "PersonaEditar.h"
+<<<<<<< Updated upstream
 #include "VendedorEditar.h"
 #include "ProductoEditar.h"
 #include <wx/msgdlg.h>
+=======
+#include "ProductoEditar.h"
+#include "VendedorEditar.h"
+>>>>>>> Stashed changes
 using namespace std;
 PrincipalWin::PrincipalWin(Store *store) : 
 	Principal(nullptr) , m_store(store)
@@ -67,6 +72,11 @@ void PrincipalWin::OnClickGrilla( wxGridEvent& event )  {
 }
 
 
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 void PrincipalWin::EliminarDeTabla(ArrayTypes element,int f) {
 	m_store->remove(element,f);
 	m_grilla->DeleteRows(f);
@@ -197,7 +207,9 @@ void PrincipalWin::RefrescarGrillaProductos(){
 		m_grilla->SetCellValue(i,3,to_string(p.getQuantity()));
 	}
 	m_agregarPrincipal->Disconnect(wxID_ANY);
-	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarProducto), NULL, this );	
+	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarProducto), NULL, this );
+	m_VerEditar->Disconnect(wxID_ANY);
+	m_VerEditar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickEditarProduct), NULL, this );	
 }
 void PrincipalWin::OnButtonProductos( wxCommandEvent& event )  {
 	m_grilla->SetColLabelValue(0,"Marca");
@@ -223,7 +235,8 @@ void PrincipalWin::RefrescarGrillaVendedores(){
 	}
 	m_agregarPrincipal->Disconnect(wxID_ANY);
 	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarSeller ), NULL, this );
-
+	m_VerEditar->Disconnect(wxID_ANY);
+	m_VerEditar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickEditarSeller), NULL, this );	
 //	m_eliminar->Disconnect(wxID_ANY);
 //	m_eliminar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::EliminarSeller ), NULL, this );
 }
