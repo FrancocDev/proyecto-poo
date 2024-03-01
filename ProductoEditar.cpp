@@ -1,7 +1,7 @@
 #include "ProductoEditar.h"
 
-ProductoEditar::ProductoEditar(wxWindow *parent, Store *store)  :
-	WxfbProductoEditar(parent), m_store(store) {
+ProductoEditar::ProductoEditar(wxWindow *parent, Store *store,int i)  :
+	WxfbProductoEditar(parent), m_store(store),index(i) {
 	
 }
 

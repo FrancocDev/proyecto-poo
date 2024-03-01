@@ -5,13 +5,14 @@
 class ProductoEditar : public WxfbProductoEditar {
 	
 private:
-	Store *m_store,
+	Store *m_store;
+	int index;
 protected:
-	void OnClickAgregarProducto( wxCommandEvent& event )  override;
-	void OnClickCancelarProducto( wxCommandEvent& event )  override;
+void OnClickAgregarProducto( wxCommandEvent& event )  override;
+void OnClickCancelarProducto( wxCommandEvent& event )  override;
 	
 public:
-	ProductoEditar(wxWindow *parent, Store *store);
+	ProductoEditar(wxWindow *parent, Store *store,int i);
 	~ProductoEditar();
 };
 

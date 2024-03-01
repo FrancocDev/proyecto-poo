@@ -5,7 +5,7 @@
 class VendedorEditar : public WxfbVendedorEditar {
 	
 private:
-	Store *m_store,
+	Store *m_store;
 	int index;
 protected:
 	void OnClickAgregarSeller( wxCommandEvent& event )  override;
