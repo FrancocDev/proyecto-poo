@@ -93,3 +93,56 @@ bool isValidDate(int day, int month, int year) {
 	}
 	return true;
 }
+
+std::string getDateDay(time_t date) {
+	std::tm* timeInfo = std::localtime(&date); // Fecha a tm
+	
+	if (!timeInfo) {
+		return "Fecha invalida";
+	}
+	
+	std::ostringstream oss;
+	
+	oss << std::setfill('0') << std::setw(2) << timeInfo->tm_mday;
+	return oss.str();
+}
+
+
+std::string getDateMonth(time_t date) {
+	std::tm* timeInfo = std::localtime(&date); // Fecha a tm
+	
+	if (!timeInfo) {
+		return "Fecha invalida";
+	}
+	
+	std::ostringstream oss;
+	
+	oss << std::setfill('0') << std::setw(2) << timeInfo->tm_mon + 1;
+	return oss.str();
+}
+
+
+std::string getDateYear(time_t date) {
+	std::tm* timeInfo = std::localtime(&date); // Fecha a tm
+	
+	if (!timeInfo) {
+		return "Fecha invalida";
+	}
+	
+	std::ostringstream oss;
+	
+	oss << (timeInfo->tm_year + 1900);
+	return oss.str();
+}
+
+std::pair<std::string, std::string> splitFullName(const std::string& fullName) {
+	size_t lastSpacePos = fullName.find_last_of(' ');
+
+	if (lastSpacePos != std::string::npos) {
+		std::string firstName = fullName.substr(0, lastSpacePos);
+		std::string lastName = fullName.substr(lastSpacePos + 1);
+		return std::make_pair(firstName, lastName);
+	} else {
+		return std::make_pair(fullName, "");
+	}
+}
