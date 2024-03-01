@@ -1,6 +1,6 @@
 #include "PersonaEditar.h"
 
-PersonaEditar::PersonaEditar(wxWindow *parent) : WxfbPersonaEditar(parent) {
+PersonaEditar::PersonaEditar(wxWindow *parent,Store *store) : WxfbPersonaEditar(parent), m_store(store) {
 	
 }
 
