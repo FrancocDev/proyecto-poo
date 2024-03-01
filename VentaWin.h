@@ -3,12 +3,14 @@
 #include "wxfb_project.h"
 #include "Store.h"
 #include "Product.h"
+#include <map>
+using namespace std;
 
 class VentaWin : public WxfbVenta {
 	
 private:
 	Store *m_store;
-	vector <Product> products;
+	map <Product, int> products;
 protected:
 	void addProductToOrder( wxCommandEvent& event )  override;
 	void OnDobleClickGrilla( wxGridEvent& event )  override;

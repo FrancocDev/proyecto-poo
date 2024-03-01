@@ -28,4 +28,5 @@ std::string generateRandomID(int length);
 time_t editDate(int day, int month, int year);
 std::string printDate(time_t date);
 time_t parseDateToTimeT(std::string dateStr);
+bool isValidDate(int day, int month, int year);
 #endif

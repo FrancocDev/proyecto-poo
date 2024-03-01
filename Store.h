@@ -57,8 +57,11 @@ public:
 	Order getOrderById(string id);
 	Product getProductById(string id);
 	Product getProductByName(string name);
+	Seller getSellerByName(string name);
+	Client getClientByName(string name);
 	template <typename T>
 	T get(ArrayTypes arr,int i);
+	void sellProduct(string productId);
 	
 private:
 	std::string storeName;

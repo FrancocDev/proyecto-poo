@@ -2411,7 +2411,7 @@
         </object>
       </object>
     </object>
-    <object class="Dialog" expanded="false">
+    <object class="Dialog" expanded="true">
       <property name="aui_managed">0</property>
       <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
       <property name="bg">wxSYS_COLOUR_BTNFACE</property>
@@ -3926,7 +3926,7 @@
       <property name="minimum_size">-1,-1</property>
       <property name="name">WxfbVenta</property>
       <property name="pos"></property>
-      <property name="size">515,446</property>
+      <property name="size">659,446</property>
       <property name="style">wxDEFAULT_DIALOG_STYLE</property>
       <property name="subclass"></property>
       <property name="title">Venta</property>
@@ -3935,7 +3935,7 @@
       <property name="window_extra_style"></property>
       <property name="window_name"></property>
       <property name="window_style"></property>
-      <object class="wxBoxSizer" expanded="false">
+      <object class="wxBoxSizer" expanded="true">
         <property name="minimum_size"></property>
         <property name="name">bSizer4</property>
         <property name="orient">wxVERTICAL</property>
@@ -4052,7 +4052,7 @@
                 <property name="minimize_button">0</property>
                 <property name="minimum_size"></property>
                 <property name="moveable">1</property>
-                <property name="name">m_textCtrl56</property>
+                <property name="name">m_vendedor</property>
                 <property name="pane_border">1</property>
                 <property name="pane_position"></property>
                 <property name="pane_size"></property>
@@ -4078,11 +4078,11 @@
             </object>
           </object>
         </object>
-        <object class="sizeritem" expanded="false">
+        <object class="sizeritem" expanded="true">
           <property name="border">5</property>
           <property name="flag">wxEXPAND</property>
           <property name="proportion">0</property>
-          <object class="wxBoxSizer" expanded="false">
+          <object class="wxBoxSizer" expanded="true">
             <property name="minimum_size"></property>
             <property name="name">bSizer51</property>
             <property name="orient">wxHORIZONTAL</property>
@@ -4190,7 +4190,7 @@
                 <property name="minimize_button">0</property>
                 <property name="minimum_size"></property>
                 <property name="moveable">1</property>
-                <property name="name">m_textCtrl57</property>
+                <property name="name">m_cliente</property>
                 <property name="pane_border">1</property>
                 <property name="pane_position"></property>
                 <property name="pane_size"></property>
@@ -4216,11 +4216,11 @@
             </object>
           </object>
         </object>
-        <object class="sizeritem" expanded="false">
+        <object class="sizeritem" expanded="true">
           <property name="border">5</property>
           <property name="flag"></property>
           <property name="proportion">0</property>
-          <object class="wxBoxSizer" expanded="false">
+          <object class="wxBoxSizer" expanded="true">
             <property name="minimum_size"></property>
             <property name="name">bSizer511</property>
             <property name="orient">wxHORIZONTAL</property>
@@ -4343,7 +4343,7 @@
                 <property name="toolbar_pane">0</property>
                 <property name="tooltip"></property>
                 <property name="validator_data_type"></property>
-                <property name="validator_style">wxFILTER_NONE</property>
+                <property name="validator_style">wxFILTER_NUMERIC</property>
                 <property name="validator_type">wxDefaultValidator</property>
                 <property name="validator_variable"></property>
                 <property name="value"></property>
@@ -4408,7 +4408,7 @@
                 <property name="toolbar_pane">0</property>
                 <property name="tooltip"></property>
                 <property name="validator_data_type"></property>
-                <property name="validator_style">wxFILTER_NONE</property>
+                <property name="validator_style">wxFILTER_NUMERIC</property>
                 <property name="validator_type">wxDefaultValidator</property>
                 <property name="validator_variable"></property>
                 <property name="value"></property>
@@ -4473,7 +4473,7 @@
                 <property name="toolbar_pane">0</property>
                 <property name="tooltip"></property>
                 <property name="validator_data_type"></property>
-                <property name="validator_style">wxFILTER_NONE</property>
+                <property name="validator_style">wxFILTER_NUMERIC</property>
                 <property name="validator_type">wxDefaultValidator</property>
                 <property name="validator_variable"></property>
                 <property name="value"></property>
@@ -4484,11 +4484,11 @@
             </object>
           </object>
         </object>
-        <object class="sizeritem" expanded="false">
+        <object class="sizeritem" expanded="true">
           <property name="border">5</property>
           <property name="flag">wxEXPAND</property>
           <property name="proportion">0</property>
-          <object class="wxBoxSizer" expanded="false">
+          <object class="wxBoxSizer" expanded="true">
             <property name="minimum_size"></property>
             <property name="name">bSizer5111</property>
             <property name="orient">wxHORIZONTAL</property>
@@ -4697,11 +4697,11 @@
             </object>
           </object>
         </object>
-        <object class="sizeritem" expanded="false">
+        <object class="sizeritem" expanded="true">
           <property name="border">5</property>
           <property name="flag">wxRESERVE_SPACE_EVEN_IF_HIDDEN</property>
           <property name="proportion">1</property>
-          <object class="wxBoxSizer" expanded="false">
+          <object class="wxBoxSizer" expanded="true">
             <property name="minimum_size">-1,-1</property>
             <property name="name">bSizer51111</property>
             <property name="orient">wxHORIZONTAL</property>
@@ -4734,10 +4734,10 @@
                 <property name="close_button">1</property>
                 <property name="col_label_horiz_alignment">wxALIGN_CENTER</property>
                 <property name="col_label_size">30</property>
-                <property name="col_label_values">&quot;Nombre&quot; &quot;Marca&quot; &quot;Precio&quot;</property>
+                <property name="col_label_values">&quot;Nombre&quot; &quot;Marca&quot; &quot;Cantidad&quot; &quot;Precio&quot;</property>
                 <property name="col_label_vert_alignment">wxALIGN_CENTER</property>
-                <property name="cols">3</property>
-                <property name="column_sizes">219,142,132,177</property>
+                <property name="cols">4</property>
+                <property name="column_sizes">219,142,132,140</property>
                 <property name="context_help"></property>
                 <property name="context_menu">1</property>
                 <property name="default_pane">0</property>
@@ -4783,7 +4783,7 @@
                 <property name="row_label_size">1</property>
                 <property name="row_label_values"></property>
                 <property name="row_label_vert_alignment">wxALIGN_CENTER</property>
-                <property name="row_sizes">3</property>
+                <property name="row_sizes">4</property>
                 <property name="rows">0</property>
                 <property name="show">1</property>
                 <property name="size"></property>
@@ -4872,11 +4872,11 @@
             </object>
           </object>
         </object>
-        <object class="sizeritem" expanded="false">
+        <object class="sizeritem" expanded="true">
           <property name="border">5</property>
           <property name="flag">wxALIGN_RIGHT</property>
           <property name="proportion">0</property>
-          <object class="wxBoxSizer" expanded="false">
+          <object class="wxBoxSizer" expanded="true">
             <property name="minimum_size"></property>
             <property name="name">bSizer13</property>
             <property name="orient">wxHORIZONTAL</property>

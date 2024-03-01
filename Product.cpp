@@ -64,6 +64,14 @@ void Product::edit(ProductParams param, std::string value) {
 void Product::editPrice(float value){
 	price = value;
 }
+
+bool Product::operator<(const Product& other) const {
+	return id < other.id;
+}
+
+void Product::sellProduct(){
+	quantity -= 1;
+}
 //string Product::getname(){
 //	return name;
 //}

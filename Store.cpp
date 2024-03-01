@@ -355,3 +355,37 @@ Product Store::getProductByName(string name) {
 		return Product(); 
 	}
 }
+
+Seller Store::getSellerByName(string name) {
+	auto sellerComparator = [name](const Seller& s) -> bool {
+		return s.get(SELLER_NAME) == name;
+	};
+	
+	auto it = std::find_if(sellers.begin(), sellers.end(), sellerComparator);
+	
+	if (it != sellers.end()) {
+		return *it;
+	} else {
+		return Seller(); 
+	}
+}
+
+Client Store::getClientByName(string name) {
+	auto clientComparator = [name](const Client& c) -> bool {
+		return c.get(CLIENT_NAME) == name;
+	};
+	
+	auto it = std::find_if(clients.begin(), clients.end(), clientComparator);
+	
+	if (it != clients.end()) {
+		return *it;
+	} else {
+		return Client(); 
+	}
+}
+
+
+void Store::sellProduct(string productId){
+	Product product = getProductById(productId);
+	product.sellProduct();
+}

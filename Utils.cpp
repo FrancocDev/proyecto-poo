@@ -30,6 +30,9 @@ std::string generateRandomID(int length) {
 }
 
 time_t editDate(int day, int month, int year) {
+	if (!isValidDate(day, month, year)) {
+		return -1;
+	}
 	struct tm date;
 	date.tm_mday = day;
 	date.tm_mon = month - 1;
@@ -79,4 +82,14 @@ std::string printDate(time_t date) {
 		<< (timeInfo->tm_year + 1900); //FORMATO
 	
 	return oss.str();
+}
+
+bool isValidDate(int day, int month, int year) {
+	if (month < 1 || month > 12 || day < 1 || day > 31) {
+		return false;
+	}
+	if (year < 1900 || year > 2100) {
+		return false;
+	}
+	return true;
 }

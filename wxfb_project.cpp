@@ -520,8 +520,8 @@ WxfbVenta::WxfbVenta( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_staticText2->Wrap( -1 );
 	bSizer5->Add( m_staticText2, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 
-	m_textCtrl56 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxPoint( -1,-1 ), wxDefaultSize, 0 );
-	bSizer5->Add( m_textCtrl56, 1, wxALL|wxEXPAND, 5 );
+	m_vendedor = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxPoint( -1,-1 ), wxDefaultSize, 0 );
+	bSizer5->Add( m_vendedor, 1, wxALL|wxEXPAND, 5 );
 
 
 	bSizer4->Add( bSizer5, 0, wxEXPAND, 5 );
@@ -534,8 +534,8 @@ WxfbVenta::WxfbVenta( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_staticText21->Wrap( -1 );
 	bSizer51->Add( m_staticText21, 0, wxALL, 5 );
 
-	m_textCtrl57 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer51->Add( m_textCtrl57, 1, wxALL, 5 );
+	m_cliente = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer51->Add( m_cliente, 1, wxALL, 5 );
 
 
 	bSizer4->Add( bSizer51, 0, wxEXPAND, 5 );
@@ -583,7 +583,7 @@ WxfbVenta::WxfbVenta( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_orderGrid1 = new wxGrid( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
 
 	// Grid
-	m_orderGrid1->CreateGrid( 0, 3 );
+	m_orderGrid1->CreateGrid( 0, 4 );
 	m_orderGrid1->EnableEditing( false );
 	m_orderGrid1->EnableGridLines( true );
 	m_orderGrid1->EnableDragGridSize( false );
@@ -593,17 +593,18 @@ WxfbVenta::WxfbVenta( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_orderGrid1->SetColSize( 0, 219 );
 	m_orderGrid1->SetColSize( 1, 142 );
 	m_orderGrid1->SetColSize( 2, 132 );
-	m_orderGrid1->SetColSize( 3, 177 );
+	m_orderGrid1->SetColSize( 3, 140 );
 	m_orderGrid1->EnableDragColMove( false );
 	m_orderGrid1->EnableDragColSize( true );
 	m_orderGrid1->SetColLabelValue( 0, wxT("Nombre") );
 	m_orderGrid1->SetColLabelValue( 1, wxT("Marca") );
-	m_orderGrid1->SetColLabelValue( 2, wxT("Precio") );
+	m_orderGrid1->SetColLabelValue( 2, wxT("Cantidad") );
+	m_orderGrid1->SetColLabelValue( 3, wxT("Precio") );
 	m_orderGrid1->SetColLabelSize( 30 );
 	m_orderGrid1->SetColLabelAlignment( wxALIGN_CENTER, wxALIGN_CENTER );
 
 	// Rows
-	m_orderGrid1->SetRowSize( 0, 3 );
+	m_orderGrid1->SetRowSize( 0, 4 );
 	m_orderGrid1->AutoSizeRows();
 	m_orderGrid1->EnableDragRowSize( true );
 	m_orderGrid1->SetRowLabelSize( 1 );

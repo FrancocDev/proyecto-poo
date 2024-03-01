@@ -21,10 +21,11 @@ public:
 	void editPrice(float value);
 
     int getQuantity() const;
-
+	void sellProduct();
     void edit(ProductParams param, std::string value);
 //	string getbrand()const;
 //	string getname()const;
+	bool operator<(const Product& other) const;
 private:
     std::string id;
 	std::string name;

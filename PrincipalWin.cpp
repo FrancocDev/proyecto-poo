@@ -151,9 +151,7 @@ void PrincipalWin::RefrescarGrillaVentas(){
 		m_grilla->SetCellValue(i,3,ss.str());
 	}
 	m_agregarPrincipal->Disconnect(wxID_ANY);
-	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarVenta), NULL, this );
-	
-	
+	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarVenta), NULL, this );	
 }
 
 ///terminar cambuia de grilla
