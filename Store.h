@@ -21,10 +21,10 @@ public:
     void addSeller(Seller &&elem);
     void addOrder(Order &&elem);
     void addProduct(Product &&elem);
-    Client getClient(int i);
-    Seller getSeller(int i);
+    Client& getClient(int i);
+    Seller& getSeller(int i);
 	Order& getOrder(int i);
-    Product getProduct(int i);
+    Product& getProduct(int i);
     void remove(ArrayTypes arr, int i);
     template <typename T>
 	void add(ArrayTypes arr,const T &elem);

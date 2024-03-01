@@ -256,16 +256,16 @@ void Store::addProduct(Product &&elem) {
 	products.push_back(elem);
 }
 
-Client Store::getClient(int i) {
+Client& Store::getClient(int i) {
 	return clients[i];
 }
-Seller Store::getSeller(int i) {
+Seller& Store::getSeller(int i) {
 	return sellers[i];
 }
 Order& Store::getOrder(int i) {
 	return orders[i];
 }
-Product Store::getProduct(int i) {
+Product& Store::getProduct(int i) {
 	return products[i];
 }
 
