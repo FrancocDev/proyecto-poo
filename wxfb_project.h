@@ -40,7 +40,6 @@ class Principal : public wxFrame
 	protected:
 		wxMenuBar* m_menubar1;
 		wxMenu* m_file;
-		wxMenu* m_aboutUs;
 		wxToolBar* tabSelector;
 		wxButton* clientsButton;
 		wxButton* sellsButton;

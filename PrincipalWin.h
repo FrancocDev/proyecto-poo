@@ -20,13 +20,13 @@ protected:
 	void OnDobleClickGrilla( wxGridEvent& event )  override;
 	void OnClickGrilla( wxGridEvent& event )  override;
 	void OnClickEliminar( wxCommandEvent& event ) ;
-	
 	void OnClickEditar( wxCommandEvent& event );
 	void OnClickEditarSeller( wxCommandEvent& event );
 	void OnClickEditarProduct( wxCommandEvent& event );
 	void OnClickEditarOrder( wxCommandEvent& event ) ;
-	
-	
+	void OnClickBuscarVendedores(wxCommandEvent& event);
+	void OnClickBuscarVenta(wxCommandEvent& event);
+	void OnClickBuscarProducto(wxCommandEvent& event);
 	
 	Store *m_store;
 	void RefrescarGrillaClientes();

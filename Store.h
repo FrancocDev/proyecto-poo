@@ -62,6 +62,7 @@ public:
 	template <typename T>
 	T get(ArrayTypes arr,int i);
 	void sellProduct(string productId);
+	void restoreProduct(string productId);
 	
 private:
 	std::string storeName;

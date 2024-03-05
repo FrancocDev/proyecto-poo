@@ -59,7 +59,7 @@
       <property name="window_style">wxTAB_TRAVERSAL</property>
       <property name="xrc_skip_sizer">1</property>
       <event name="OnSize">OnCambiaTamanio</event>
-      <object class="wxMenuBar" expanded="false">
+      <object class="wxMenuBar" expanded="true">
         <property name="bg"></property>
         <property name="context_help"></property>
         <property name="context_menu">1</property>
@@ -81,36 +81,10 @@
         <property name="window_extra_style"></property>
         <property name="window_name"></property>
         <property name="window_style"></property>
-        <object class="wxMenu" expanded="false">
+        <object class="wxMenu" expanded="true">
           <property name="label">Archivo</property>
           <property name="name">m_file</property>
           <property name="permission">protected</property>
-          <object class="wxMenuItem" expanded="false">
-            <property name="bitmap"></property>
-            <property name="checked">0</property>
-            <property name="enabled">1</property>
-            <property name="help"></property>
-            <property name="id">wxID_ANY</property>
-            <property name="kind">wxITEM_RADIO</property>
-            <property name="label">Seleccionar Archivo</property>
-            <property name="name">m_selectFile</property>
-            <property name="permission">none</property>
-            <property name="shortcut"></property>
-            <property name="unchecked_bitmap"></property>
-          </object>
-          <object class="wxMenuItem" expanded="false">
-            <property name="bitmap"></property>
-            <property name="checked">0</property>
-            <property name="enabled">1</property>
-            <property name="help"></property>
-            <property name="id">wxID_ANY</property>
-            <property name="kind">wxITEM_NORMAL</property>
-            <property name="label">Guardar archivo como...</property>
-            <property name="name">m_saveFileAs</property>
-            <property name="permission">none</property>
-            <property name="shortcut"></property>
-            <property name="unchecked_bitmap"></property>
-          </object>
           <object class="wxMenuItem" expanded="false">
             <property name="bitmap"></property>
             <property name="checked">0</property>
@@ -124,50 +98,6 @@
             <property name="shortcut"></property>
             <property name="unchecked_bitmap"></property>
             <event name="OnMenuSelection">OnClicksavefile</event>
-          </object>
-          <object class="wxMenuItem" expanded="false">
-            <property name="bitmap"></property>
-            <property name="checked">0</property>
-            <property name="enabled">1</property>
-            <property name="help"></property>
-            <property name="id">wxID_ANY</property>
-            <property name="kind">wxITEM_NORMAL</property>
-            <property name="label">Optimizar Archivo</property>
-            <property name="name">m_optimizeFile</property>
-            <property name="permission">none</property>
-            <property name="shortcut"></property>
-            <property name="unchecked_bitmap"></property>
-          </object>
-        </object>
-        <object class="wxMenu" expanded="false">
-          <property name="label">Acerca de...</property>
-          <property name="name">m_aboutUs</property>
-          <property name="permission">protected</property>
-          <object class="wxMenuItem" expanded="false">
-            <property name="bitmap"></property>
-            <property name="checked">0</property>
-            <property name="enabled">1</property>
-            <property name="help"></property>
-            <property name="id">wxID_ANY</property>
-            <property name="kind">wxITEM_NORMAL</property>
-            <property name="label">Información</property>
-            <property name="name">m_info</property>
-            <property name="permission">none</property>
-            <property name="shortcut"></property>
-            <property name="unchecked_bitmap"></property>
-          </object>
-          <object class="wxMenuItem" expanded="false">
-            <property name="bitmap"></property>
-            <property name="checked">0</property>
-            <property name="enabled">1</property>
-            <property name="help"></property>
-            <property name="id">wxID_ANY</property>
-            <property name="kind">wxITEM_NORMAL</property>
-            <property name="label">Ver en Github</property>
-            <property name="name">m_githubRepo</property>
-            <property name="permission">none</property>
-            <property name="shortcut"></property>
-            <property name="unchecked_bitmap"></property>
           </object>
         </object>
       </object>

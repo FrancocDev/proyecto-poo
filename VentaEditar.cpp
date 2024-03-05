@@ -85,10 +85,10 @@ void VentaEditar::addProductToOrder( wxCommandEvent& event )  {
 	
 }
 
-void VentaEditar::addProductToOrderId(string productId)  {
+/// Agrega el producto por la id a el map products de la orden.
+void VentaEditar::addProductToOrderId(string productId)  { 
 	Product &product = m_store->getProductById(productId);
 	
-	cout<<product.get(PRODUCT_NAME)<<endl;
 	if(product.get(PRODUCT_ID) == productId){
 		auto it = products.find(product);
 		if(it != products.end()){
@@ -165,18 +165,24 @@ void VentaEditar::OnClickAgregarVenta( wxCommandEvent& event )  {
 		return;
 	}
 	
-	// Checkeo si es valido el inventario
+	///Re agregar productos al stock
+	Order &originalOrder = m_store->getOrderById(originalId); 
+	for(int j=0; j < originalOrder.getNumOfProducts(); j++){
+		string productId = originalOrder.getProductId(j);
+		m_store->restoreProduct(productId);
+	}
+		
 	for (const auto& data : products) {
 		const Product& temp = data.first;
+		Product sourceProduct = m_store->getProductById(temp.get(PRODUCT_ID));
 		int quantity = data.second;
 		
-		if (temp.getQuantity() < quantity){
-			wxMessageBox("No hay suficientes " + temp.get(PRODUCT_NAME) + " en stock.", "VENTAS");
+		if (sourceProduct.getQuantity() < quantity){
+			wxMessageBox("No hay suficientes " + sourceProduct.get(PRODUCT_NAME) + " en stock.", "VENTAS");
 			return;
 		}
 	}
 	
-	//Arma la orden
 	Order tempOrder(seller.get(SELLER_ID), client.get(CLIENT_ID), day, month, year);
 	for (const auto& data : products) {
 		const Product& temp = data.first;

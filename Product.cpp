@@ -72,6 +72,10 @@ bool Product::operator<(const Product& other) const {
 void Product::sellProduct(){
 	quantity -= 1;
 }
+
+void Product::restoreProduct(){
+	quantity += 1;
+}
 //string Product::getname(){
 //	return name;
 //}

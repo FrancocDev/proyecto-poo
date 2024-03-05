@@ -26,6 +26,7 @@ public:
 //	string getbrand()const;
 //	string getname()const;
 	bool operator<(const Product& other) const;
+	void restoreProduct();
 private:
     std::string id;
 	std::string name;

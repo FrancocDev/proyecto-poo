@@ -12,3 +12,8 @@ product_to_order.dat
 Gestor de ventas.zpr
 *.zpr
 MiProyecto.zpr
+release.w32/libgcc_s_dw2-1.dll
+release.w32/wxbase310u_gcc_custom.dll
+release.w32/wxmsw310u_adv_gcc_custom.dll
+release.w32/wxmsw310u_core_gcc_custom.dll
+release.w32/zpr_resource.rc

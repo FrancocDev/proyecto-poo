@@ -44,20 +44,105 @@ void PrincipalWin::RefrescarGrillaClientes(){
 		m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarprincipal), NULL, this );
 		m_VerEditar->Disconnect(wxID_ANY);
 		m_VerEditar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickEditar), NULL, this );
+		m_button2->Disconnect(wxID_ANY);
+		m_button2->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickBuscar), NULL, this );
 }
 
+void PrincipalWin::OnClickBuscar(wxCommandEvent& event){
+	string searchParam = wx_to_std(m_busqueda->GetValue());
+	Client temp = Client();
+	Client& c = temp;
+	if(m_grilla->GetNumberRows()!=0){
+		m_grilla->DeleteRows(0,m_grilla->GetNumberRows());
+	}
+	int row = 0;
+	for(int i=0; i<m_store->sizeOf(CLIENT);i++){
+		temp = m_store->getClient(i);
+		if(temp.get(CLIENT_NAME).find(searchParam) != std::string::npos){
+		m_grilla->AppendRows();
+		m_grilla->SetCellValue(row,0,c.get(CLIENT_NAME));
+		m_grilla->SetCellValue(row,1,c.get(CLIENT_ADDRESS));
+		m_grilla->SetCellValue(row,2,c.get(CLIENT_PHONE));
+		m_grilla->SetCellValue(row,3,c.get(CLIENT_ADDRESS));
+		row++;
+		}
+	}
+}
 
+void PrincipalWin::OnClickBuscarProducto(wxCommandEvent& event){
+	string searchParam = wx_to_std(m_busqueda->GetValue());
+	Product temp = Product();
+	Product& p = temp;
+	if(m_grilla->GetNumberRows()!=0){
+		m_grilla->DeleteRows(0,m_grilla->GetNumberRows());
+	}
+	int row = 0;
+	for(int i=0; i<m_store->sizeOf(PRODUCT);i++){
+		temp = m_store->getProduct(i);
+		if(temp.get(PRODUCT_NAME).find(searchParam) != std::string::npos){
+			ostringstream ss;
+			ss<<fixed<<setprecision(2)<<temp.getPrice();
+			m_grilla->AppendRows();
+			m_grilla->SetCellValue(row,0,p.get(PRODUCT_NAME));
+			m_grilla->SetCellValue(row,1,p.get(PRODUCT_BRAND));
+			m_grilla->SetCellValue(row,2,ss.str());
+			m_grilla->SetCellValue(row,3,to_string(p.getQuantity()));
+			row++;
+		}
+	}
+}
 
+void PrincipalWin::OnClickBuscarVenta(wxCommandEvent& event){
+	Order temp = Order();
+	Order& o = temp;
+	string searchParam = wx_to_std(m_busqueda->GetValue());
+	if(m_grilla->GetNumberRows()!=0){
+		m_grilla->DeleteRows(0,m_grilla->GetNumberRows());
+	}
+	int row = 0;
+	for(int i=0; i<m_store->sizeOf(ORDER);i++){
+		temp = m_store->getOrder(i);
+		string sellerName = m_store->getSellerById(o.get(SELL_SELLER)).get(SELLER_NAME);
+		if(sellerName.find(searchParam) != std::string::npos){
+		ostringstream ss;
+		ss<<fixed<<setprecision(2)<<o.getAmmount(*m_store);
+		
+		m_grilla->AppendRows();
+		m_grilla->SetCellValue(row,0,sellerName);
+		m_grilla->SetCellValue(row,1,printDate(o.getDate()));
+		m_grilla->SetCellValue(row,2,to_string(o.getNumOfProducts()));
+		m_grilla->SetCellValue(row,3,ss.str());
+		row++;
+		}
+	}
+}
+
+void PrincipalWin::OnClickBuscarVendedores(wxCommandEvent& event){
+	Seller temp = Seller();
+	Seller& s = temp;
+	string searchParam = wx_to_std(m_busqueda->GetValue());
+	if(m_grilla->GetNumberRows()!=0){
+		m_grilla->DeleteRows(0,m_grilla->GetNumberRows());
+	}
+	int row = 0;
+	for(int i=0; i<m_store->sizeOf(SELLER);i++){
+		temp = m_store->getSeller(i);
+		if(temp.get(SELLER_NAME).find(searchParam) != std::string::npos){
+		m_grilla->AppendRows();
+		m_grilla->SetCellValue(row,0,s.get(SELLER_NAME));
+		m_grilla->SetCellValue(row,1,s.get(SELLER_PHONE));
+		m_grilla->SetCellValue(row,2,s.get(SELLER_EMAIL));
+		m_grilla->SetCellValue(row,3,s.get(SELLER_ID));
+		row++;
+		}
+	}
+}
 
 void PrincipalWin::OnCambiaTamanio( wxSizeEvent& event )  {
 	event.Skip();
 }
 
 void PrincipalWin::EnterBuscar( wxCommandEvent& event )  {
-	event.Skip();
-}
-
-void PrincipalWin::OnClickBuscar( wxCommandEvent& event )  {
 	event.Skip();
 }
 
@@ -78,8 +163,8 @@ void PrincipalWin::EliminarDeTabla(ArrayTypes element,int f) {
 		m_store->saveIndividualData(SELLER);
 	}
 	if(element == CLIENT){
-		wxMessageBox("No se pueden eliminar clientes.", "ERROR");
 		RefrescarGrillaClientes();
+		m_store->saveIndividualData(CLIENT);
 	}
 	if(element == ORDER){
 		RefrescarGrillaVentas();
@@ -170,7 +255,9 @@ void PrincipalWin::RefrescarGrillaVentas(){
 	m_agregarPrincipal->Disconnect(wxID_ANY);
 	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarVenta), NULL, this );	
 	m_VerEditar->Disconnect(wxID_ANY);
-	m_VerEditar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickEditarOrder), NULL, this );	
+	m_VerEditar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickEditarOrder), NULL, this );
+	m_button2->Disconnect(wxID_ANY);
+	m_button2->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickBuscarVenta), NULL, this );
 	
 }
 
@@ -202,7 +289,9 @@ void PrincipalWin::RefrescarGrillaProductos(){
 	m_agregarPrincipal->Disconnect(wxID_ANY);
 	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarProducto), NULL, this );
 	m_VerEditar->Disconnect(wxID_ANY);
-	m_VerEditar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickEditarProduct), NULL, this );	
+	m_VerEditar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickEditarProduct), NULL, this );
+	m_button2->Disconnect(wxID_ANY);
+	m_button2->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickBuscarProducto), NULL, this );
 }
 void PrincipalWin::OnButtonProductos( wxCommandEvent& event )  {
 	m_grilla->SetColLabelValue(0,"Marca");
@@ -229,7 +318,9 @@ void PrincipalWin::RefrescarGrillaVendedores(){
 	m_agregarPrincipal->Disconnect(wxID_ANY);
 	m_agregarPrincipal->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickAgregarSeller ), NULL, this );
 	m_VerEditar->Disconnect(wxID_ANY);
-	m_VerEditar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickEditarSeller), NULL, this );	
+	m_VerEditar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickEditarSeller), NULL, this );
+	m_button2->Disconnect(wxID_ANY);
+	m_button2->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::OnClickBuscarVendedores), NULL, this );
 //	m_eliminar->Disconnect(wxID_ANY);
 //	m_eliminar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(PrincipalWin::EliminarSeller ), NULL, this );
 }

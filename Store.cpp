@@ -393,3 +393,8 @@ void Store::sellProduct(string productId){
 	Product& product = getProductById(productId);
 	product.sellProduct();
 }
+
+void Store::restoreProduct(string productId){
+	Product& product = getProductById(productId);
+	product.restoreProduct();
+}

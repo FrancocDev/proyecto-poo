@@ -16,34 +16,11 @@ Principal::Principal( wxWindow* parent, wxWindowID id, const wxString& title, co
 
 	m_menubar1 = new wxMenuBar( 0 );
 	m_file = new wxMenu();
-	wxMenuItem* m_selectFile;
-	m_selectFile = new wxMenuItem( m_file, wxID_ANY, wxString( wxT("Seleccionar Archivo") ) , wxEmptyString, wxITEM_RADIO );
-	m_file->Append( m_selectFile );
-
-	wxMenuItem* m_saveFileAs;
-	m_saveFileAs = new wxMenuItem( m_file, wxID_ANY, wxString( wxT("Guardar archivo como...") ) , wxEmptyString, wxITEM_NORMAL );
-	m_file->Append( m_saveFileAs );
-
 	wxMenuItem* m_SaveFile;
 	m_SaveFile = new wxMenuItem( m_file, wxID_ANY, wxString( wxT("Guardar Archivo") ) , wxEmptyString, wxITEM_NORMAL );
 	m_file->Append( m_SaveFile );
 
-	wxMenuItem* m_optimizeFile;
-	m_optimizeFile = new wxMenuItem( m_file, wxID_ANY, wxString( wxT("Optimizar Archivo") ) , wxEmptyString, wxITEM_NORMAL );
-	m_file->Append( m_optimizeFile );
-
 	m_menubar1->Append( m_file, wxT("Archivo") );
-
-	m_aboutUs = new wxMenu();
-	wxMenuItem* m_info;
-	m_info = new wxMenuItem( m_aboutUs, wxID_ANY, wxString( wxT("Información") ) , wxEmptyString, wxITEM_NORMAL );
-	m_aboutUs->Append( m_info );
-
-	wxMenuItem* m_githubRepo;
-	m_githubRepo = new wxMenuItem( m_aboutUs, wxID_ANY, wxString( wxT("Ver en Github") ) , wxEmptyString, wxITEM_NORMAL );
-	m_aboutUs->Append( m_githubRepo );
-
-	m_menubar1->Append( m_aboutUs, wxT("Acerca de...") );
 
 	this->SetMenuBar( m_menubar1 );
 
